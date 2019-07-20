@@ -23,9 +23,7 @@ include summernote-ko-KR -->
 <script src="/resources/js/summernote-ko-KR.js"></script> 
 
 <%@include file="../includes/header.jsp"%>
-<p class="center jumbotron jumbotron-fluid"
-		style="font-weight: 1000; font-size: 1.5em; background-color: #475C7A;
-		color: white; text-align: center;" > 문의글 작성</p>
+
 <title>글쓰기</title>
 
 <script>
@@ -62,12 +60,17 @@ function register(frm) {
 </head>
 <body>
 
+<p class="center jumbotron jumbotron-fluid"
+		style="font-weight: 1000; font-size: 1.5em; background-color: #475C7A;
+		color: white; text-align: center;" > 문의글 작성</p> 
+
 <div style="width: 60%; margin: auto;">
 	<form method="post" action="/board/register">
-		<input type="text" name="writer" style="width: 40%;" placeholder="작성자"/><br>
-		<input type="text" name="title" style="width: 40%;" placeholder="제목"/>
+		<input type="text" name="writer" style="width: 10%;" placeholder="작성자"/><br>
+		<!-- 로그인 만든 후 작성자는 hidden 처리 -->
+		<input type="text" name="title" style="width: 100%;" placeholder="제목"/><br>
 		<textarea id="summernote" name="content"></textarea>
-		<input id="subBtn" type="button" value="글 작성" style="float: right;" onclick="register(this.form)"/> 
+		<input id="subBtn" type="button" value="글 작성" class="btn btn-secondary" style="float: right;" onclick="register(this.form)" /> 
 	</form>
 </div>
 

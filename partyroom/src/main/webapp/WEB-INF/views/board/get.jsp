@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>   
  <!DOCTYPE html>
 <html>
 <head>
@@ -23,57 +25,31 @@ include summernote-ko-KR -->
 <script src="/resources/js/summernote-ko-KR.js"></script> 
 
 <%@include file="../includes/header.jsp"%>
-<p class="center jumbotron jumbotron-fluid"
-		style="font-weight: 1000; font-size: 1.5em; background-color: #475C7A;
-		color: white; text-align: center;" > 문의글 작성</p>
+
 <title>글쓰기</title>
 
-<script>
-$(document).ready(function() {
-	  $('#summernote').summernote({
- 	    	placeholder: 'content',
-	        minHeight: 370,
-	        maxHeight: null,
-	        focus: true, 
-	        lang : 'ko-KR'
-	  });
-	});
 	
-function register(frm) {
-	var title = frm.title.value;
-	var writer = frm.writer.value;
-	var content = frm.content.value;
-	
-	if (title.trim() == ''){
-		alert("제목을 입력해주세요");
-		return false;
-	}
-	if (writer.trim() == ''){
-		alert("작성자를 입력해주세요");
-		return false;
-	}
-	if (content.trim() == ''){
-		alert("내용을 입력해주세요");
-		return false;
-	}
-	frm.submit();
-}
-</script>	
 </head>
 <body>
 
-<div style="width: 60%; margin: auto;">
+<p class="center jumbotron jumbotron-fluid"
+		style="font-weight: 1000; font-size: 1.5em; background-color: #475C7A;
+color: white; text-align: center;" > 문의글 작성</p>
+<!-- 나중에 깔끔하게 수정해야함 -->
+<div style="width: 80%; margin-left: auto; margin-right: auto;">
 	<form method="post">
-		<input type="text" name="writer" style="width: 40%;" placeholder="작성자" 
-		value="${board.writer }" readonly="readonly"/><br>
-		<input type="text" name="title" style="width: 40%;" placeholder="제목" 
-		value="${board.title }" readonly="readonly"/>
-		<textarea id="summernote" name="content" readonly="readonly" >${board.content }</textarea>
+		<p>글쓴이 :: ${board.writer }</p>
+		<hr>
+		<p>${board.title }</p>
+		<hr>
+		<p>${board.content }</p>
 		<input id="subBtn" type="button" value="글 수정" style="float: right;" onclick="modify(this.form)"/> 
 		<input id="RemoveBtn" type="button" value="글 삭제" style="float: right;" onclick="delete(this.form)"/> 
 		
 	</form>
 </div>
+
+
 
 </body>
 </html>

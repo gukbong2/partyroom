@@ -26,7 +26,7 @@
 
 <style>
 
-a {
+.nav-item {
 	font-weight: 800;
 	font-size: 20px;
 	color: #668;
@@ -64,7 +64,7 @@ a {
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item"><a class="nav-link" data-toggle="modal" href="#login">로그인</a></li>
 
-				<li class="nav-item"><a class="nav-link" href="#register">회원가입</a></li>
+				<li class="nav-item"><a class="nav-link" data-toggle="modal" href="#register">회원가입</a></li>
 			</ul>
 		</div>
 	</div>
@@ -76,7 +76,7 @@ a {
 		게시판 적기
 </p> -->
 
-<!-- 로그인 모달창 시작 -->
+<!-- 로그인 모달 -->
 <div class="modal fade" id="login" tabindex="-1" role="dialog"
 	aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
@@ -93,8 +93,10 @@ a {
 			<div class="modal-body center">
 				<form name="frm" action="#" method="post">
 					<input type="text" name="id" class="form-control my-2" placeholder="아이디" id="idInput"> 
-						<input type="password" name="password" class="form-control my-2" placeholder="비밀번호">
-					<input type="button" style="background-color: #475C7A; color: white;" class="btn btn-block form-control" value="로그인" onclick="chk()">
+					<input type="password" name="password" class="form-control my-2" placeholder="비밀번호">
+					
+					<input type="button" style="background-color: #475C7A; color: white;" 
+					class="btn btn-block form-control" value="로그인" onclick="login()">
 				</form>
 				<hr>
 
@@ -105,16 +107,56 @@ a {
 
 				<div class="text-center">
 					<a href="/member/findId">도움이 필요하십니까?</a><br>
-					<a data-toggle="modal" data-dismiss="modal" href="#join"
-						data-target="#join">회원가입</a>
+					<a data-toggle="modal" data-dismiss="modal" href="#register"
+						data-target="#register">회원가입</a>
 				</div>
 			</div>
 
 		</div>
 	</div>
 </div>
- 
-    
+<!-- 로그인 모달 -->
+
+<!-- 회원가입 모달 -->
+<div class="modal fade" id="register" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<h5 class="modal-title" id="myModalLabel"><strong>회원가입</strong></h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div> 
+			
+			<div class="modal-body center">
+				<form name="frm" action="#" method="post">
+					<input type="text" name="id" class="form-control my-2" placeholder="아이디" id="idInput"> 
+					<input type="password" name="password" class="form-control my-2" placeholder="비밀번호">
+					
+					<input type="button" style="background-color: #475C7A; color: white;" 
+					class="btn btn-block form-control" value="회원가입" onclick="register()">
+				</form>
+				<hr>
+
+				<form style="text-align: center;">
+					<!-- 소셜 로그인 추후 -->	
+				</form>
+				<hr>
+
+				<div class="text-center">
+					<a href="/member/findId">도움이 필요하십니까?</a><br>
+					<a data-toggle="modal" data-dismiss="modal" href="#login"
+						data-target="#login">로그인</a>
+				</div>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>    
  
 </body>
 </html>

@@ -25,21 +25,22 @@
 
 			<!-- /.panel-heading -->
 			<div class="panel-body">
-				<table class="table table-striped table-bordered table-hover" 
-				style="margin-left: auto; margin-right: auto;">
-					<thead>
-						<tr>
-							<th width="12%">No.</th>
-							<th width="45%">제목</th>
-							<th width="12%">작성자</th>
-							<th width="13%">작성일</th>
-						</tr>
-					</thead>
+				<table class="table table-hover" style="font-size: 20px; width: 80%; margin-right : auto; margin-left : auto;">
+			<thead>
+				<tr>
+					<th width="8%">No.</th>
+					<th width="57%">제목</th>
+					<th width="15%">작성자</th>
+					<th width="20%">작성일</th>
+				</tr>
+			</thead>
+			<tbody>
+
 					
 					<c:forEach items="${list }" var="board">
 						<tr>
 							<td><c:out value="${board.bno }"/></td>
-							<td><c:out value="${board.title }"/></td>
+							<td style="color : black;"><a href="/board/get?bno=${board.bno }"><c:out value="${board.title }"/></a></td>
 							<td><c:out value="${board.writer }"/></td>
 							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regdate }"/></td>
 						</tr>
