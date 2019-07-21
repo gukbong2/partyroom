@@ -21,6 +21,7 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<button id='regBtn' type="button" class="btn btn-xs pull-right">글 작성</button>
+				<button id='naverBtn' type="button" class="btn btn-xs pull-right">네이버</button>
 			</div>
 
 			<!-- /.panel-heading -->
@@ -59,7 +60,12 @@
 	$("#regBtn").on("click", function() {
 		self.location = "/board/register";
 	});
-		
+	
+	$("#naverBtn").on("click", function() {
+		self.location = "/index";
 	});
+	
+	
+});
 
 </script>

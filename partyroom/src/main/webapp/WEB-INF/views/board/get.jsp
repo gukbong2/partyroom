@@ -38,7 +38,7 @@ color: white; text-align: center;" > 문의글 작성</p>
 <!-- 나중에 깔끔하게 수정해야함 -->
 <div style="width: 80%; margin-left: auto; margin-right: auto;">
 	<form method="post">
-		<p>글쓴이 :: ${board.writer }</p>
+		<p>글쓴이 | ${board.writer }</p>
 		<hr>
 		<p>${board.title }</p>
 		<hr>

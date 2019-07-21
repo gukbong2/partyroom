@@ -22,7 +22,9 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.spring.controller" />
+
+	<context:component-scan base-package="com.spring.social" />
+	<beans:bean id="naverLoginBO" class="com.spring.social.NaverLoginBO" />
 	
-	
-	
+		
 </beans:beans>
