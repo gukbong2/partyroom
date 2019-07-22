@@ -63,32 +63,36 @@ public class BoardController {
 	}
 
 	@PostMapping("/modify")
-	public String modify(BoardVO board, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
-		log.info("modify : " + board);
-		
-		if(service.modify(board)) {
+	public String modify(BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+		log.info("modify:" + board);
+
+		if (service.modify(board)) {
 			rttr.addFlashAttribute("result", "success");
 		}
-		
-			rttr.addFlashAttribute("pageNum", cri.getPageNum());
-			rttr.addFlashAttribute("pageNum", cri.getAmount());
-		
-		return "redirect:/board/list";
+
+//		rttr.addAttribute("pageNum", cri.getPageNum());
+//		rttr.addAttribute("amount", cri.getAmount());
+//		rttr.addAttribute("type", cri.getType());
+//		rttr.addAttribute("keyword", cri.getKeyword());
+
+		return "redirect:/board/list" + cri.getListLink();
 	}
-	
+	//cri.getListLink() = 파라미터 연결해서 URL 형태로 만들어줌
 	
 	@PostMapping("/remove")
-	public String remove(@RequestParam("bno") Long bno, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
-		log.info("remove : " + bno);
-		
-		if(service.remove(bno)) {
+	public String remove(@RequestParam("bno") Long bno, Criteria cri, RedirectAttributes rttr) {
+
+		log.info("remove..." + bno);
+		if (service.remove(bno)) {
 			rttr.addFlashAttribute("result", "success");
 		}
 		
-			rttr.addFlashAttribute("pageNum", cri.getPageNum());
-			rttr.addFlashAttribute("pageNum", cri.getAmount());
-		
-		return "redirect:/board/list";
+//		rttr.addAttribute("pageNum", cri.getPageNum());
+//		rttr.addAttribute("amount", cri.getAmount());
+//		rttr.addAttribute("type", cri.getType());
+//		rttr.addAttribute("keyword", cri.getKeyword());
+
+		return "redirect:/board/list" + cri.getListLink();
 	}
 	
 	

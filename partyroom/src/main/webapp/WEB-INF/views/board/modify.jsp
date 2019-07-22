@@ -8,11 +8,9 @@
 
 
 
-<form role="form" action="/board/modify" method="post" style="font-size: 20px; width: 80%; margin-right : auto; margin-left : auto;">
-      
-        <input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum }"/>'>
-        <input type='hidden' name='amount' value='<c:out value="${cri.amount }"/>'>
-	  
+
+<form role="form" action="/board/modify" method="post" 
+	  style="font-size: 20px; width: 80%; margin-right : auto; margin-left : auto;">
       
  
 <div class="form-group">
@@ -55,6 +53,14 @@
   <button type="submit" data-oper='modify' class="btn btn-default">Modify</button>
   <button type="submit" data-oper='remove' class="btn btn-danger">Remove</button>
   <button type="submit" data-oper='list' class="btn btn-info">List</button>
+  
+  
+    <input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum }"/>'>
+    <input type='hidden' name='amount' value='<c:out value="${cri.amount }"/>'>
+    <input type='hidden' name='type' value='<c:out value="${cri.type }"/>'>
+	<input type='hidden' name='keyword' value='<c:out value="${cri.keyword }"/>'>  
+      
+  
 </form>
 
 
@@ -83,20 +89,23 @@ $(document).ready(function() {
 	      
 	      var pageNumTag = $("input[name='pageNum']").clone();
 	      var amountTag = $("input[name='amount']").clone();
-	      //var keywordTag = $("input[name='keyword']").clone();
-	     // var typeTag = $("input[name='type']").clone();      
+	      var keywordTag = $("input[name='keyword']").clone();
+	      var typeTag = $("input[name='type']").clone();      
 	      
 	      formObj.empty();
 	      
 	      formObj.append(pageNumTag);
 	      formObj.append(amountTag);
-	      //formObj.append(keywordTag);
-	      //formObj.append(typeTag);	       
+	      formObj.append(keywordTag);
+	      formObj.append(typeTag);	       
 	    }
 	    
 	    formObj.submit();
 	  });
 
+	  
+	  
+	  
 });
 </script>
   
