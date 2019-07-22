@@ -43,14 +43,17 @@
 </update>
 
 <select id="getListWithPaging" resultType="com.spring.domain.BoardVO">
-	<![CDATA[
-	SELECT BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDATE FROM (
-		SELECT /* + INDEX_DESC(BOARD PK_BOARD) */
-			ROWNUM RN, BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDATE 
-				FROM BOARD WHERE ROWNUM <=  #{pageNum} * #{amount}
-	)
-	WHERE RN > (#{pageNum} -1) * #{amount}
-	]]>
+	<![CDATA[ SELECT BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDATE FROM ( 
+	SELECT /*+INDEX_DESC(BOARD PK_BOARD) */ 
+	ROWNUM RN, BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDATE 
+	FROM BOARD WHERE ROWNUM <= #{pageNum} * #{amount} 
+	) 
+	WHERE RN > (#{pageNum} -1) * #{amount} 
+	]]> 
+</select>
+
+<select id="getTotalCount" resultType="int">
+	SELECT COUNT(*) FROM BOARD WHERE BNO > 0
 </select>
 
 

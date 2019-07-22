@@ -36,18 +36,13 @@
             value='<c:out value="${board.writer }"/>' readonly="readonly">
         </div>
 
-<%-- 		<button data-oper='modify' class="btn btn-default">
-        <a href="/board/modify?bno=<c:out value="${board.bno}"/>">Modify</a></button>
-        <button data-oper='list' class="btn btn-info">
-        <a href="/board/list">List</a></button> --%>
+
 
 
 <button data-oper='modify' class="btn btn-default">Modify</button>
 <button data-oper='list' class="btn btn-info">List</button>
 
-<%-- <form id='operForm' action="/boad/modify" method="get">
-  <input type='hidden' id='bno' name='bno' value='<c:out value="${board.bno}"/>'>
-</form> --%>
+
 
 
 <form id='operForm' action="/boad/modify" method="get">
@@ -86,6 +81,8 @@ $(document).ready(function() {
   $("button[data-oper='list']").on("click", function(e){
     
     operForm.find("#bno").remove();
+    operForm.find("#pageNum").remove();
+    operForm.find("#amount").remove();
     operForm.attr("action","/board/list")
     operForm.submit();
     
