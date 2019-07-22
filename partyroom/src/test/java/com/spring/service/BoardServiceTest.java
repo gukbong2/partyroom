@@ -9,6 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.spring.domain.BoardVO;
+import com.spring.domain.Criteria;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -50,17 +51,23 @@ public class BoardServiceTest {
 //		log.info("remove result : " + service.remove(1L));
 //	}
 	
+//	@Test
+//	public void testUpdate() {
+//		BoardVO board = service.get(10L);
+//		
+//		if (board == null) {
+//			return;
+//		}
+//		
+//		board.setTitle("제목을 수정합니다.");	
+//		log.info("modify result : " + service.modify(board));
+//	}
+	
 	@Test
-	public void testUpdate() {
-		BoardVO board = service.get(10L);
-		
-		if (board == null) {
-			return;
-		}
-		
-		board.setTitle("제목을 수정합니다.");	
-		log.info("modify result : " + service.modify(board));
+	public void testList() {
+		service.getList(new Criteria(2, 10)).forEach(board -> log.info(board));
 	}
+	
 	
 	
 }

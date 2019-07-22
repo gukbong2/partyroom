@@ -4,6 +4,7 @@ import java.util.List;
 
 
 import com.spring.domain.BoardVO;
+import com.spring.domain.Criteria;
 
 public interface BoardMapper {
 
@@ -20,7 +21,7 @@ public interface BoardMapper {
 	
 	public int update(BoardVO board);
 	
-	
+	public List<BoardVO> getListWithPaging(Criteria cri);
 	
 	
 	

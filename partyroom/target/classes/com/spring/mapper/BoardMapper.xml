@@ -6,7 +6,7 @@
 
 <select id="getList" resultType="com.spring.domain.BoardVO" >
 	<![CDATA[
-		SELECT * FROM BOARD WHERE BNO > 0
+		SELECT * FROM BOARD WHERE BNO > 0 ORDER BY BNO DESC
 	]]>
 </select>
 
@@ -41,6 +41,17 @@
 		WHERE BNO = #{bno}
 
 </update>
+
+<select id="getListWithPaging" resultType="com.spring.domain.BoardVO">
+	<![CDATA[
+	SELECT BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDATE FROM (
+		SELECT /* + INDEX_DESC(BOARD PK_BOARD) */
+			ROWNUM RN, BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDATE 
+				FROM BOARD WHERE ROWNUM <=  #{pageNum} * #{amount}
+	)
+	WHERE RN > (#{pageNum} -1) * #{amount}
+	]]>
+</select>
 
 
 
