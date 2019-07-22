@@ -26,8 +26,17 @@ h3 {
 		
 		var name = ${result}.response.name;
 		var email = ${result}.response.email;
+		var gender = ${result}.response.gender;
+		var birthday = ${result}.response.birthday;
+		console.log(name);
+		console.log(email);
+		console.log(gender);
+		console.log(birthday);
+		
 		$("#name").html("환영합니다. "+name+"님");
 		$("#email").html(email);
+		$("#gender").html(gender);
+		$("#birthday").html(birthday);
 	  });
 </script>
 
@@ -40,6 +49,8 @@ h3 {
 	<br>
 	<h2 style="text-align: center" id="name"></h2>
 	<h4 style="text-align: center" id="email"></h4>
+	<h4 style="text-align: center" id="gender"></h4>
+	<h4 style="text-align: center" id="birthday"></h4>
 
 </body>
 </html>

@@ -10,6 +10,9 @@
 }
 </style>
 
+<h2 style="text-align: center" id="name"></h2>
+<h4 style="text-align: center" id="email"></h4>
+
 <p class="center jumbotron jumbotron-fluid"
 		style="font-weight: 1000; font-size: 1.5em; background-color: #475C7A;
 		color: white; text-align: center;" >문의 게시판</p>

@@ -71,13 +71,13 @@
     <div class="panel panel-default">
       
       <div class="panel-heading">
-        <i class="fa fa-comments fa-fw"></i>댓글
-        <button id='addReplyBtn' class='btn btn-secondary btn-sm'>댓글 작성</button> 
+         <button id='addReplyBtn' class='btn btn-secondary btn-sm'>댓글 작성</button>  
+        
       </div>      
       
-      
       <div class="panel-body">        
-      
+      	
+      	
         <ul class="chat">
 			<li class="left clearfix" data-rno='12'>
 				<div>
@@ -125,6 +125,7 @@ $(document).ready(function() {
 <script type="text/javascript">
 
 $(document).ready(function() {
+		
 		
 		var bnoValue = '<c:out value="${board.bno}"/>';
 		

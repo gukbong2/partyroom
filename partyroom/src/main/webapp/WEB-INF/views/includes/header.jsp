@@ -44,15 +44,26 @@
 
 </style>
 
+
+<script type="text/javascript">
+$(document).ready(function() {
+	
+	var name = ${result}.response.name;
+	var email = ${result}.response.email;
+	$("#name").html("환영합니다. "+name+"님");
+	$("#email").html(email);
+  });
+</script>
+
+
+
 <body>
     <!-- header -->
-    
-    
     
     <nav class="navbar navbar-expand-lg navbar-light bg-light  static-top" >
 		<div class="container-fluid">
 			<a class="navbar-brand" href="/">
-				<img src="/resource/image/logo2.png" width="200px" height="80px">
+				 <img src="/resources/image/logo.png" width="200px" height="80px"> 
 			</a>
 		
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -109,6 +120,7 @@
 
 				<form style="text-align: center;">
 					<!-- 소셜 로그인 추후 -->	
+					<a href="/social/login"><img src="/resources/image/logo.png" alt="" /></a>
 				</form>
 				<hr>
 
@@ -140,8 +152,10 @@
 			
 			<div class="modal-body center">
 				<form name="frm" action="#" method="post">
-					<input type="text" name="id" class="form-control my-2" placeholder="아이디" id="idInput"> 
+					<input type="text" name="email" class="form-control my-2" placeholder="아이디" id="email"> 
+					<input type="text" name="name" class="form-control my-2" placeholder="닉네임" id="name"> 
 					<input type="password" name="password" class="form-control my-2" placeholder="비밀번호">
+					<input type="password" name="password2" class="form-control my-2" placeholder="비밀번호 확인">
 					
 					<input type="button" style="background-color: #475C7A; color: white;" 
 					class="btn btn-block form-control" value="회원가입" onclick="register()">
@@ -150,6 +164,7 @@
 
 				<form style="text-align: center;">
 					<!-- 소셜 로그인 추후 -->	
+					
 				</form>
 				<hr>
 
