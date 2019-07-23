@@ -3,7 +3,6 @@ console.log("reply 모듈");
 var replyService = (function() {
 
 	function add(reply, callback, error) {
-		console.log("리플 추가 가즈아!!");
 
 		$.ajax({
 			type : 'post',
@@ -12,7 +11,7 @@ var replyService = (function() {
 			contentType : "application/json; charset=utf-8",
 			success : function(result, status, xhr) {
 				if (callback) {
-					callback(result);
+					callback("성공했따 : " + result);
 				}
 			},
 			error : function(xhr, status, er) {
