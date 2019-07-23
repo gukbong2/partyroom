@@ -2,6 +2,8 @@ package com.spring.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -36,7 +38,8 @@ public class ReplyController {
 		int insertCount = service.register(vo);
 
 		log.info("Reply INSERT COUNT: " + insertCount);
-
+		
+		
 		return insertCount == 1  
 				?  new ResponseEntity<>("success", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -49,7 +52,9 @@ public class ReplyController {
 			 log.info("getList.................");
 			 Criteria cri = new Criteria(page,10);
 			 log.info(cri);
-	
+			 
+			 
+			 
  		return new ResponseEntity<>(service.getList(cri, bno), HttpStatus.OK);
 	}
 	

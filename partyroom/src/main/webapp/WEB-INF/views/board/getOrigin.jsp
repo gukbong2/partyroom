@@ -85,10 +85,6 @@
       <div class="panel-body">        
         <ul class="chat">
 			
-			<!-- 자기 글이면 수정/삭제 버튼 보이게 처리 -->
-			
-			
-			
         </ul>
       </div>
 
@@ -135,6 +131,7 @@ $(document).ready(function() {
 <script type="text/javascript" src="/resources/js/reply.js"></script>
 
 <script type="text/javascript">
+
 $(document).ready(function() {
 		
 		
@@ -156,9 +153,12 @@ $(document).ready(function() {
 					return;
 				}
 				for (var i = 0, len = list.length || 0; i < len; i++) {
-				    str +="<li class='left clearfix' data-rno='"+list[i].rno+"'>";
-					str += "<div><div class='header'><strong class='primary-font'>" + list[i].replyer + "</strong>";
-					str += "<small class='pull-right text-muted'>"+replyService.displayTime(list[i].replydate) + "</small></div>";
+					str += "<li class='left clearfix' id='rno' data-rno='" + list[i].rno + "'>";
+					str += "<div><div class='header'><strong class='primary-font'>" + list[i].replyer + "</strong>&nbsp;&nbsp;";
+					str += "<small class='pull-right text-muted'>"+replyService.displayTime(list[i].replydate) + "</small>&nbsp;";
+					
+					str += "<small class='pull-right text-muted'><a onclick='replyModify()'>수정</a></small>&nbsp;"
+					str += "<small class='pull-right text-muted'><a onclick='replyRemove()'>삭제</a></small></div>"
 					str += "<p>" + list[i].reply + "</p></div></li>";
 					str += "<hr />";
 				}
@@ -167,15 +167,80 @@ $(document).ready(function() {
 			});
 		}				
 		
-
+		$(".chat").on("click", "li", function(e){
+		      
+		      var rno = $(this).data("rno");
+		      
+		      replyService.get(rno, function(reply){
+		      
+		        reply.val(reply.reply);
+		        replyer.val(reply.replyer);
+		        replydate.val(replyService.displayTime( reply.replyDate))
+		        .attr("readonly","readonly");
+		        modal.data("rno", reply.rno);
+		        
+		        modal.find("button[id !='modalCloseBtn']").hide();
+		        modalModBtn.show();
+		        modalRemoveBtn.show();
+		        
+		        $(".modal").modal("show");
+		            
+		      });
+		    });
 		
-		$(".chat").on("click", "li", function(e) {
-			var rno = $(this).data('rno');
-			
-			console.log("rno : "  + rno);
-			
+		
+		
+		
+		
+		
+		
+		/* //댓글추가
+		replyService.add(
+		    
+		    {reply:"JS Test", replyer:"테스터", bno:bnoValue},
+		    
+		    function(result){ 
+		      console.log("RESULT: " + result);
+		    }
+		);
+		
+		//댓글목록
+		replyService.getList({bno:bnoValue, page:1}, function(list) {
+			for (var i = 0, len = list.length || 0; i < len; i++) {
+				console.log(list[i]);
+			}
 		});
+		
+	
+		// rno 15 삭제
+		replyService.remove(15, function(count) {
+
+		   console.log(count);
+
+		   if (count === "success") {
+			   console.log("댓글 삭제 성공!");
+		   }
+		   
+		 }, function(err) {
+			 console.log('ERROR...');
+		 }); 
+			
+		
+		 //fno 19 수정
+		 replyService.update({
+			 rno : 19,
+			 bno : bnoValue,
+			 reply : "reply.js 수정"
+		 }, function(result) {
+			 console.log("수정 완료!");
+		 }); 
 		 
+		 
+		 //rno 10 조회
+		 replyService.get(10, function(data) {
+			 console.log(data);
+		 }) */
+	
 		 
 });
 </script>
@@ -184,8 +249,12 @@ $(document).ready(function() {
 
 <!-- 댓글 등록 Script -->
 <script>
+
 var bnoValue = '<c:out value="${board.bno}"/>';
+
 var replyUL = $(".chat");
+
+
 	$("#replyBtn").on("click", function(e) {
 		console.log("댓글 작성 클릭됨");
 		var addReply = $("#addReply");
@@ -223,7 +292,7 @@ var replyUL = $(".chat");
 		
 		replyService.add(
 			    
-			    {reply:replyVal, replyer:replyerVal, bno:bnoVal},
+			    {reply:replyVal, replyer:replyerVal, bno:bnoVal },
 			    
 			    function(result){ 
 			      console.log("RESULT: " + result);
@@ -234,6 +303,8 @@ var replyUL = $(".chat");
 			    }
 			);
 	}
+
+
 	
 	function  showList(page) {
 		
@@ -246,9 +317,12 @@ var replyUL = $(".chat");
 				return;
 			}
 			for (var i = 0, len = list.length || 0; i < len; i++) {
-				str +="<li class='left clearfix' data-rno='"+list[i].rno+"'>";
-				str += "<div><div class='header'><strong class='primary-font'>" + list[i].replyer + "</strong>";
-				str += "<small class='pull-right text-muted'>"+replyService.displayTime(list[i].replydate) + "</small></div>";
+				str += "<li class='left clearfix' data-last-value='" + [i] + "' +  id='rno' data-rno='" + list[i].rno + "'>";
+				str += "<div><div class='header'><strong class='primary-font'>" + list[i].replyer + "</strong>&nbsp;&nbsp;";
+				str += "<small class='pull-right text-muted'>"+replyService.displayTime(list[i].replydate) + "</small>&nbsp;";
+				
+				str += "<small class='pull-right text-muted'><a onclick='replyModify()'>수정</a></small>&nbsp;"
+				str += "<small class='pull-right text-muted'><a onclick='replyRemove()'>삭제</a></small></div>"
 				str += "<p>" + list[i].reply + "</p></div></li>";
 				str += "<hr />";
 			}
@@ -257,4 +331,23 @@ var replyUL = $(".chat");
 		});
 	}				
 	
+	
+	
+	function replyModify() {
+		console.log("리플 수정 누름!");
+	}
+	
+	function replyRemove() {
+		var rno = $(this).data("rno");
+		 
+		 console.log(rno);
+		/* if (confirm("댓글을 삭제 하시겠습니까?")) {
+		
+
+		} else {
+			
+		} */
+	}
+	
 </script>
+
