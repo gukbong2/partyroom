@@ -4,8 +4,31 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spring.mapper.MemberMapper">
 
-  <select id="" >
- 	
-  </select>
+<insert id="insert">
+	INSERT INTO MEMBER(IDX, EMAIL, PASSWORD, NAME)
+		VALUES (SEQ_MEMBER.NEXTVAL, #{email}, #{password}, #{name})
+</insert>
+
+
+<insert id="insertSelectKey">
+	
+<selectKey keyProperty="idx" order="BEFORE" resultType="long">
+	SELECT SEQ_MEMBER.NEXTVAL FROM DUAL
+</selectKey>
+	
+	INSERT INTO MEMBER(IDX, EMAIL, PASSWORD, NAME)
+		VALUES (SEQ_MEMBER.NEXTVAL, #{email}, #{password}, #{name} )	
+	
+</insert>
+
+	
+<delete id="delete">
+	DELETE MEMBER WHERE IDX = #{idx}
+</delete>
+
+	
+<select id="getMember" resultType="com.spring.domain.MemberVO">
+	SELECT * FROM MEMBER WHERE IDX = #{idx}
+</select>	
 
 </mapper>
