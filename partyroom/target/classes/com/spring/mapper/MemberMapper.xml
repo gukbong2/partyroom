@@ -26,9 +26,26 @@
 	DELETE MEMBER WHERE IDX = #{idx}
 </delete>
 
-	
+
 <select id="getMember" resultType="com.spring.domain.MemberVO">
 	SELECT * FROM MEMBER WHERE IDX = #{idx}
 </select>	
+
+
+<select id="login" resultType="com.spring.domain.MemberVO">
+	SELECT EMAIL,PASSWORD,NAME,AUTH FROM MEMBER 
+		WHERE EMAIL = #{email} AND PASSWORD = #{password}
+
+</select>
+
+
+
+
+
+
+
+
+
+
 
 </mapper>

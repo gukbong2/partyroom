@@ -19,28 +19,38 @@ public class MemberServiceTest {
 	@Setter(onMethod_ = {@Autowired})
 	private MemberService service;
 
+//	@Test
+//	public void tesetRegister() {
+//		
+//		MemberVO member = new MemberVO();
+//		
+//		member.setEmail("gukbong2459@gmail.com");
+//		member.setPassword("sdfsdf33");
+//		member.setName("방국봉2");
+//		
+//		service.memberRegister(member);
+//		
+//		log.info("===============member : " + member);
+//		
+//	}
+//	
+//	@Test
+//	public void testDelete() {
+//		log.info("remove result : " + service.remove(9L));
+//	}
+
+
 	@Test
-	public void tesetRegister() {
-		
+	public void memberLogin() {
 		MemberVO member = new MemberVO();
 		
-		member.setEmail("gukbong2459@gmail.com");
-		member.setPassword("sdfsdf33");
-		member.setName("방국봉2");
+		member.setEmail("dd");
+		member.setPassword("dd");
+
+		log.info(member);
 		
-		service.memberRegister(member);
-		
-		log.info("===============member : " + member);
-		
+		service.login(member);
 	}
-	
-	@Test
-	public void testDelete() {
-		log.info("remove result : " + service.remove(9L));
-	}
-
-
-
 
 
 }

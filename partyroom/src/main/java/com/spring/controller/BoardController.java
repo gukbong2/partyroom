@@ -1,5 +1,7 @@
 package com.spring.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,7 +41,7 @@ public class BoardController {
 	
 	@GetMapping("/register")
 	public String boardRegister() {
-		return "board/register";
+		return "board/register";	
 	}
 	
 	@PostMapping("/register")
@@ -50,6 +52,7 @@ public class BoardController {
 		service.register(board);
 		
 		rttr.addFlashAttribute("result", board.getBno());
+		
 		
 		return "redirect:/board/list";
 	}

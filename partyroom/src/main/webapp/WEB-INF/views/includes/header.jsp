@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,22 +40,8 @@
 	color: #668;
 }
 
-
-
-
-
 </style>
 
-
-<script type="text/javascript">
-$(document).ready(function() {
-	
-	var name = ${result}.response.name;
-	var email = ${result}.response.email;
-	$("#name").html("환영합니다. "+name+"님");
-	$("#email").html(email);
-  });
-</script>
 
 
 
@@ -109,12 +97,15 @@ $(document).ready(function() {
 			</div>
 
 			<div class="modal-body center">
-				<form name="frm" action="#" method="post">
-					<input type="text" name="id" class="form-control my-2" placeholder="아이디" id="idInput"> 
-					<input type="password" name="password" class="form-control my-2" placeholder="비밀번호">
+				<form method="POST" id="loginForm">
+					<input type="text" name="email" id="email" class="form-control my-2" placeholder="이메일" > 
+					
+					<input type="password" name="password" id="password" class="form-control my-2" placeholder="비밀번호">
 					
 					<input type="button" style="background-color: #475C7A; color: white;" 
-					class="btn btn-block form-control" value="로그인" onclick="login()">
+					class="btn btn-block form-control" value="로그인" onclick="login(this.form)">
+					
+					
 				</form>
 				<hr>
 
@@ -151,14 +142,14 @@ $(document).ready(function() {
 			</div> 
 			
 			<div class="modal-body center">
-				<form name="frm" action="#" method="post">
-					<input type="text" name="email" class="form-control my-2" placeholder="아이디" id="email"> 
-					<input type="text" name="name" class="form-control my-2" placeholder="닉네임" id="name"> 
-					<input type="password" name="password" class="form-control my-2" placeholder="비밀번호">
+				<form method="POST" id="registerForm">
+					<input type="text" name="email" id="email" class="form-control my-2" placeholder="이메일" > 
+					<input type="text" name="name" id="name" class="form-control my-2" placeholder="성함" > 
+					<input type="password" name="password" id="password" class="form-control my-2" placeholder="비밀번호">
 					<input type="password" name="password2" class="form-control my-2" placeholder="비밀번호 확인">
 					
 					<input type="button" style="background-color: #475C7A; color: white;" 
-					class="btn btn-block form-control" value="회원가입" onclick="register()">
+					class="btn btn-block form-control" value="회원가입" onclick="register(this.form)">
 				</form>
 				<hr>
 
@@ -179,6 +170,32 @@ $(document).ready(function() {
 		</div>
 	</div>
 </div>    
+ 
+ 
+ <script>
+ 		
+ 		//회원가입 function -> Model 저장 후 /board/list 리턴
+ 		function register(frm) {
+			
+ 			frm.action = "/member/register"; 
+ 		    frm.submit(); 
+ 			
+ 		}
+ 		
+ 		function login(frm) {
+ 			frm.action = "/member/login";
+ 			frm.submit();
+ 		}
+ 
+ </script>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
 </body>
 </html>

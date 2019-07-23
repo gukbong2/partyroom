@@ -10,7 +10,7 @@ public interface MemberService {
 	
 	public MemberVO getMember(Long idx);
 	
-	
+	public MemberVO login(MemberVO member);
 	
 	
 }

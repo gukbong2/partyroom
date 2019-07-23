@@ -31,6 +31,12 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return mapper.getMember(idx);
 	}
+
+	@Override
+	public MemberVO login(MemberVO member) {
+		
+		return mapper.login(member);
+	}
 	
 	
 	
