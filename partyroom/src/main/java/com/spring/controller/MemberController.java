@@ -3,7 +3,7 @@ package com.spring.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -47,6 +47,16 @@ public class MemberController {
 		return "redirect:/board/list";
 	}
 	
+	@GetMapping("/info")
+	public void memberInfo() {
+		
+	}
 	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		
+		return "redirect:/board/list";
+	}
 	
 }

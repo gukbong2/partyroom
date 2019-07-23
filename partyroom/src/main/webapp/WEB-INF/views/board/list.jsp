@@ -15,6 +15,8 @@
 <p class="center jumbotron jumbotron-fluid"
 		style="font-weight: 1000; font-size: 1.5em; background-color: #475C7A;
 		color: white; text-align: center;" >문의 게시판</p>
+		
+<%-- 
 <div class="row">
 	<div class="col-lg-12">
 		<h1 class="page-header">Tables</h1>
@@ -26,9 +28,8 @@
 		<h3>성함 : ${member.name }</h3>
 		
 	</div>
-	<!-- /.col-lg-12 -->
 </div>
-<!-- /.row -->
+ --%>
 
 <div class="row">
 	<div class="col-lg-12" >

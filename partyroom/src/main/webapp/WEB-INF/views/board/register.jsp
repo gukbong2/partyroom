@@ -16,9 +16,10 @@
 
 <div style="width: 60%; margin: auto;">
 	<form method="post" action="/board/register">
-		<input type="text" name="writer" style="width: 10%;" placeholder="작성자" value="${member.name }"/><br>
+		<p>${member.name }&nbsp; 님</p>
 		<!-- 로그인 만든 후 작성자는 hidden 처리 -->
 		<input type="text" name="title" style="width: 100%;" placeholder="제목"/><br>
+		<input type="hidden" name="writer" value="${member.name }"/><br>
 		<textarea id="summernote" name="content"></textarea>
 		<input id="subBtn" type="button" value="글 작성" class="btn btn-secondary" style="float: right;" onclick="register(this.form)" /> 
 	</form>

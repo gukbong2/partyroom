@@ -73,16 +73,21 @@ $(document).ready(function() {
 
 	  $('button').on("click", function(e){
 	    
-	    e.preventDefault(); 
+	    //e.preventDefault(); 
 	    
 	    var operation = $(this).data("oper");
 	    
-	    console.log(operation);
+	    console.log("operation : " + operation);
 	    
 	    if(operation === 'remove'){
-	      formObj.attr("action", "/board/remove");
+	    	if (confirm("글 삭제 하시겠습니까?")) {
+	    		formObj.attr("action", "/board/remove");
+ 				return true;
+ 			} else {
+ 				return false;
+ 			}
 	      
-	    }else if(operation === 'list'){
+	    } else if(operation === 'list'){
 	      //move to list
 	      formObj.attr("action", "/board/list").attr("method","get");
 	      

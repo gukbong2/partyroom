@@ -32,15 +32,15 @@
 
         <div class="form-group">
           <label>Writer</label> <input class="form-control" name='writer'
-            value='<c:out value="${board.writer }"/>' readonly="readonly">
+            value='<c:out value="${member.name }"/>' readonly="readonly">
         </div>
 
 
 
-
-<button data-oper='modify' class="btn btn-default">Modify</button>
-<button data-oper='list' class="btn btn-info">List</button>
-
+<c:if test="${member.name eq board.writer }">
+<button data-oper='modify' class="btn btn-default">글 수정</button>
+</c:if>
+<button data-oper='list' class="btn btn-info">글 목록</button>
 <br /><br /><hr /><br /><br />
 
 

@@ -68,9 +68,30 @@
 			</ul>
 
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item"><a class="nav-link" data-toggle="modal" href="#login">로그인</a></li>
-
-				<li class="nav-item"><a class="nav-link" data-toggle="modal" href="#register">회원가입</a></li>
+				<c:choose>
+					<c:when test="${member.name eq null }">
+						<li class="nav-item"><a class="nav-link" data-toggle="modal" href="#login">로그인</a></li>
+						<li class="nav-item"><a class="nav-link" data-toggle="modal" href="#register">회원가입</a></li>
+					</c:when>
+					
+					<c:otherwise>
+					<li class="nav-item dropdown">
+			        	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
+			        	  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			          		${member.name }&nbsp;님
+			        	</a>
+			          <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
+			            <a class="dropdown-item" href="/member/info">회원 정보 관리</a>
+			            <a class="dropdown-item" href="#">내 예약</a>
+			           
+			           <div class="dropdown-divider"></div>
+			            <a class="dropdown-item" href="#" onclick="logout()">로그아웃</a> 
+			           
+			          </div>
+			        </li>
+					</c:otherwise>
+				</c:choose>
+				
 			</ul>
 		</div>
 	</div>
@@ -187,6 +208,16 @@
  			frm.submit();
  		}
  
+ 		
+ 		function logout() {
+ 			if (confirm("로그 아웃 하시겠습니까?")) {
+ 				location.href = "/member/logout";
+ 				return true;
+ 			} else {
+ 				return false;
+ 			}
+ 		}
+ 		
  </script>
  
  
