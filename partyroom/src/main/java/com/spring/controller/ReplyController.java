@@ -1,6 +1,5 @@
 package com.spring.controller;
 
-import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -47,17 +46,18 @@ public class ReplyController {
 	}
 	
 	
-	@GetMapping(value = "/pages/{bno}/{page}",  produces = {MediaType.APPLICATION_XML_VALUE,
-			MediaType.APPLICATION_JSON_UTF8_VALUE })
-	 public ResponseEntity<ReplyPageDTO> getList ( @PathVariable("page") int page,  
-			  @PathVariable("bno") Long bno) {
-		//PathVariable = URL 경로의 일부를 파라미터로 사용할 때 사용
-			 System.out.println("getList.................");
-			 Criteria cri = new Criteria(page,10);
-			 System.out.println("cri : " + cri);
-			 
-			 
- 		return new ResponseEntity<>(service.getListPage(cri, bno), HttpStatus.OK);
+	//PathVariable = URL 경로의 일부를 파라미터로 사용할 때 사용
+	@GetMapping(value = "/pages/{bno}/{page}", 
+			produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public ResponseEntity<ReplyPageDTO> getList(@PathVariable("page") int page, @PathVariable("bno") Long bno) {
+
+		Criteria cri = new Criteria(page, 10);
+		
+		log.info("리플목록 글번호 : " + bno);
+
+		log.info("cri:" + cri);
+
+		return new ResponseEntity<>(service.getListPage(cri, bno), HttpStatus.OK);
 	}
 	
 	//조회

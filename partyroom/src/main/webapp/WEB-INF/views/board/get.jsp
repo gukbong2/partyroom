@@ -73,7 +73,7 @@
       </div>      
       
       	<!-- 댓글 입력  -->
-      	 <div class="panel-body">
+      	  <div class="panel-body">
 			<div class="addReply" id="addReply">
 				
 			</div>
@@ -84,15 +84,13 @@
       <!-- 댓글목록 -->
       <div class="panel-body">        
         <ul class="chat">
-			
 			<!-- 자기 글이면 수정/삭제 버튼 보이게 처리 -->
-			
-			
-			
         </ul>
       </div>
 
-	<div class="panel-footer"></div>
+	<div class="panel-footer">
+	
+	</div>
 
 
 		</div>
@@ -138,30 +136,6 @@
       <!-- 모달끝 -->
 
 
-
-<script type="text/javascript">
-$(document).ready(function() {
-  
-  var operForm = $("#operForm"); 
-  
-  $("button[data-oper='modify']").on("click", function(e){
-    
-    operForm.attr("action","/board/modify");
-    operForm.submit();
-    
-  });
-  
-    
-  $("button[data-oper='list']").on("click", function(e){
-    
-    operForm.find("#bno").remove();
-    operForm.attr("action","/board/list");
-    operForm.submit();
-    
-  });  
-});
-</script>
-
 <!-- reply.js 시작 -->
 <script type="text/javascript" src="/resources/js/reply.js"></script>
 
@@ -169,6 +143,25 @@ $(document).ready(function() {
 <script type="text/javascript">
 $(document).ready(function() {
 		
+	  var operForm = $("#operForm"); 
+	  
+	  $("button[data-oper='modify']").on("click", function(e){
+	    
+	    operForm.attr("action","/board/modify");
+	    operForm.submit();
+	    
+	  });
+	  
+	    
+	  $("button[data-oper='list']").on("click", function(e){
+	    
+	    operForm.find("#bno").remove();
+	    operForm.attr("action","/board/list");
+	    operForm.submit();
+	    
+	  });  
+	
+	
 		var bnoValue = '<c:out value="${board.bno}"/>';
 		
 		var replyUL = $(".chat");
@@ -177,31 +170,38 @@ $(document).ready(function() {
 		
 		function  showList(page) {
 			
-			replyService.getList({bno : bnoValue, page : page || 1 }, function(list) {
+			console.log("show list 도큐먼트 레디 " + page);
+			
+			replyService.getList({bno : bnoValue, page : page || 1 }, function(replyCnt, list) {
+				
+				console.log("replyCnt : " + replyCnt);
+
+				if (page == -1) {
+					pageNum = Math.ceil(replyCnt / 10.0);
+					showList(pageNum);
+					return;
+				}
+				
 				var str = "";
 			
 				if (list == null || list.length == 0) {
 					replyUL.html("");
-					
-					return;
+					showReplyPage("");
+					return	;
 				}
 				for (var i = 0, len = list.length || 0; i < len; i++) {
-				    str +="<li class='left clearfix' data-rno='"+list[i].rno+"'>";
-					str += "<div><div class='header'><strong class='primary-font'>" + list[i].replyer + "</strong>";
-					str += "<small class='pull-right text-muted'>"+replyService.displayTime(list[i].replydate) + "</small>";
-					str += "<p data-reply>" + list[i].reply + "</p></div></li>";
-					
+					str +="<li class='left clearfix' data-rno='"+list[i].rno+"'>";
+					 str +="  <div><div class='header'><strong class='primary-font'>["
+						   +list[i].rno+"] "+list[i].replyer+"</strong>"; 
+					str += "<small class='pull-right text-muted'>"+replyService.displayTime(list[i].replydate) + "</small></div>";
+					str += "<p>" + list[i].reply + "</p></div></li>";
 					str += "<hr />";
-				} 
+				}
 				
 				replyUL.html(str);
-				
-				
-				
-				
+				showReplyPage(replyCnt);
 			});
 		}				
-		
 		
 		// 댓글을 클릭하면 수정 and 삭제 모달
 	    var modal = $("#ReplyModal");
@@ -214,6 +214,8 @@ $(document).ready(function() {
 		
 	    
 	    
+	    
+	    //댓글 클릭 시
 	    $(".chat").on("click", "li", function(e){
 	        
 	        var rno = $(this).data("rno");
@@ -231,10 +233,6 @@ $(document).ready(function() {
 	          .attr("readonly","readonly");
 	          modal.data("rno", reply.rno);
 	          
-	         
-	        	  
-	          
-	          
 	          var replyer = reply.replyer;
 	          console.log("rno : " + rno);
 	          console.log("memberName : " + memberName);
@@ -248,7 +246,10 @@ $(document).ready(function() {
 	          
 	          if (replyer == memberName ) {
 		       	  $("#ReplyModal").modal("show");
-		       	  showList(1);
+		       	  
+		       	  showList(pageNum);
+		       	  
+		       	  
 	          	} 
 	        });
 	      });
@@ -263,7 +264,7 @@ $(document).ready(function() {
 		    	replyService.update(reply, function(result) {
 		    		console.log("result : " + result);
 		    		modal.modal("hide");
-		    		showList(1);
+		    		showList(pageNum);
 		    	
 		    	});
 		    
@@ -278,7 +279,9 @@ $(document).ready(function() {
 		  		replyService.remove(rno, function(result) {
 		  			console.log("result : " + result);
 		    		modal.modal("hide");
-		    		showList(1);
+		    		
+		    		
+		    		showList(pageNum);
 		  		});
 		  		
 		  	});
@@ -287,12 +290,103 @@ $(document).ready(function() {
 		  		console.log("리플 모달 닫기 클릭~");
 		  		
 		  		modal.modal("hide");
-	    		showList(1);
+	    		showList(pageNum);
 		  	});
 	
-		 
+		  	
+		  	//댓글 페이징 넣기
+		  	 var pageNum = 1;
+		     var replyPageFooter = $(".panel-footer");
+		     
+		     function showReplyPage(replyCnt){
+		       
+		       var endNum = Math.ceil(pageNum / 10.0) * 10;  
+		       var startNum = endNum - 9; 
+		       
+		       var prev = startNum != 1;
+		       var next = false;
+		       
+		       if(endNum * 10 >= replyCnt){
+		         endNum = Math.ceil(replyCnt/10.0);
+		       }
+		       
+		       if(endNum * 10 < replyCnt){
+		         next = true;
+		       }
+		       
+		       var str = "<ul class='pagination pull-right'>";
+		       
+		       if(prev){
+		         str+= "<li class='page-item'><a class='page-link' href='"+(startNum -1)+"'>Previous</a></li>";
+		       }
+		       
+		       for(var i = startNum ; i <= endNum; i++){
+		         
+		         var active = pageNum == i? "active":"";
+		         
+		         str+= "<li class='page-item "+active+" '><a class='page-link' href='"+i+"'>"+i+"</a></li>";
+		       }
+		       
+		       if(next){
+		         str+= "<li class='page-item'><a class='page-link' href='"+(endNum + 1)+"'>Next</a></li>";
+		       }
+		       
+		       str += "</ul></div>";
+		       
+		       console.log(str);
+		       
+		       replyPageFooter.html(str);
+		     }
+		      
+		  	replyPageFooter.on("click", "li a", function(e) {
+		  		e.preventDefault();
+		  		
+		  		console.log("댓글 페이징 버튼 클릭!");
+		  		
+		  		var targetPageNum = $(this).attr("href");
+		  		
+		  		console.log("targetPageNum : " + targetPageNum);
+		  		
+		  		pageNum = targetPageNum;
+		  		
+		  		showList(pageNum);
+		  	
+		  	});
+		  	
+		  	
 });
+
+function addReply(frm) {
+	var addReply = $("#addReply");
+	
+	
+	console.log("댓글 등록 클릭 됨");
+	
+	var replyerVal = $("#replyer").val();
+	var replyVal = $("#reply").val();
+	var bnoVal = $("#bno").val();
+	
+	console.log("댓글 : " + reply);
+	console.log("댓글적은사람 : " + replyer);
+	console.log("글번호 : " + bno);
+	
+	replyService.add(
+		    
+		    {reply:replyVal, replyer:replyerVal, bno:bnoVal},
+		    
+		    function(result){ 
+		      console.log("RESULT: " + result);
+		      var str = "";
+		      $("#addReply").html(str);
+		      $("#replyBtn").show();
+		      showList(-1);
+		    }
+		);
+}	
+
 </script>
+
+
 
 <!-- 댓글 등록 Script -->
 <script>
@@ -338,31 +432,108 @@ var replyUL = $(".chat");
 			      var str = "";
 			      $("#addReply").html(str);
 			      $("#replyBtn").show();
-			      showList(1);
+			      showList(-1);
 			    }
 			);
 	}
 	
 	function  showList(page) {
 		
-		replyService.getList({bno : bnoValue, page : page || 1 }, function(list) {
+		console.log("show list 도큐먼트 레디 " + page);
+		
+		replyService.getList({bno : bnoValue, page : page || 1 }, function(replyCnt, list) {
+			
+			console.log("replyCnt : " + replyCnt);
+
+			if (page == -1) {
+				pageNum = Math.ceil(replyCnt / 10.0);
+				showList(pageNum);
+				return;
+			}
+			
 			var str = "";
 		
 			if (list == null || list.length == 0) {
-				replyUL.html("");
+				//replyUL.html("");
 				
 				return;
 			}
 			for (var i = 0, len = list.length || 0; i < len; i++) {
 				str +="<li class='left clearfix' data-rno='"+list[i].rno+"'>";
-				str += "<div><div class='header'><strong class='primary-font'>" + list[i].replyer + "</strong>";
+				 str +="  <div><div class='header'><strong class='primary-font'>["
+					   +list[i].rno+"] "+list[i].replyer+"</strong>"; 
 				str += "<small class='pull-right text-muted'>"+replyService.displayTime(list[i].replydate) + "</small></div>";
 				str += "<p>" + list[i].reply + "</p></div></li>";
 				str += "<hr />";
 			}
 			
 			replyUL.html(str);
+			showReplyPage(replyCnt);
 		});
-	}				
+	}
+		
+		
+		//댓글 페이징 넣기
+	  	 var pageNum = 1;
+	     var replyPageFooter = $(".panel-footer");
+	     
+	     function showReplyPage(replyCnt){
+	       
+	       var endNum = Math.ceil(pageNum / 10.0) * 10;  
+	       var startNum = endNum - 9; 
+	       
+	       var prev = startNum != 1;
+	       var next = false;
+	       
+	       if(endNum * 10 >= replyCnt){
+	         endNum = Math.ceil(replyCnt/10.0);
+	       }
+	       
+	       if(endNum * 10 < replyCnt){
+	         next = true;
+	       }
+	       
+	       var str = "<ul class='pagination pull-right'>";
+	       
+	       if(prev){
+	         str+= "<li class='page-item'><a class='page-link' href='"+(startNum -1)+"'>Previous</a></li>";
+	       }
+	       
+	       for(var i = startNum ; i <= endNum; i++){
+	         
+	         var active = pageNum == i? "active":"";
+	         
+	         str+= "<li class='page-item "+active+" '><a class='page-link' href='"+i+"'>"+i+"</a></li>";
+	       }
+	       
+	       if(next){
+	         str+= "<li class='page-item'><a class='page-link' href='"+(endNum + 1)+"'>Next</a></li>";
+	       }
+	       
+	       str += "</ul></div>";
+	       
+	       console.log(str);
+	       
+	       replyPageFooter.html(str);
+	     }
+	      
+	  	replyPageFooter.on("click", "li a", function(e) {
+	  		e.preventDefault();
+	  		
+	  		console.log("댓글 페이징 버튼 클릭!");
+	  		
+	  		var targetPageNum = $(this).attr("href");
+	  		
+	  		console.log("targetPageNum : " + targetPageNum);
+	  		
+	  		pageNum = targetPageNum;
+	  		
+	  		showList(pageNum);
+	  	
+	  	});
+		
+		
+				
 	
 </script>
+
