@@ -45,16 +45,16 @@ public class ReplyMapperTests {
 //
 //	}
 
-//	@Test
-//	public void testRead() {
-//
-//		Long targetRno = 5L;
-//
-//		ReplyVO vo = mapper.read(targetRno);
-//
-//		log.info(vo);
-//
-//	}
+	@Test
+	public void testRead() {
+
+		Long targetRno = 5L;
+
+		ReplyVO vo = mapper.read(targetRno);
+
+		log.info(vo);
+
+	}
 
 //	@Test
 //	public void testMapper() {

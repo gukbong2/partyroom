@@ -33,11 +33,11 @@ public class ReplyController {
 	@PostMapping(value = "/new", consumes = "application/json", produces = { MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<String> create(@RequestBody ReplyVO vo) {
 
-		log.info("ReplyVO: " + vo);
-
+		System.out.println("ReplyVO: " + vo);
+		
 		int insertCount = service.register(vo);
 
-		log.info("Reply INSERT COUNT: " + insertCount);
+		System.out.println("Reply INSERT COUNT: " + insertCount);
 		
 		
 		return insertCount == 1  
@@ -47,12 +47,12 @@ public class ReplyController {
 	
 	@GetMapping(value = "/pages/{bno}/{page}",  produces = {MediaType.APPLICATION_XML_VALUE,
 			MediaType.APPLICATION_JSON_UTF8_VALUE })
-	 public ResponseEntity<List<ReplyVO>> getList ( @PathVariable("page") int page,  @PathVariable("bno") Long bno) {
+	 public ResponseEntity<List<ReplyVO>> getList ( @PathVariable("page") int page,  
+			  @PathVariable("bno") Long bno) {
 		//PathVariable = URL 경로의 일부를 파라미터로 사용할 때 사용
-			 log.info("getList.................");
+			 System.out.println("getList.................");
 			 Criteria cri = new Criteria(page,10);
-			 log.info(cri);
-			 
+			 System.out.println("cri : " + cri);
 			 
 			 
  		return new ResponseEntity<>(service.getList(cri, bno), HttpStatus.OK);
@@ -61,8 +61,12 @@ public class ReplyController {
 	//조회
 	@GetMapping(value = "/{rno}", produces = { MediaType.APPLICATION_XML_VALUE,
 			MediaType.APPLICATION_JSON_UTF8_VALUE })
-	public ResponseEntity<ReplyVO> get(@PathVariable("rno") Long rno) {
+	public ResponseEntity<ReplyVO> get(@PathVariable("rno") Long rno
+			, HttpSession session) {
 		
+		session.setAttribute("Reply", service.get(rno));
+		
+		System.out.println("세션값 확인 2 : " + session.getAttribute("Reply"));
 		return new ResponseEntity<>(service.get(rno), HttpStatus.OK);
 	}
 	
@@ -74,6 +78,7 @@ public class ReplyController {
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
+	//수정
 	@RequestMapping(method = { RequestMethod.PUT, RequestMethod.PATCH }, 
 			value = "/{rno}", consumes = "application/json", produces = { MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<String> modify(@RequestBody ReplyVO vo, @PathVariable("rno") Long rno) {

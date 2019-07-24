@@ -67,7 +67,7 @@
       <div class="panel-heading">
       <c:if test="${!empty member.name}">
       	<form method="POST" id="replyForm">
-       		<input type="button"  id='replyBtn' class='btn btn-secondary btn-sm' value="댓글 작성"/>
+       		<input type="button"  id="replyBtn" class='btn btn-secondary btn-sm' value="댓글 작성"/>
        	</form>
        </c:if>
       </div>      
@@ -102,9 +102,40 @@
 
 
 
-
-
-
+<!-- 댓글 수정 Modal -->
+<div class="modal fade" id="ReplyModal" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"
+          aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">REPLY MODAL</h4>
+      </div>
+      
+      <div class="modal-body">
+        <div class="form-group">
+          <label>댓글</label> 
+          <input class="form-control" name='reply' value="">
+        </div>    
+          
+        <div class="form-group">
+          <label>작성자</label> 
+          <input class="form-control" name='replyer' id="ReplyerVal" value="" readonly="readonly">
+        </div>
+        
+      </div>
+	   <div class="modal-footer">
+	       <button id="replyModBtn" type="button" class="btn btn-warning">Modify</button>
+	       <button id="replyRemoveBtn" type="button" class="btn btn-danger">Remove</button>
+	       <button id="replyRegisterBtn" type="button" class="btn btn-primary">Register</button>
+	       <button id="replyCloseBtn" type="button" class="btn btn-default">Close</button>
+	   </div>         
+	 </div>
+  </div>
+</div>
+      <!-- 모달끝 -->
 
 
 
@@ -134,10 +165,9 @@ $(document).ready(function() {
 <!-- reply.js 시작 -->
 <script type="text/javascript" src="/resources/js/reply.js"></script>
 
+
 <script type="text/javascript">
 $(document).ready(function() {
-		
-		
 		
 		var bnoValue = '<c:out value="${board.bno}"/>';
 		
@@ -158,29 +188,106 @@ $(document).ready(function() {
 				for (var i = 0, len = list.length || 0; i < len; i++) {
 				    str +="<li class='left clearfix' data-rno='"+list[i].rno+"'>";
 					str += "<div><div class='header'><strong class='primary-font'>" + list[i].replyer + "</strong>";
-					str += "<small class='pull-right text-muted'>"+replyService.displayTime(list[i].replydate) + "</small></div>";
-					str += "<p>" + list[i].reply + "</p></div></li>";
+					str += "<small class='pull-right text-muted'>"+replyService.displayTime(list[i].replydate) + "</small>";
+					str += "<p data-reply>" + list[i].reply + "</p></div></li>";
+					
 					str += "<hr />";
-				}
+				} 
 				
 				replyUL.html(str);
+				
+				
+				
+				
 			});
 		}				
 		
-
 		
-		$(".chat").on("click", "li", function(e) {
-			var rno = $(this).data('rno');
+		// 댓글을 클릭하면 수정 and 삭제 모달
+	    var modal = $("#ReplyModal");
+	    var modalInputReply = modal.find("input[name='reply']");
+	    var modalInputReplyer = modal.find("input[name='replyer']");
+	    var modalInputReplydate = modal.find("input[name='replydate']");
+	    var replyModBtn = $("#replyModBtn");
+	    var replyRemoveBtn = $("#replyRemoveBtn");
+	    var replyRegisterBtn = $("#replyRegisterBtn");
+		
+	    
+	    
+	    $(".chat").on("click", "li", function(e){
+	        
+	        var rno = $(this).data("rno");
+	        var memberName = "${member.name}";
+	        var replyer =  modalInputReplyer.val();
+	        var reply =  modalInputReply.val();
+	        
+	       
+	       
+	          replyService.get(rno, function(reply){
+	          
+	          modalInputReply.val(reply.reply);
+	          modalInputReplyer.val(reply.replyer);
+	          modalInputReplydate.val(replyService.displayTime( reply.replydate))
+	          .attr("readonly","readonly");
+	          modal.data("rno", reply.rno);
+	          
+	          var replyer = reply.replyer;
+	          console.log("rno : " + rno);
+	          console.log("memberName : " + memberName);
+	          console.log("replyer : " + replyer);
+	          console.log("reply : " + reply);
+	          
+	          
+	          modal.find("button[id !='replyCloseBtn']").hide();
+	          replyModBtn.show();
+	          replyRemoveBtn.show();
+	          
+	       	  $("#ReplyModal").modal("show");
+	       	  showList(1);
+	        	  
+	        });
+	      });
 			
-			console.log("rno : "  + rno);
-			
-		});
-		 
+	    //리플 모달 수정
+		  	$("#replyModBtn").on("click", function(e) {
+		  
+		    	console.log("리플수정버튼 클릭~~");
+		    	
+		    	var reply = {rno : modal.data("rno"), reply : modalInputReply.val()};
+		    	
+		    	replyService.update(reply, function(result) {
+		    		console.log("result : " + result);
+		    		modal.modal("hide");
+		    		showList(1);
+		    	
+		    	});
+		    
+			});
+		  	
+	    //리플 모달 삭제
+		  	$("#replyRemoveBtn").on("click", function(e) {
+		  		console.log("리플 삭제 클릭~");
+		  		
+		  		var rno = modal.data("rno");
+		  			
+		  		replyService.remove(rno, function(result) {
+		  			console.log("result : " + result);
+		    		modal.modal("hide");
+		    		showList(1);
+		  		});
+		  		
+		  	});
+		  	
+		  	$("#replyCloseBtn").on("click", function(e) {
+		  		console.log("리플 모달 닫기 클릭~");
+		  		
+		  		modal.modal("hide");
+	    		showList(1);
+		  	});
+	
 		 
 });
 </script>
-
-
 
 <!-- 댓글 등록 Script -->
 <script>
@@ -258,3 +365,4 @@ var replyUL = $(".chat");
 	}				
 	
 </script>
+
