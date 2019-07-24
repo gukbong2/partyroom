@@ -212,14 +212,11 @@ $(document).ready(function() {
 	    var replyRemoveBtn = $("#replyRemoveBtn");
 	    var replyRegisterBtn = $("#replyRegisterBtn");
 		
-	    
-	    
-	    
 	    //댓글 클릭 시
 	    $(".chat").on("click", "li", function(e){
 	        
 	        var rno = $(this).data("rno");
-	        var memberName = "${member.email}";
+	        var memberName = "${member.name}";
 	        var replyer =  modalInputReplyer.val();
 	        var reply =  modalInputReply.val();
 	        

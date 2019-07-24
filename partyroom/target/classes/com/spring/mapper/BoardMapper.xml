@@ -44,11 +44,11 @@
 
 <select id="getListWithPaging" resultType="com.spring.domain.BoardVO">
 <![CDATA[
-  SELECT BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDATE FROM 
+  SELECT BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDATE, REPLYCNT FROM 
       
       (
       SELECT /*+INDEX_DESC(BOARD PK_BOARD) */
-        ROWNUM RN, BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDATE 
+        ROWNUM RN, BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDATE, REPLYCNT
       FROM BOARD WHERE 
 ]]>
 
@@ -66,7 +66,10 @@
 	SELECT COUNT(*) FROM BOARD WHERE BNO > 0
 </select>
 
-
+<update id="updateReplyCnt">
+	UPDATE BOARD SET REPLYCNT = REPLYCNT + #{amount} 
+		WHERE BNO = #{bno}
+</update>
 
 
 

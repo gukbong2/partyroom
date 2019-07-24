@@ -52,21 +52,20 @@
 			<tbody>
 
 					
-					<c:forEach items="${list }" var="board">
-						<tr>
-							<td><c:out value="${board.bno }"/></td>
-							
-							<td>
-								<a class="move" href='<c:out value="${board.bno }"/>'>
-									<c:out value="${board.title }"></c:out>
-								</a>
-							</td>
-							
-							<td><c:out value="${board.writer }"/></td>
-							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regdate }"/></td>
-						</tr>
-					
-					</c:forEach>
+				<c:forEach items="${list}" var="board">
+		            <tr>
+		              <td><c:out value="${board.bno}" /></td>
+		               <td>
+		                  <a class='move' href='<c:out value="${board.bno}"/>'>
+		                  <c:out value="${board.title}" />   <b>[  <c:out value="${board.replycnt}" />  ]</b>
+		                  </a>
+		              <td><c:out value="${board.writer}" /></td>
+		              <td><fmt:formatDate pattern="yyyy-MM-dd"
+		                  value="${board.regdate}" /></td>
+		              <td><fmt:formatDate pattern="yyyy-MM-dd"
+		                  value="${board.updatedate}" /></td>
+		            </tr>
+          	</c:forEach>
 
 				</table>
 				
