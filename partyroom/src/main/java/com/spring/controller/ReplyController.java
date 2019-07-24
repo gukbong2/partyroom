@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.domain.Criteria;
+import com.spring.domain.ReplyPageDTO;
 import com.spring.domain.ReplyVO;
 import com.spring.service.ReplyService;
 
@@ -45,9 +46,10 @@ public class ReplyController {
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
+	
 	@GetMapping(value = "/pages/{bno}/{page}",  produces = {MediaType.APPLICATION_XML_VALUE,
 			MediaType.APPLICATION_JSON_UTF8_VALUE })
-	 public ResponseEntity<List<ReplyVO>> getList ( @PathVariable("page") int page,  
+	 public ResponseEntity<ReplyPageDTO> getList ( @PathVariable("page") int page,  
 			  @PathVariable("bno") Long bno) {
 		//PathVariable = URL 경로의 일부를 파라미터로 사용할 때 사용
 			 System.out.println("getList.................");
@@ -55,7 +57,7 @@ public class ReplyController {
 			 System.out.println("cri : " + cri);
 			 
 			 
- 		return new ResponseEntity<>(service.getList(cri, bno), HttpStatus.OK);
+ 		return new ResponseEntity<>(service.getListPage(cri, bno), HttpStatus.OK);
 	}
 	
 	//조회

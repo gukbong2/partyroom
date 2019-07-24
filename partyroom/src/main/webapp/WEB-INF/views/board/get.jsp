@@ -119,12 +119,12 @@
           <label>댓글</label> 
           <input class="form-control" name='reply' value="">
         </div>    
-          
+        <!--   
         <div class="form-group">
           <label>작성자</label> 
           <input class="form-control" name='replyer' id="ReplyerVal" value="" readonly="readonly">
         </div>
-        
+         -->
       </div>
 	   <div class="modal-footer">
 	       <button id="replyModBtn" type="button" class="btn btn-warning">Modify</button>
@@ -217,7 +217,7 @@ $(document).ready(function() {
 	    $(".chat").on("click", "li", function(e){
 	        
 	        var rno = $(this).data("rno");
-	        var memberName = "${member.name}";
+	        var memberName = "${member.email}";
 	        var replyer =  modalInputReplyer.val();
 	        var reply =  modalInputReply.val();
 	        
@@ -231,6 +231,10 @@ $(document).ready(function() {
 	          .attr("readonly","readonly");
 	          modal.data("rno", reply.rno);
 	          
+	         
+	        	  
+	          
+	          
 	          var replyer = reply.replyer;
 	          console.log("rno : " + rno);
 	          console.log("memberName : " + memberName);
@@ -242,9 +246,10 @@ $(document).ready(function() {
 	          replyModBtn.show();
 	          replyRemoveBtn.show();
 	          
-	       	  $("#ReplyModal").modal("show");
-	       	  showList(1);
-	        	  
+	          if (replyer == memberName ) {
+		       	  $("#ReplyModal").modal("show");
+		       	  showList(1);
+	          	} 
 	        });
 	      });
 			
@@ -310,10 +315,6 @@ var replyUL = $(".chat");
 		addReply.html(str);
 	});
 	
-	
-	
-	
-	
 	function addReply(frm) {
 		var addReply = $("#addReply");
 		
@@ -365,4 +366,3 @@ var replyUL = $(".chat");
 	}				
 	
 </script>
-
