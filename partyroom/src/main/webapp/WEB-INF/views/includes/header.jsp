@@ -216,6 +216,7 @@
  				
  				memberService.idCheck(emailCheckVal, function(idCheck) {
  					
+ 					/* oninput처리하던지 뭘 해서 직관적으로 바꾸기 */
  					if (idCheck == 0) {
  						alert("사용해도됨");
  						emailChk = 1;
@@ -235,6 +236,7 @@
  				
  				console.log("누름");
  				
+ 				/* 모달이던 oninput이던 아무거나 변경 */
  				if (emailChk == 0) {
  	 				console.log("이메일 중복을 확인해주세요");
  	 				return false;
