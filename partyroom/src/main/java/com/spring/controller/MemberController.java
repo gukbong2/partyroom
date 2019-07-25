@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.spring.domain.MemberVO;
 import com.spring.service.MemberService;
@@ -22,7 +23,7 @@ public class MemberController {
 	private MemberService service;
 	
 	//로그인 , 회원가입을 모달로 처리하니까 getmapping이 필요없을듯
-	@PostMapping("/register")
+	@PostMapping(value="/register")
 	public String register(MemberVO member, HttpSession session) {
 		
 		log.info("register : " + member);

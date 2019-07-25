@@ -33,6 +33,10 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
 	<script src="/resources/js/summernote-ko-KR.js"></script>
+	
+	<!-- member.js 시작 -->
+	<script type="text/javascript" src="/resources/js/member.js"></script>
+	
 </head>
 
 <style>
@@ -120,9 +124,9 @@
 
 			<div class="modal-body center">
 				<form method="POST" id="loginForm">
-					<input type="text" name="email" id="email" class="form-control my-2" placeholder="이메일" > 
+					<input type="text" name="email" id="LoginEmail" class="form-control my-2" placeholder="이메일" > 
 					
-					<input type="password" name="password" id="password" class="form-control my-2" placeholder="비밀번호">
+					<input type="password" name="password" id="LoginPassword" class="form-control my-2" placeholder="비밀번호">
 					
 					<input type="button" style="background-color: #475C7A; color: white;" 
 					class="btn btn-block form-control" value="로그인" onclick="login(this.form)">
@@ -164,14 +168,16 @@
 			</div> 
 			
 			<div class="modal-body center">
-				<form method="POST" id="registerForm">
-					<input type="text" name="email" id="email" class="form-control my-2" placeholder="이메일" > 
+				<form method="post" id="registerForm" action="/member/register">
+					<input type="text" name="email" id="RegisterEmail" class="form-control my-2" placeholder="이메일" > 
+					<input type="text" name="emailCheck" id="emailCheck"  class="btn btn-primary"
+					style="background-color: #0da197; color: white;" value="이메일 중복체크" > 
 					<input type="text" name="name" id="name" class="form-control my-2" placeholder="성함" > 
-					<input type="password" name="password" id="password" class="form-control my-2" placeholder="비밀번호">
+					<input type="password" name="password" id="RegisterPassword" class="form-control my-2" placeholder="비밀번호">
 					<input type="password" name="password2" class="form-control my-2" placeholder="비밀번호 확인">
 					
-					<input type="button" style="background-color: #475C7A; color: white;" 
-					class="btn btn-block form-control" value="회원가입" onclick="register(this.form)">
+					<input type="button" style="background-color: #475C7A; color: white;" id="memberRegiBtn"
+					class="btn btn-block form-control" value="회원가입">
 				</form>
 				<hr>
 
@@ -197,13 +203,71 @@
  
  <script>
  		
- 		//회원가입 function -> Model 저장 후 /board/list 리턴
- 		function register(frm) {
-			
- 			frm.action = "/member/register"; 
- 		    frm.submit(); 
+ 		$(document).ready(function() {
+ 			console.log(memberService);
  			
- 		}
+ 			var emailChk = 0;
+ 			
+ 			$("#emailCheck").on("click", function() {
+ 				console.log("누름");
+ 				var emailCheckVal = $("#RegisterEmail").val();
+ 				
+ 				console.log("emailCheckVal : " + emailCheckVal);
+ 				
+ 				memberService.idCheck(emailCheckVal, function(idCheck) {
+ 					
+ 					if (idCheck == 0) {
+ 						alert("사용해도됨");
+ 						emailChk = 1;
+ 						
+ 					} else {
+ 						alert("사용불가");
+ 						$("#RegisterEmail").val("");
+ 						return false;
+ 					}
+ 					
+ 				});
+ 				
+ 			});
+ 		
+ 		
+ 			$("#memberRegiBtn").on("click", function() {
+ 				
+ 				console.log("누름");
+ 				
+ 				if (emailChk == 0) {
+ 	 				console.log("이메일 중복을 확인해주세요");
+ 	 				return false;
+ 	 			} else {
+ 	 				
+ 	 				
+ 	 				$("#registerForm").submit();
+ 	 				
+ 	 			}
+ 			
+ 			});
+ 		
+ 		
+ 		
+ 		});
+ 		/* //회원가입 function -> Model 저장 후 /board/list 리턴
+ 		function register(frm) {
+ 			
+ 			if (emailChk == 0) {
+ 				("이메일 중복을 확인해주세요");
+ 				return false;
+ 				
+ 			} else {
+ 				frm.action = "/member/register"; 
+ 	 		    frm.submit(); 
+ 			} */
+ 			
+ 			
+ 			
+ 		
+ 		
+ 		
+ 
  		
  		function login(frm) {
  			frm.action = "/member/login";
@@ -219,7 +283,7 @@
  				return false;
  			}
  		}
- 		
+
  </script>
  
  
