@@ -125,10 +125,10 @@
          -->
       </div>
 	   <div class="modal-footer">
-	       <button id="replyModBtn" type="button" class="btn btn-warning">Modify</button>
-	       <button id="replyRemoveBtn" type="button" class="btn btn-danger">Remove</button>
+	       <button id="replyModBtn" type="button" class="btn btn-warning">수정</button>
+	       <button id="replyRemoveBtn" type="button" class="btn btn-danger">삭제</button>
 	       <button id="replyRegisterBtn" type="button" class="btn btn-primary">Register</button>
-	       <button id="replyCloseBtn" type="button" class="btn btn-default">Close</button>
+	       <button id="replyCloseBtn" type="button" class="btn btn-default">닫기</button>
 	   </div>         
 	 </div>
   </div>

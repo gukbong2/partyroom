@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,12 +32,16 @@ public class BoardController {
 	
 	@GetMapping("/list")
 	public void list(Criteria cri, Model model) {
-		log.info("list");
-		
-		int total = service.getTotal(cri);
-		
+
+		log.info("list: " + cri);
 		model.addAttribute("list", service.getList(cri));
+
+		int total = service.getTotal(cri);
+
+		log.info("total: " + total);
+
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
+
 	}
 	
 	@GetMapping("/register")

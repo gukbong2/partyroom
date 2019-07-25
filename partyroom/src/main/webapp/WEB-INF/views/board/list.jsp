@@ -110,29 +110,25 @@
 				<div class='pull-right'>
 					<ul class="pagination">
 
-						<c:if test="${pageMaker.prev}">
-							<li class="page-item">
-								<a class="page-link" href="${pageMaker.startPage -1}">Previous</a>
-							</li>
-						</c:if>
-						
-						
-						<c:forEach var="num" begin="${pageMaker.startPage}"
-							end="${pageMaker.endPage}">
+							<c:if test="${pageMaker.prev}">
+								<li class="page-item">
+									<a class="page-link" href="${pageMaker.startPage -1}">Previous</a>
+								</li>
+							</c:if>
 							
-							<!-- ${pageMaker.cri.pageNum == num ? "active":""} " -->
-							<li class="page-item">
-								<a id="pageBtn" class="page-link" href="${num}">${num}</a>
-							</li>
-						</c:forEach>
-
-						<c:if test="${pageMaker.next}">
-							<li class="page-item">
-								<a class="page-link" href="${pageMaker.endPage +1 }">Next</a>
-							</li>
-						</c:if>
-
-
+							<c:forEach var="num" begin="${pageMaker.startPage}"
+								end="${pageMaker.endPage}">
+								<li class="page-item ${pageMaker.cri.pageNum == num ? "active":""} "">
+									<a id="pageBtn" class="page-link" href="${num}">${num}</a>
+								</li>
+							</c:forEach>
+	
+							<c:if test="${pageMaker.next}">
+								<li class="page-item">
+									<a class="page-link" href="${pageMaker.endPage +1 }">Next</a>
+								</li>
+							</c:if>
+						
 					</ul>
 				</div> 
 				<!-- 페이징 끝 -->
@@ -155,8 +151,6 @@
 <script>
 	$(document).ready(function() {
 		
-	
-		
 	$("#regBtn").on("click", function() {
 		self.location = "/board/register";
 	});
@@ -174,14 +168,12 @@
 	});
 	
 	$(".move").on("click",function(e) {
-
 		e.preventDefault();
 		actionForm.append("<input type='hidden' name='bno' value='"
 						+ $(this).attr("href")
 						+ "'>");
 		actionForm.attr("action","/board/get");
 		actionForm.submit();
-
 	});
 	
 	var searchForm = $("#searchForm");
@@ -204,14 +196,5 @@
 	});
 	
 	
-	
-	
-	
-	
-	
-	
 });
-	
-	
-
 </script>

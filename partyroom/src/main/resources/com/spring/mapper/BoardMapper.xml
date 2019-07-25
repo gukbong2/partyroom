@@ -62,9 +62,11 @@
 ]]>
 </select>
 
-<select id="getTotalCount" resultType="int">
-	SELECT COUNT(*) FROM BOARD WHERE BNO > 0
-</select>
+ <select id="getTotalCount" resultType="int">
+ 	SELECT COUNT(*) FROM BOARD WHERE
+<include refid="criteria"></include>
+	 BNO > 0  
+ </select>
 
 <update id="updateReplyCnt">
 	UPDATE BOARD SET REPLYCNT = REPLYCNT + #{amount} 
