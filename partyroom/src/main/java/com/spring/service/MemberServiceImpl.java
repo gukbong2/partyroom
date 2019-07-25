@@ -37,6 +37,12 @@ public class MemberServiceImpl implements MemberService{
 		
 		return mapper.login(member);
 	}
+
+	@Override
+	public String getSaltById(String email) {
+		// TODO Auto-generated method stub
+		return mapper.getSaltById(email);
+	}
 	
 	
 	

@@ -14,6 +14,6 @@ public interface MemberMapper {
 	
 	public MemberVO getMember(Long idx);
 	
-	
+	public String getSaltById(String email);
 	
 }

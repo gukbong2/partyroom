@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.spring.domain.MemberVO;
 import com.spring.service.MemberService;
+import com.spring.service.SHA256Util;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -28,6 +29,21 @@ public class MemberController {
 		
 		log.info("register : " + member);
 		
+		String salt = SHA256Util.generateSalt();
+		
+		member.setSalt(salt);
+		System.out.println("salt : " + salt);
+		
+		String password = member.getPassword();
+		
+		password = SHA256Util.getEncrypt(password, salt);
+		
+		System.out.println("password : " + password);
+		
+		member.setPassword(password);
+		
+		System.out.println("마지막 password : " + password);
+		
 		service.memberRegister(member);
 		
 		//모델에 저장 바로 로그인 되는 느낌으로 처리
@@ -40,8 +56,20 @@ public class MemberController {
 	
 	@PostMapping("/login")
 	public String login(MemberVO vo, HttpSession session) {
+		
+		String salt = service.getSaltById(vo.getEmail());
+		String password = vo.getPassword();
+		
+		System.out.println("salt : " + salt);
+		System.out.println("password : " + password);
+		password = SHA256Util.getEncrypt(password, salt);
+		vo.setPassword(password);
+		
+		System.out.println("마지막 password : " + password);
+		
+		
+		
 		MemberVO member = service.login(vo);
-		//service.login(member);
 		
 		session.setAttribute("member", member);
 		

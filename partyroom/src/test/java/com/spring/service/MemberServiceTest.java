@@ -40,17 +40,27 @@ public class MemberServiceTest {
 //	}
 
 
+//	@Test
+//	public void memberLogin() {
+//		MemberVO member = new MemberVO();
+//		
+//		member.setEmail("dd");
+//		member.setPassword("dd");
+//
+//		log.info(member);
+//		
+//		service.login(member);
+//	}
+	
 	@Test
-	public void memberLogin() {
+	public void getSaltById() {
 		MemberVO member = new MemberVO();
 		
-		member.setEmail("dd");
-		member.setPassword("dd");
-
+		member.setEmail("czcz");
+		
 		log.info(member);
 		
-		service.login(member);
+		service.getSaltById(member.getEmail());
 	}
-
 
 }

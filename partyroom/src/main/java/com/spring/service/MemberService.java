@@ -12,5 +12,5 @@ public interface MemberService {
 	
 	public MemberVO login(MemberVO member);
 	
-	
+	public String getSaltById(String email);
 }

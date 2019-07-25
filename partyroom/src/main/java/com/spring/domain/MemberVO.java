@@ -13,5 +13,5 @@ public class MemberVO {
 	private String name;
 	private Date regdate;
 	private int auth;
-	
+	private String salt;
 }

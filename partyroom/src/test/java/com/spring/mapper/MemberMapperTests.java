@@ -36,4 +36,15 @@ public class MemberMapperTests {
 //		log.info("========DELETE COUNT : " + mapper.delete(5L));
 //	}
 	
+	@Test
+	public void getSaltById() {
+		MemberVO member = new MemberVO();
+		
+		member.setEmail("czcz");
+	
+		log.info(member);
+		mapper.getSaltById(member.getEmail());
+	}
+	
+	
 }

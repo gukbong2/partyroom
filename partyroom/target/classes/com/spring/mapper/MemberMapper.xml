@@ -5,8 +5,8 @@
 <mapper namespace="com.spring.mapper.MemberMapper">
 
 <insert id="insert">
-	INSERT INTO MEMBER(IDX, EMAIL, PASSWORD, NAME)
-		VALUES (SEQ_MEMBER.NEXTVAL, #{email}, #{password}, #{name})
+	INSERT INTO MEMBER(IDX, EMAIL, PASSWORD, NAME, SALT)
+		VALUES (SEQ_MEMBER.NEXTVAL, #{email}, #{password}, #{name}, #{salt} )	
 </insert>
 
 
@@ -16,8 +16,8 @@
 	SELECT SEQ_MEMBER.NEXTVAL FROM DUAL
 </selectKey>
 	
-	INSERT INTO MEMBER(IDX, EMAIL, PASSWORD, NAME)
-		VALUES (SEQ_MEMBER.NEXTVAL, #{email}, #{password}, #{name} )	
+	INSERT INTO MEMBER(IDX, EMAIL, PASSWORD, NAME, SALT)
+		VALUES (SEQ_MEMBER.NEXTVAL, #{email}, #{password}, #{name}, #{salt} )	
 	
 </insert>
 
@@ -38,6 +38,9 @@
 
 </select>
 
+<select id="getSaltById" resultType="String">
+	SELECT SALT FROM MEMBER WHERE EMAIL = #{email}
+</select>
 
 
 

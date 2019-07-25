@@ -28,5 +28,6 @@ public interface BoardMapper {
 	
 	public void updateReplyCnt(@Param("bno") Long bno, @Param("amount") int amount);
 	
+	
 }
 
