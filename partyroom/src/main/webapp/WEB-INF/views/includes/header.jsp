@@ -43,6 +43,10 @@
 	color: #668;
 }
 
+.pagination {
+   justify-content: center;
+}
+
 </style>
 
 
@@ -53,8 +57,8 @@
     
     <nav class="navbar navbar-expand-lg navbar-light bg-light  static-top" >
 		<div class="container-fluid">
-			<a class="navbar-brand" href="/">
-				 <img src="/resources/image/logo.png" width="200px" height="80px"> 
+			<a class="navbar-brand" href="/page/home">
+				 <img src="/resources/image/logo.jpg" width="80px" height="100px"> 
 			</a>
 		
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -99,12 +103,6 @@
 		</div>
 	</div>
 </nav>
-
-<!-- <p class="center jumbotron jumbotron-fluid"
-		style="font-weight: 1000; font-size: 2em; background-color: #475C7A;
-		color: white; text-align: center;" >
-		게시판 적기
-</p> -->
 
 <!-- 로그인 모달 -->
 <div class="modal fade" id="login" tabindex="-1" role="dialog"

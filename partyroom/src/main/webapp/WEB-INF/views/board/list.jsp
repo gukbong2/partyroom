@@ -3,41 +3,29 @@
    
 <%@include file="../includes/header.jsp"%>
 
-<style>
-.pagination {
-   justify-content: center;
-}
-</style>
 
-<h2 style="text-align: center" id="name"></h2>
-<h4 style="text-align: center" id="email"></h4>
+
 
 <p class="center jumbotron jumbotron-fluid"
 		style="font-weight: 1000; font-size: 1.5em; background-color: #475C7A;
 		color: white; text-align: center;" >문의 게시판</p>
 		
-<%-- 
+
+
 <div class="row">
-	<div class="col-lg-12">
-		<h1 class="page-header">Tables</h1>
-		
-		<h3>이메일 : ${member.email }</h3>
-		<br />
-		<h3>비밀번호 : ${member.password }</h3>
-		<br />
-		<h3>성함 : ${member.name }</h3>
-		
+	<div>
+		<button id='regBtn' type="button" class="btn btn-xs pull-right"
+		style="margin-left : 1550px;">글 작성</button>
 	</div>
 </div>
- --%>
 
 <div class="row">
 	<div class="col-lg-12" >
 		<div class="panel panel-default">
-			<div class="panel-heading">
-				<button id='regBtn' type="button" class="btn btn-xs pull-right">글 작성</button>
-			</div>
-
+			
+			
+			
+			
 			<!-- /.panel-heading -->
 			<div class="panel-body">
 				<table class="table table-hover" style="font-size: 20px; width: 80%; margin-right : auto; margin-left : auto;">
@@ -60,8 +48,7 @@
 		                  <c:out value="${board.title}" />   <b>[  <c:out value="${board.replycnt}" />  ]</b>
 		                  </a>
 		              <td><c:out value="${board.writer}" /></td>
-		              <td><fmt:formatDate pattern="yyyy-MM-dd"
-		                  value="${board.regdate}" /></td>
+		              
 		              <td><fmt:formatDate pattern="yyyy-MM-dd"
 		                  value="${board.updatedate}" /></td>
 		            </tr>
@@ -74,7 +61,8 @@
 				<div class='row'>
 					<div class="col-lg-12">
 
-						<form id='searchForm' action="/board/list" method='get'>
+						<form id='searchForm' action="/board/list" method='get'
+						style="font-size: 20px; width: 35%; margin-right : auto; margin-left : auto;">
 							<select name='type'>
 								<option value=""
 									<c:out value="${pageMaker.cri.type == null?'selected':''}"/>>--</option>
@@ -93,14 +81,17 @@
 								<option value="TWC"
 									<c:out value="${pageMaker.cri.type eq 'TWC'?'selected':''}"/>>제목
 									or 내용 or 작성자</option>
-							</select> <input type='text' name='keyword'
+							</select> <input type='text' name='keyword' style="width : 300px;"
 								value='<c:out value="${pageMaker.cri.keyword}"/>' /> <input
 								type='hidden' name='pageNum'
 								value='<c:out value="${pageMaker.cri.pageNum}"/>' /> <input
 								type='hidden' name='amount'
 								value='<c:out value="${pageMaker.cri.amount}"/>' />
-							<button class='btn btn-default'>Search</button>
+							<button class='btn btn-default'>검색</button>
+							
 						</form>
+						
+						
 					</div>
 				</div>
 
@@ -112,7 +103,7 @@
 
 							<c:if test="${pageMaker.prev}">
 								<li class="page-item">
-									<a class="page-link" href="${pageMaker.startPage -1}">Previous</a>
+									<a class="page-link" href="${pageMaker.startPage -1}">이전</a>
 								</li>
 							</c:if>
 							
@@ -125,7 +116,7 @@
 	
 							<c:if test="${pageMaker.next}">
 								<li class="page-item">
-									<a class="page-link" href="${pageMaker.endPage +1 }">Next</a>
+									<a class="page-link" href="${pageMaker.endPage +1 }">다음</a>
 								</li>
 							</c:if>
 						
