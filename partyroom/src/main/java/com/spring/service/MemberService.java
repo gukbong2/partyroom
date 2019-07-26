@@ -19,4 +19,5 @@ public interface MemberService {
 	public String getSaltById(String email);
 
 	public void updateAuthstatus(MemberVO member);
+
 }

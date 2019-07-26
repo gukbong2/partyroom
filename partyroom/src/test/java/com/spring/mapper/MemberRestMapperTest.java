@@ -19,15 +19,29 @@ public class MemberRestMapperTest {
 	@Setter(onMethod_ = @Autowired)
 	private MemberRestMapper mapper;
 	
-	@Test
-	public void testIdCheck() {
-		String email = "junyeon2459@gmail.com";
-		
-		MemberVO vo = mapper.idCheck(email);
-		
-		log.info(vo);
-	} 
-	//정상적으로 작동
-	
+//	@Test
+//	public void testIdCheck() {
+//		String email = "junyeon2459@gmail.com";
+//		
+//		MemberVO vo = mapper.idCheck(email);
+//		
+//		log.info(vo);
+//	} 
+
+//	@Test
+//	public void testEmailVerify() {
+//		String email = "dd";
+//		String password = "dd";
+//		
+//		
+//		MemberVO vo = new MemberVO();
+//		
+//		vo.setEmail(email);
+//		vo.setPassword(password);
+//		
+//		mapper.emailVerify(vo);
+//		
+//		log.info(vo);
+//	}
 	
 }

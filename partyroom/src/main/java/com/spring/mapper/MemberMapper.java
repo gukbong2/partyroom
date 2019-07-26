@@ -19,5 +19,6 @@ public interface MemberMapper {
 	public void updateAuthkey(MemberVO member);
 
 	public void updateAuthstatus(MemberVO member);
+
 	
 }

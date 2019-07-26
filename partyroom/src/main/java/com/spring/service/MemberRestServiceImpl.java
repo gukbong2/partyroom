@@ -18,4 +18,16 @@ public class MemberRestServiceImpl implements MemberRestService {
 		return mapper.idCheck(email);
 	}
 
+	@Override
+	public MemberVO emailVerify(MemberVO member) {
+		
+		return mapper.emailVerify(member);
+	}
+
+	
+
+	
+
+	
+
 }

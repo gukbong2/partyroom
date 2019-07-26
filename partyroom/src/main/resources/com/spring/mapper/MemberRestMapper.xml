@@ -6,11 +6,19 @@
 
 <!-- 아이디 중복 확인 count를 int로 반환-->
 <select id="idCheck" resultType="com.spring.domain.MemberVO" >
-	SELECT * FROM MEMBER WHERE EMAIL = #{email}
+	SELECT * FROM MEMBER
+		 WHERE EMAIL = #{email}
 </select>
 
+<select id="emailVerify" resultType="com.spring.domain.MemberVO">
+	SELECT * FROM MEMBER
+		 WHERE EMAIL = #{email} AND PASSWORD = #{password}
+</select>	
 
-	
+<select id="emailVerify2" resultType="com.spring.domain.MemberVO">
+	SELECT * FROM MEMBER
+		 WHERE EMAIL = #{email} AND PASSWORD = #{password}
+</select>
 
 
 </mapper>

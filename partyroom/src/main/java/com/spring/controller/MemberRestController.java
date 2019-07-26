@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.domain.MemberVO;
 import com.spring.service.MemberRestService;
+import com.spring.service.MemberService;
+import com.spring.service.SHA256Util;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -24,6 +26,9 @@ public class MemberRestController {
 	@Setter(onMethod_ = @Autowired)
 	private MemberRestService service;
 	
+	@Setter(onMethod_ = @Autowired)
+	private MemberService memberService;
+	
 	//조회
 	@GetMapping(value = "/{email}", produces = { MediaType.APPLICATION_XML_VALUE,
 			MediaType.APPLICATION_JSON_UTF8_VALUE })
@@ -33,6 +38,22 @@ public class MemberRestController {
 		
 		return new ResponseEntity<>(service.idCheck(email), HttpStatus.OK);
 	}
+	
+	//이메일 인증 체크
+//	@GetMapping(value = "/{email}/{password}", produces = { MediaType.APPLICATION_XML_VALUE,
+//			MediaType.APPLICATION_JSON_UTF8_VALUE })
+//	public ResponseEntity<MemberVO> verifyEmail(@PathVariable("email") String email, 
+//			@PathVariable("password") String password, MemberVO member) {
+//		member.setEmail(email);
+//		member.setPassword(password);
+//		
+//		
+//		
+//		return new ResponseEntity<>(service.emailVerify(member), HttpStatus.OK);
+//	}
+	
+	
+	
 	
 	
 	

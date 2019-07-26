@@ -60,7 +60,7 @@ public class MemberController {
 	}
 	
 	@GetMapping("/emailAuth")
-	public String emailConfirm(@ModelAttribute("member") MemberVO member, Model model) throws Exception {
+	public String emailAuth(@ModelAttribute("member") MemberVO member, Model model) throws Exception {
 		log.info(member.getEmail() + " :  auth confrimed");
 		member.setAuth(1);	// authstatus를 1로,, 권한 업데이트
 		service.updateAuthstatus(member);
@@ -86,10 +86,20 @@ public class MemberController {
 		
 		
 		MemberVO member = service.login(vo);
+		//이메일 인증이 안되어있다면
+		if (member.getAuth() == 0) {
+			System.out.println("===========================auth 값 : " + member.getAuth());
+			return "board/emailNotVerify";
+			
+		} else {
 		
-		session.setAttribute("member", member);
-		
-		return "redirect:/board/list";
+			System.out.println("===========================auth 값 : " + member.getAuth());
+			
+			session.setAttribute("member", member);
+			
+			return "redirect:/board/list";
+			
+		}
 	}
 	
 	@GetMapping("/info")

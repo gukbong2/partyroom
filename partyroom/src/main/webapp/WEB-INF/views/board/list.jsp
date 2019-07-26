@@ -65,16 +65,13 @@
 						style="font-size: 20px; width: 35%; margin-right : auto; margin-left : auto;">
 							<select name='type'>
 								<option value=""
-									<c:out value="${pageMaker.cri.type == null?'selected':''}"/>>--</option>
+									<c:out value="${pageMaker.cri.type == null?'selected':''}"/>>===============</option>
 								<option value="T"
 									<c:out value="${pageMaker.cri.type eq 'T'?'selected':''}"/>>제목</option>
 								<option value="C"
 									<c:out value="${pageMaker.cri.type eq 'C'?'selected':''}"/>>내용</option>
 								<option value="W"
 									<c:out value="${pageMaker.cri.type eq 'W'?'selected':''}"/>>작성자</option>
-								<option value="TC"
-									<c:out value="${pageMaker.cri.type eq 'TC'?'selected':''}"/>>제목
-									or 내용</option>
 								<option value="TW"
 									<c:out value="${pageMaker.cri.type eq 'TW'?'selected':''}"/>>제목
 									or 작성자</option>

@@ -6,5 +6,8 @@ public interface MemberRestMapper {
 
 	public MemberVO idCheck(String email);
 	
+	public MemberVO emailVerify(MemberVO member);
+
+	
 	
 }

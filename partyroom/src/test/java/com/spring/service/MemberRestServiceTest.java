@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.spring.domain.MemberVO;
+
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
@@ -16,11 +18,21 @@ public class MemberRestServiceTest {
 	@Setter(onMethod_ = {@Autowired})
 	private MemberRestService service;
 
-	@Test
-	public void idCheck() {
-		log.info(service.idCheck("junyeon2459@gmail.com"));
-		
-	}
+//	@Test
+//	public void idCheck() {
+//		log.info(service.idCheck("junyeon2459@gmail.com"));
+//		
+//	}
 	
+	@Test
+	public void emailVerify() {
+		MemberVO member = new MemberVO();
+		
+		member.setEmail("dd");
+		member.setPassword("dd");
+		
+		service.emailVerify(member);
+		log.info(member);
+	}
 
 }
