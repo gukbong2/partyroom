@@ -15,5 +15,9 @@ public interface MemberMapper {
 	public MemberVO getMember(Long idx);
 	
 	public String getSaltById(String email);
+
+	public void updateAuthkey(MemberVO member);
+
+	public void updateAuthstatus(MemberVO member);
 	
 }

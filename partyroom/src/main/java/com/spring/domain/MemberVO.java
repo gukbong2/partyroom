@@ -12,6 +12,9 @@ public class MemberVO {
 	private String password;
 	private String name;
 	private Date regdate;
-	private int auth;
 	private String salt;
+	private int auth;
+	private String authkey;
+	
+	
 }

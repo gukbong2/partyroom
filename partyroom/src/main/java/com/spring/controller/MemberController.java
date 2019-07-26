@@ -1,12 +1,16 @@
 package com.spring.controller;
 
+import java.util.Random;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.spring.domain.MemberVO;
 import com.spring.service.MemberService;
@@ -14,18 +18,20 @@ import com.spring.service.SHA256Util;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
-
+@AllArgsConstructor
 @RequestMapping("/member/*")
 @Controller
-@AllArgsConstructor
 @Log4j
 public class MemberController {
 	
 	private MemberService service;
+
+	
 	
 	//로그인 , 회원가입을 모달로 처리하니까 getmapping이 필요없을듯
 	@PostMapping(value="/register")
-	public String register(MemberVO member, HttpSession session) {
+	public String register(MemberVO member, HttpSession session,
+			HttpServletRequest request) throws Exception {
 		
 		log.info("register : " + member);
 		
@@ -45,13 +51,23 @@ public class MemberController {
 		System.out.println("마지막 password : " + password);
 		
 		service.memberRegister(member);
+			
 		
-		//모델에 저장 바로 로그인 되는 느낌으로 처리
-		//이상하게 모델로 넘기면 안되는데 세션으로 하니까 되네;
 		session.setAttribute("member", member);
 			
 		return "redirect:/board/list";
 		
+	}
+	
+	@GetMapping("/emailAuth")
+	public String emailConfirm(@ModelAttribute("member") MemberVO member, Model model) throws Exception {
+		log.info(member.getEmail() + " :  auth confrimed");
+		member.setAuth(1);	// authstatus를 1로,, 권한 업데이트
+		service.updateAuthstatus(member);
+		
+		//model.addAttribute("auth_check", 1);
+		
+		return "redirect:/board/list";
 	}
 	
 	@PostMapping("/login")
