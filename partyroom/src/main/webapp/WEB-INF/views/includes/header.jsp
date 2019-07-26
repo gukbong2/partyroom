@@ -123,13 +123,13 @@
 			</div>
 
 			<div class="modal-body center">
-				<form method="POST" id="loginForm">
+				<form method="POST" id="loginForm" action="/member/login">
 					<input type="text" name="email" id="LoginEmail" class="form-control my-2" placeholder="이메일" > 
 					
 					<input type="password" name="password" id="LoginPassword" class="form-control my-2" placeholder="비밀번호">
 					
-					<input type="button" style="background-color: #475C7A; color: white;" 
-					class="btn btn-block form-control" value="로그인" onclick="login(this.form)">
+					<input type="button" style="background-color: #475C7A; color: white;" id="memberLoginBtn"
+					class="btn btn-block form-control" value="로그인">
 					
 					
 				</form>
@@ -142,7 +142,8 @@
 				<hr>
 
 				<div class="text-center">
-					<a href="/member/findId">도움이 필요하십니까?</a><br>
+					<a data-toggle="modal" data-dismiss="modal" href="#findPW"
+					data-target="#findPW">비밀번호 찾기</a><br>
 					<a data-toggle="modal" data-dismiss="modal" href="#register"
 						data-target="#register">회원가입</a>
 				</div>
@@ -172,9 +173,9 @@
 					<input type="text" name="email" id="RegisterEmail" class="form-control my-2" placeholder="이메일" > 
 					<input type="text" name="emailCheck" id="emailCheck"  class="btn btn-primary"
 					style="background-color: #0da197; color: white;" value="이메일 중복체크" > 
-					<input type="text" name="name" id="name" class="form-control my-2" placeholder="성함" > 
+					<input type="text" name="name" id="RegisterName" class="form-control my-2" placeholder="성함" > 
 					<input type="password" name="password" id="RegisterPassword" class="form-control my-2" placeholder="비밀번호">
-					<input type="password" name="password2" class="form-control my-2" placeholder="비밀번호 확인">
+					<input type="password" name="password" id="RegisterPasswordCheck" class="form-control my-2" placeholder="비밀번호 확인">
 					
 					<input type="button" style="background-color: #475C7A; color: white;" id="memberRegiBtn"
 					class="btn btn-block form-control" value="회원가입">
@@ -188,7 +189,8 @@
 				<hr>
 
 				<div class="text-center">
-					<a href="/member/findId">도움이 필요하십니까?</a><br>
+					<a data-toggle="modal" data-dismiss="modal" href="#findPW"
+					data-target="#findPW">비밀번호 찾기</a><br>
 					<a data-toggle="modal" data-dismiss="modal" href="#login"
 						data-target="#login">로그인</a>
 				</div>
@@ -200,11 +202,49 @@
 </div>    
 <!-- 회원가입 모달 끝-->
  
+<!-- 비밀번호 모달 -->
+<div class="modal fade" id="findPW" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<h5 class="modal-title" id="myModalLabel"><strong>비밀번호 찾기</strong></h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+
+			<div class="modal-body center">
+				<form method="POST" id="findPwForm" action="/member/findPw">
+					<input type="text" name="email" id="findPwEmail" class="form-control my-2" placeholder="이메일" > 
+					
+					<input type="button" style="background-color: #475C7A; color: white;" id="findPwBtn"
+					class="btn btn-block form-control" value="비밀번호 찾기">
+				</form>
+				<hr>
+
+				<div class="text-center">
+					<a data-toggle="modal" data-dismiss="modal" href="#login"
+						data-target="#login">로그인</a>
+					<a data-toggle="modal" data-dismiss="modal" href="#register"
+						data-target="#register">회원가입</a>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+<!-- 비밀번호 모달 --> 
+ 
  
  <script>
  		
  		$(document).ready(function() {
  			console.log(memberService);
+ 			
+ 			var exptest = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
  			
  			var emailChk = 0;
  			
@@ -217,15 +257,23 @@
  				memberService.idCheck(emailCheckVal, function(idCheck) {
  					
  					/* oninput처리하던지 뭘 해서 직관적으로 바꾸기 */
- 					if (idCheck == 0) {
+ 					 if (idCheck == 0 && exptest.test(emailCheckVal)==true) {
  						alert("사용해도됨");
  						emailChk = 1;
  						
- 					} else {
- 						alert("사용불가");
+ 					} else if (exptest.test(emailCheckVal)==false) {
+ 						alert("이메일형식이 올바르지 않습니다.");
  						$("#RegisterEmail").val("");
  						return false;
- 					}
+ 					} 
+ 					 
+ 					 else {
+ 						alert("중복된 이메일입니다.");
+ 						$("#RegisterEmail").val("");
+ 						return false;
+ 					} 
+ 					
+ 					
  					
  				});
  				
@@ -242,39 +290,68 @@
  	 				return false;
  	 			} else {
  	 				
+ 	 				var registerEmail = $("#RegisterEmail").val();
+ 	 				var registerName = $("#RegisterName").val();
+ 	 				var registerPassword = $("#RegisterPassword").val();
+ 	 				var registerPasswordCheck = $("#RegisterPasswordCheck").val();
+ 	 				
+ 	 				
+
+ 	 				
+					if (registerEmail == null || registerEmail == "") {
+						alert("이메일을 입력해주세요.");
+						return false;
+						
+					} else if (registerName == null || registerName == "") {
+						alert("성함을 입력해주세요");
+						return false;
+					} else if (registerPassword == null || registerPassword == "") {
+						alert("비밀번호를 입력해주세요");
+						return false;
+					} else if (registerPassword != registerPasswordCheck) {
+						alert("비밀번호가 일치하지 않습니다.");
+					} else if (exptest.test(registerEmail)==false) {
+ 						alert("이메일형식이 올바르지 않습니다.");
+ 						$("#RegisterEmail").val("");
+ 						return false;
+ 					}  
+ 	 				
  	 				
  	 				$("#registerForm").submit();
  	 				
  	 			}
  			
  			});
- 		
- 		
- 		
  		});
- 		/* //회원가입 function -> Model 저장 후 /board/list 리턴
- 		function register(frm) {
- 			
- 			if (emailChk == 0) {
- 				("이메일 중복을 확인해주세요");
- 				return false;
- 				
- 			} else {
- 				frm.action = "/member/register"; 
- 	 		    frm.submit(); 
- 			} */
- 			
- 			
- 			
  		
- 		
- 		
- 
- 		
- 		function login(frm) {
- 			frm.action = "/member/login";
- 			frm.submit();
- 		}
+ 		$("#memberLoginBtn").on("click", function() {
+ 			
+ 			var exptest = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+ 			
+ 			var LoginEmail = $("#LoginEmail").val();
+			var LoginPassword = $("#LoginPassword").val();
+				
+			var emailCheckVal = $("#LoginEmail").val();
+			
+			
+			
+			memberService.idCheck(emailCheckVal, function(idCheck) {
+			if (LoginEmail == null || LoginEmail == "") {
+				alert("이메일을 입력해주세요.");
+				return false;
+				
+			}  else if (LoginPassword == null || LoginPassword == "") {
+				alert("비밀번호를 입력해주세요");
+				return false;
+			}  else if (exptest.test(LoginEmail)==false) {
+				alert("이메일형식이 올바르지 않습니다.");
+				$("#LoginEmail").val("");
+				return false;
+			}  
+			
+			$("#loginForm").submit();
+ 			});
+ 		});
  
  		
  		function logout() {

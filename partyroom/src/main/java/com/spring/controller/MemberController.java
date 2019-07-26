@@ -28,7 +28,7 @@ public class MemberController {
 
 	
 	
-	//로그인 , 회원가입을 모달로 처리하니까 getmapping이 필요없을듯
+	//회원가입
 	@PostMapping(value="/register")
 	public String register(MemberVO member, HttpSession session,
 			HttpServletRequest request) throws Exception {
@@ -51,7 +51,6 @@ public class MemberController {
 		System.out.println("마지막 password : " + password);
 		
 		service.memberRegister(member);
-			
 		
 		session.setAttribute("member", member);
 			
@@ -80,18 +79,17 @@ public class MemberController {
 		System.out.println("password : " + password);
 		password = SHA256Util.getEncrypt(password, salt);
 		vo.setPassword(password);
-		
 		System.out.println("마지막 password : " + password);
 		
 		
-		
 		MemberVO member = service.login(vo);
+		
 		//이메일 인증이 안되어있다면
 		if (member.getAuth() == 0) {
 			System.out.println("===========================auth 값 : " + member.getAuth());
 			return "board/emailNotVerify";
 			
-		} else {
+			} else {
 		
 			System.out.println("===========================auth 값 : " + member.getAuth());
 			
@@ -99,8 +97,8 @@ public class MemberController {
 			
 			return "redirect:/board/list";
 			
+			}
 		}
-	}
 	
 	@GetMapping("/info")
 	public void memberInfo() {
