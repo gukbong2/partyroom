@@ -12,7 +12,7 @@ public interface MemberService {
 	
 	public boolean remove(Long idx);
 	
-	public MemberVO getMember(Long idx);
+	public MemberVO getMember(String string);
 	
 	public MemberVO login(MemberVO member);
 	
@@ -20,4 +20,8 @@ public interface MemberService {
 
 	public void updateAuthstatus(MemberVO member);
 
+	public int getAuth(String email);
+
+	
+	
 }

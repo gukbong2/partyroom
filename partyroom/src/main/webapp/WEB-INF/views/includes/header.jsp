@@ -72,9 +72,9 @@
 
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item"><a class="nav-link" href="/info">운영안내</a></li>
-				<li class="nav-item"><a class="nav-link" href="/guide">이용안내</a></li>
-				<li class="nav-item"><a class="nav-link" href="/booked">예약하기</a></li>
+				<li class="nav-item"><a class="nav-link" href="/page/gallery">갤러리</a></li>
+				<li class="nav-item"><a class="nav-link" href="/page/guide">이용안내</a></li>
+				<li class="nav-item"><a class="nav-link" href="/page/reservation">예약하기</a></li>
 				<li class="nav-item"><a class="nav-link" href="/board/list">문의게시판</a></li>
 			</ul>
 
@@ -124,9 +124,11 @@
 
 			<div class="modal-body center">
 				<form method="POST" id="loginForm" action="/member/login">
-					<input type="text" name="email" id="LoginEmail" class="form-control my-2" placeholder="이메일" > 
+					<input type="text" name="email" id="LoginEmail" class="form-control my-2" placeholder="이메일" 
+					onKeyPress="if (event.keyCode==13){enterLogin()}"> 
 					
-					<input type="password" name="password" id="LoginPassword" class="form-control my-2" placeholder="비밀번호">
+					<input type="password" name="password" id="LoginPassword" class="form-control my-2"
+					 placeholder="비밀번호" onKeyPress="if (event.keyCode==13){enterLogin()}">
 					
 					<input type="button" style="background-color: #475C7A; color: white;" id="memberLoginBtn"
 					class="btn btn-block form-control" value="로그인">
@@ -137,7 +139,8 @@
 
 				<form style="text-align: center;">
 					<!-- 소셜 로그인 추후 -->	
-					<a href="/social/login"><img src="/resources/image/logo.png" alt="" /></a>
+					<a href="/social/login"><img src="/resources/image/naverlogo.PNG" alt="" width="80px;" /></a>
+					<a href="/social/login"><img src="/resources/image/kakaologo.png" alt="" width="80px;" /></a>
 				</form>
 				<hr>
 
@@ -170,15 +173,17 @@
 			
 			<div class="modal-body center">
 				<form method="post" id="registerForm" action="/member/register">
-					<input type="text" name="email" id="RegisterEmail" class="form-control my-2" placeholder="이메일" > 
+					<input type="text" name="email" id="RegisterEmail" class="form-control my-2" 
+				 	placeholder="이메일" onKeyPress="if (event.keyCode==13){emailChk()}">
 					<input type="text" name="emailCheck" id="emailCheck"  class="btn btn-primary"
-					style="background-color: #0da197; color: white;" value="이메일 중복체크" > 
+					style="background-color: #0da197; color: white;" value="이메일 중복체크" readonly="readonly"> 
 					<input type="text" name="name" id="RegisterName" class="form-control my-2" placeholder="성함" > 
 					<input type="password" name="password" id="RegisterPassword" class="form-control my-2" placeholder="비밀번호">
 					<input type="password" name="password" id="RegisterPasswordCheck" class="form-control my-2" placeholder="비밀번호 확인">
 					
 					<input type="button" style="background-color: #475C7A; color: white;" id="memberRegiBtn"
-					class="btn btn-block form-control" value="회원가입">
+					class="btn btn-block form-control" value="회원가입" 
+					 onKeyPress="if (event.keyCode==13){enterRegister()}">
 				</form>
 				<hr>
 
@@ -258,7 +263,7 @@
  					
  					/* oninput처리하던지 뭘 해서 직관적으로 바꾸기 */
  					 if (idCheck == 0 && exptest.test(emailCheckVal)==true) {
- 						alert("사용해도됨");
+ 						alert("사용 가능한 이메일입니다.");
  						emailChk = 1;
  						
  					} else if (exptest.test(emailCheckVal)==false) {
@@ -324,6 +329,9 @@
  			});
  		});
  		
+ 		
+
+ 		
  		$("#memberLoginBtn").on("click", function() {
  			
  			var exptest = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
@@ -336,23 +344,43 @@
 			
 			
 			memberService.idCheck(emailCheckVal, function(idCheck) {
-			if (LoginEmail == null || LoginEmail == "") {
+			if ( emailCheckVal == null || emailCheckVal == "") {
 				alert("이메일을 입력해주세요.");
+				$("#LoginEmail").focus();
 				return false;
 				
 			}  else if (LoginPassword == null || LoginPassword == "") {
 				alert("비밀번호를 입력해주세요");
+				$("#LoginPassword").focus();
 				return false;
 			}  else if (exptest.test(LoginEmail)==false) {
 				alert("이메일형식이 올바르지 않습니다.");
 				$("#LoginEmail").val("");
+				$("#LoginEmail").focus();
 				return false;
-			}  
+			}  else if (idCheck == 0) {
+				alert("이메일 혹은 비밀번호를 잘못 입력하셨습니다. 다시 입력해주세요");
+				$("#LoginEmail").val("");
+				$("#LoginPassword").val("");
+				$("#LoginEmail").focus();
+				return false;
+			}
 			
 			$("#loginForm").submit();
  			});
  		});
  
+ 		function enterLogin() {
+ 			$("#memberLoginBtn").click();
+ 		}
+ 		
+ 		function enterRegister() {
+ 			$("#registerBtn").click();
+ 		}
+ 		
+ 		function emailChk() {
+ 			$("#emailCheck").click();
+ 		}
  		
  		function logout() {
  			if (confirm("로그 아웃 하시겠습니까?")) {

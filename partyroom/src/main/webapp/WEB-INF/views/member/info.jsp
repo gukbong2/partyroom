@@ -11,3 +11,6 @@
 <p>비밀번호 : ${member.password }</p>
 <p>인증 : ${member.auth }</p>
 
+
+
+

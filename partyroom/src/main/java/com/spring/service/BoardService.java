@@ -19,7 +19,7 @@ public interface BoardService {
 
 	public int getTotal(Criteria cri);
 
-
+	public BoardVO deleteAll(String writer);
 
 
 

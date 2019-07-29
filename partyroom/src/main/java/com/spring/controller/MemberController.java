@@ -71,33 +71,37 @@ public class MemberController {
 	
 	@PostMapping("/login")
 	public String login(MemberVO vo, HttpSession session) {
-		
+		vo = service.getMember(vo.getEmail());
 		String salt = service.getSaltById(vo.getEmail());
 		String password = vo.getPassword();
-		
+		int auth = service.getAuth(vo.getEmail());
+		vo.setAuth(auth);
+		System.out.println("member auth : " + auth);
 		System.out.println("salt : " + salt);
 		System.out.println("password : " + password);
 		password = SHA256Util.getEncrypt(password, salt);
 		vo.setPassword(password);
 		System.out.println("마지막 password : " + password);
 		
-		
-		MemberVO member = service.login(vo);
+		service.login(vo);
+		//MemberVO member = service.login(vo);
 		
 		//이메일 인증이 안되어있다면
-		if (member.getAuth() == 0) {
-			System.out.println("===========================auth 값 : " + member.getAuth());
+		if (vo.getAuth() == 0) {
+			System.out.println("===========================auth 값 : " + vo.getAuth());
 			return "board/emailNotVerify";
 			
 			} else {
 		
-			System.out.println("===========================auth 값 : " + member.getAuth());
+			System.out.println("===========================auth 값 : " + vo.getAuth());
 			
-			session.setAttribute("member", member);
 			
+			session.setAttribute("member", vo);
+			System.out.println("member : " + vo);
 			return "redirect:/board/list";
 			
 			}
+		
 		}
 	
 	@GetMapping("/info")

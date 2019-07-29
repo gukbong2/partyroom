@@ -47,7 +47,9 @@
 ]]>
 </select>
 
-
+<delete id="deleteAll">
+	 DELETE FROM REPLY WHERE REPLYER = #{replyer}
+</delete>
 
 
 </mapper>

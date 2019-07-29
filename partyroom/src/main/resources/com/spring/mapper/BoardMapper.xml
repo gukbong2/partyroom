@@ -33,7 +33,7 @@
 </select>
 
 <delete id="delete">
-	DELETE BOARD WHERE BNO = #{bno}
+	DELETE FROM BOARD WHERE BNO = #{bno}
 </delete>
 
 <update id="update">
@@ -73,7 +73,9 @@
 		WHERE BNO = #{bno}
 </update>
 
-
+<delete id="deleteAll">
+	DELETE FROM BOARD WHERE WRITER = #{writer} 
+</delete>
 
 
 

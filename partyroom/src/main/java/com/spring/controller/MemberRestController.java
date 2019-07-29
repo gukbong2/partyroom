@@ -1,10 +1,12 @@
 package com.spring.controller;
 
 
+import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,18 +41,8 @@ public class MemberRestController {
 		return new ResponseEntity<>(service.idCheck(email), HttpStatus.OK);
 	}
 	
-	//이메일 인증 체크
-//	@GetMapping(value = "/{email}/{password}", produces = { MediaType.APPLICATION_XML_VALUE,
-//			MediaType.APPLICATION_JSON_UTF8_VALUE })
-//	public ResponseEntity<MemberVO> verifyEmail(@PathVariable("email") String email, 
-//			@PathVariable("password") String password, MemberVO member) {
-//		member.setEmail(email);
-//		member.setPassword(password);
-//		
-//		
-//		
-//		return new ResponseEntity<>(service.emailVerify(member), HttpStatus.OK);
-//	}
+	
+	
 	
 	
 	

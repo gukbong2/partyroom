@@ -55,4 +55,9 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.getTotalCount(cri);
 	}
 
+	@Override
+	public BoardVO deleteAll(String writer) {
+		return mapper.deleteAll(writer);
+	}
+
 }

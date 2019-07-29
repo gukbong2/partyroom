@@ -9,6 +9,7 @@ import com.spring.domain.ReplyVO;
 
 public interface ReplyMapper {
 	
+
 	public int insert(ReplyVO vo);
 	
 	public ReplyVO read(Long bno);
@@ -21,7 +22,7 @@ public interface ReplyMapper {
 	
 	public int getCountByBno(Long bno);
 	
-	
+	public ReplyVO deleteAll(String replyer);
 	
 	
 	

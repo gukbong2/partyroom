@@ -12,13 +12,16 @@ public interface MemberMapper {
 	
 	public int delete(Long idx);
 	
-	public MemberVO getMember(Long idx);
+	public MemberVO getMember(String email);
 	
 	public String getSaltById(String email);
 
 	public void updateAuthkey(MemberVO member);
 
 	public void updateAuthstatus(MemberVO member);
+
+	public int getAuth(String email);
+
 
 	
 }

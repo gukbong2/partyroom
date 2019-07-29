@@ -28,7 +28,7 @@
 
 
 <select id="getMember" resultType="com.spring.domain.MemberVO">
-	SELECT * FROM MEMBER WHERE IDX = #{idx}
+	SELECT * FROM MEMBER WHERE EMAIL = #{email}
 </select>	
 
 
@@ -53,7 +53,10 @@
 		WHERE EMAIL = #{email} AND AUTHKEY = #{authkey}
 </update>
 
-
+<select id="getAuth" resultType="Integer">
+	SELECT AUTH FROM MEMBER 
+		WHERE EMAIL = #{email}
+</select>
 
 
 

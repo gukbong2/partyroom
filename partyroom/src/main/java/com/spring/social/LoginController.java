@@ -2,6 +2,8 @@ package com.spring.social;
 
 import java.io.IOException;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.github.scribejava.core.model.OAuth2AccessToken;
+
+import lombok.AllArgsConstructor;
 
 /**
  * Handles requests for the application home page.
@@ -22,6 +27,7 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 @Controller
 public class LoginController {
 
+	
 	/* NaverLoginBO */
 	private NaverLoginBO naverLoginBO;
 	private String apiResult = null;
@@ -67,14 +73,17 @@ public class LoginController {
 		return "naverSuccess";
 	}
 
-	
-	  @RequestMapping(value = "/logout", method = { RequestMethod.GET,  RequestMethod.POST }) 
-	  public String logout(HttpSession session) throws IOException { 
-		  System.out.println("여기는 logout");
-		  session.invalidate();
-		  
-		  return "redirect:index.jsp"; 
-		  }
+//	  @RequestMapping(value = "/logout", method = { RequestMethod.GET,  RequestMethod.POST }) 
+//	  public String logout(HttpSession session) throws IOException { 
+//		  System.out.println("여기는 logout");
+//		  session.invalidate();
+//		  
+//		  return "redirect:index.jsp"; 
+//	  }
 	
 
+	  
+	  
+	  
+	  
 }

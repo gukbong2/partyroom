@@ -61,9 +61,9 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public MemberVO getMember(Long idx) {
+	public MemberVO getMember(String email) {
 		// TODO Auto-generated method stub
-		return mapper.getMember(idx);
+		return mapper.getMember(email);
 	}
 
 	@Override
@@ -83,6 +83,13 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		mapper.updateAuthstatus(member);
 	}
+
+	@Override
+	public int getAuth(String email) {
+		return mapper.getAuth(email);
+	}
+
+	
 
 	
 	

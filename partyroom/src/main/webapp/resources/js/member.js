@@ -15,14 +15,6 @@ var memberService = (function() {
 		});
 	}
 	
-//	function loginCheck(param, callback, error) {
-//		param.email = 
-//		
-//		$.get("/check " + email + "/" + )
-//	}
-	
-	
-	
 	return {
 		idCheck : idCheck
 	};

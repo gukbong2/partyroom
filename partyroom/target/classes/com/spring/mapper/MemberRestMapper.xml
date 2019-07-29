@@ -20,5 +20,8 @@
 		 WHERE EMAIL = #{email} AND PASSWORD = #{password}
 </select>
 
+<delete id="remove">
+	DELETE FROM MEMBER WHERE NAME = #{name}
+</delete>
 
 </mapper>

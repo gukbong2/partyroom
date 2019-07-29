@@ -28,4 +28,19 @@ public class PageController {
 	public void info() {
 		log.info("info");
 	}
+	
+	@GetMapping("/gallery")
+	public void gallery() {
+		log.info("gallery");
+	}
+
+	@GetMapping("/guide")
+	public void guide() {
+		log.info("guide");
+	}
+	
+	@GetMapping("/reservation")
+	public void reservation() {
+		
+	}
 }

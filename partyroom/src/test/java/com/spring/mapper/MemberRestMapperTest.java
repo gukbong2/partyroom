@@ -44,4 +44,13 @@ public class MemberRestMapperTest {
 //		log.info(vo);
 //	}
 	
+	@Test
+	public void remove() {
+		String name = "이상휘";
+	
+		mapper.remove(name);
+		
+		log.info(mapper.remove(name));
+	}
+	
 }
