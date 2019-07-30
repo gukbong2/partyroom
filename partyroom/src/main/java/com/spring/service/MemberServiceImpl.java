@@ -28,14 +28,12 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	@Transactional
 	public void memberRegister(MemberVO member) throws MessagingException, UnsupportedEncodingException {
-		
-		
 		// 임의의 authkey 생성
 		String authkey = new TempKey().getKey(50, false);
 
 		member.setAuthkey(authkey);
 		mapper.updateAuthkey(member);
-
+		
 		// mail 작성 관련 
 		MailUtils sendMail = new MailUtils(mailSender);
 

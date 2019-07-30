@@ -51,7 +51,13 @@
    justify-content: center;
 }
 
+ a:link { color: #646464; text-decoration: none;}
+ a:visited { color: #646464; text-decoration: none;}
+ a:hover { color: #646464; text-decoration: underline;}
 </style>
+
+
+
 
 
 
