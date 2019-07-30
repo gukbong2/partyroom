@@ -22,6 +22,8 @@ public interface MemberMapper {
 
 	public int getAuth(String email);
 
+	public int modifyPassword(MemberVO member);
 
+	public void updatePassword(MemberVO member);
 	
 }

@@ -15,6 +15,8 @@ var memberService = (function() {
 		});
 	}
 	
+	
+	
 	return {
 		idCheck : idCheck
 	};

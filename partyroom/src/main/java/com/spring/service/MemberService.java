@@ -22,6 +22,10 @@ public interface MemberService {
 
 	public int getAuth(String email);
 
+	public int modifyPassword(MemberVO member);
+
+	public void updatePassword(MemberVO member);
+
 	
 	
 }

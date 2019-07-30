@@ -89,6 +89,18 @@ public class MemberServiceImpl implements MemberService{
 		return mapper.getAuth(email);
 	}
 
+	@Override
+	public int modifyPassword(MemberVO member) {
+		return mapper.modifyPassword(member);
+	}
+
+	@Override
+	public void updatePassword(MemberVO member) {
+		mapper.updatePassword(member);
+	}
+
+	
+
 	
 
 	

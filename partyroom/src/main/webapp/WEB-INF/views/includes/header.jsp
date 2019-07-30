@@ -7,7 +7,7 @@
 <head>
 
 
-    <title></title>
+    <title>게하</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
@@ -175,11 +175,15 @@
 				<form method="post" id="registerForm" action="/member/register">
 					<input type="text" name="email" id="RegisterEmail" class="form-control my-2" 
 				 	placeholder="이메일" onKeyPress="if (event.keyCode==13){emailChk()}">
-					<input type="text" name="emailCheck" id="emailCheck"  class="btn btn-primary"
-					style="background-color: #0da197; color: white;" value="이메일 중복체크" readonly="readonly"> 
-					<input type="text" name="name" id="RegisterName" class="form-control my-2" placeholder="성함" > 
-					<input type="password" name="password" id="RegisterPassword" class="form-control my-2" placeholder="비밀번호">
-					<input type="password" name="password" id="RegisterPasswordCheck" class="form-control my-2" placeholder="비밀번호 확인">
+					<input type="text" name="emailCheck" id="emailCheck"  class="btn btn-block form-control"
+					style="background-color: #0da197; color: white;" value="이메일 중복체크" readonly="readonly"
+					onKeyPress="if (event.keyCode==13){emailChk()}"> 
+					<input type="text" name="name" id="RegisterName" class="form-control my-2" 
+					onKeyPress="if (event.keyCode==13){enterRegister()}" placeholder="성함" > 
+					<input type="password" name="password" id="RegisterPassword" class="form-control my-2" 
+					onKeyPress="if (event.keyCode==13){enterRegister()}" placeholder="비밀번호">
+					<input type="password" name="passwordChk" id="RegisterPasswordCheck" 
+					onKeyPress="if (event.keyCode==13){enterRegister()}" class="form-control my-2" placeholder="비밀번호 확인">
 					
 					<input type="button" style="background-color: #475C7A; color: white;" id="memberRegiBtn"
 					class="btn btn-block form-control" value="회원가입" 
@@ -265,6 +269,7 @@
  					 if (idCheck == 0 && exptest.test(emailCheckVal)==true) {
  						alert("사용 가능한 이메일입니다.");
  						emailChk = 1;
+ 						$("#RegisterName").focus();
  						
  					} else if (exptest.test(emailCheckVal)==false) {
  						alert("이메일형식이 올바르지 않습니다.");
@@ -286,45 +291,41 @@
  		
  		
  			$("#memberRegiBtn").on("click", function() {
- 				
+ 				var registerEmail = $("#RegisterEmail").val();
+ 				var registerName = $("#RegisterName").val();
+ 				var registerPassword = $("#RegisterPassword").val();
+ 				var registerPasswordCheck = $("#RegisterPasswordCheck").val();
+
+
+
  				console.log("누름");
  				
  				/* 모달이던 oninput이던 아무거나 변경 */
  				if (emailChk == 0) {
  	 				console.log("이메일 중복을 확인해주세요");
  	 				return false;
- 	 			} else {
- 	 				
- 	 				var registerEmail = $("#RegisterEmail").val();
- 	 				var registerName = $("#RegisterName").val();
- 	 				var registerPassword = $("#RegisterPassword").val();
- 	 				var registerPasswordCheck = $("#RegisterPasswordCheck").val();
- 	 				
- 	 				
-
- 	 				
-					if (registerEmail == null || registerEmail == "") {
+ 	 			} if (registerEmail == null || registerEmail == "") {
 						alert("이메일을 입력해주세요.");
 						return false;
-						
-					} else if (registerName == null || registerName == "") {
-						alert("성함을 입력해주세요");
+				} else if (registerName == null || registerName == "") {
+					alert("성함을 입력해주세요");
+					return false;
+				} else if (registerPassword == null || registerPassword == "") {
+					alert("비밀번호를 입력해주세요");
+					return false;
+				} else if (registerPassword != registerPasswordCheck) {
+					alert("비밀번호가 일치하지 않습니다.");
+					return false;
+				} else if (exptest.test(registerEmail)==false) {
+						alert("이메일형식이 올바르지 않습니다.");
+						$("#RegisterEmail").val("");
 						return false;
-					} else if (registerPassword == null || registerPassword == "") {
-						alert("비밀번호를 입력해주세요");
-						return false;
-					} else if (registerPassword != registerPasswordCheck) {
-						alert("비밀번호가 일치하지 않습니다.");
-					} else if (exptest.test(registerEmail)==false) {
- 						alert("이메일형식이 올바르지 않습니다.");
- 						$("#RegisterEmail").val("");
- 						return false;
- 					}  
+				} 
  	 				
  	 				
- 	 				$("#registerForm").submit();
+ 				$("#registerForm").submit();
  	 				
- 	 			}
+ 	 			
  			
  			});
  		});
@@ -333,43 +334,55 @@
 
  		
  		$("#memberLoginBtn").on("click", function() {
- 			
  			var exptest = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
  			
  			var LoginEmail = $("#LoginEmail").val();
 			var LoginPassword = $("#LoginPassword").val();
-				
 			var emailCheckVal = $("#LoginEmail").val();
 			
-			
-			
-			memberService.idCheck(emailCheckVal, function(idCheck) {
-			if ( emailCheckVal == null || emailCheckVal == "") {
-				alert("이메일을 입력해주세요.");
-				$("#LoginEmail").focus();
-				return false;
-				
-			}  else if (LoginPassword == null || LoginPassword == "") {
-				alert("비밀번호를 입력해주세요");
-				$("#LoginPassword").focus();
-				return false;
-			}  else if (exptest.test(LoginEmail)==false) {
-				alert("이메일형식이 올바르지 않습니다.");
-				$("#LoginEmail").val("");
-				$("#LoginEmail").focus();
-				return false;
-			}  else if (idCheck == 0) {
-				alert("이메일 혹은 비밀번호를 잘못 입력하셨습니다. 다시 입력해주세요");
-				$("#LoginEmail").val("");
-				$("#LoginPassword").val("");
-				$("#LoginEmail").focus();
-				return false;
+			var params = {
+					email : LoginEmail,
+					password : LoginPassword
 			}
 			
-			$("#loginForm").submit();
- 			});
- 		});
- 
+			console.log(params);
+			
+			$.ajax({
+				method : 'post',
+				dataType : 'json', 
+				data : params,
+				url : "/member/modifyPassword",
+				success : function(data) {
+					if (data.cnt == 0) {
+						alert("아이디 혹은 비밀번호를 잘못 입력하셨습니다. 다시 시도해주세요.");
+						$("#LoginEmail").val("");
+						$("#LoginPassword").val("");
+						$("#LoginPassword").focus();
+						return false;
+					} else if ( emailCheckVal == null || emailCheckVal == "") {
+						alert("이메일을 입력해주세요.");
+						$("#LoginEmail").focus();
+						return false;
+						
+					}  else if (LoginPassword == null || LoginPassword == "") {
+						alert("비밀번호를 입력해주세요");
+						$("#LoginPassword").focus();
+						return false;
+					}  else if (exptest.test(LoginEmail)==false) {
+						alert("이메일형식이 올바르지 않습니다.");
+						$("#LoginEmail").val("");
+						$("#LoginEmail").focus();
+						return false;
+					} 
+			
+					$("#loginForm").submit();
+		 			}
+				});
+ 		});	
+			
+			
+			
+			
  		function enterLogin() {
  			$("#memberLoginBtn").click();
  		}

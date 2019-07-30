@@ -51,16 +51,26 @@ public class MemberServiceTest {
 //		
 //		service.login(member);
 //	}
-	
+//	
+//	@Test
+//	public void getSaltById() {
+//		MemberVO member = new MemberVO();
+//		
+//		member.setEmail("czcz");
+//		
+//		log.info(member);
+//		
+//		service.getSaltById(member.getEmail());
+//	}
+
 	@Test
-	public void getSaltById() {
+	public void modifyPassword() {
 		MemberVO member = new MemberVO();
 		
-		member.setEmail("czcz");
+		member.setEmail("junyeon2@gmail.com");
 		
-		log.info(member);
-		
-		service.getSaltById(member.getEmail());
+		service.modifyPassword(member);
 	}
-
+	
+	
 }

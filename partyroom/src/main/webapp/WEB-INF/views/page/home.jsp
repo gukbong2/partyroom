@@ -9,6 +9,8 @@
 .customoverlay a {display:block;text-decoration:none;color:#000;text-align:center;border-radius:6px;font-size:14px;font-weight:bold;overflow:hidden;background: #d95050;background: #d95050 url(http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center;}
 .customoverlay .title {display:block;text-align:center;background:#fff;margin-right:35px;padding:10px 15px;font-size:14px;font-weight:bold;}
 .customoverlay:after {content:'';position:absolute;margin-left:-12px;left:50%;bottom:-12px;width:22px;height:12px;background:url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
+	
+
 </style>
 
 
@@ -17,11 +19,35 @@
 		color: white; text-align: center;" >메인</p>
 		
 		
-		<div id="map" style="width:1200px;height:500px;"></div>
+<!--- 메인 이미지 슬라이드 -->
+   <div id="slides" class="carousel slide" data-ride="carousel">
+      <ul class="carousel-indicators">
+         <li data-target="#slides" data-slide-to="0" class="active"></li>
+      </ul>
+      <div class="carousel-inner">
+         <div class="carousel-item active">
+            <img src="/resources/image/main1.jpg">
+            <div class="carousel-caption">
+            <h1>1번사진</h1>
+            
+            </div>
+         </div>
+         <div class="carousel-item">
+            <img src="/resources/image/main2.jpg">
+            <div class="carousel-caption">
+            <h1>2번사진</h1>
+            </div>
+         </div>
+         
+      </div>
+   </div>		
+		
+		
+<div id="map" style="width:1200px;height:500px;"></div>
+
+
 			
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3ebce737ee3dff4cd2887f0369ec5b64"></script>
-
-
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3ebce737ee3dff4cd2887f0369ec5b64"></script>
 <script>
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
   mapOption = { 
