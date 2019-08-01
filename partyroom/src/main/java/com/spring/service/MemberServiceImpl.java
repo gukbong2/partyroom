@@ -26,11 +26,13 @@ public class MemberServiceImpl implements MemberService{
 	private JavaMailSender mailSender;
 	
 	@Override
-	@Transactional
+	//@Transactional
 	public void memberRegister(MemberVO member) throws MessagingException, UnsupportedEncodingException {
 		// 임의의 authkey 생성
-		String authkey = new TempKey().getKey(50, false);
-
+		String authkey = new TempKey().getKey(40, false);
+		String sendEmail = "sspartyroom@gmail.com";
+		sendEmail.trim();
+		
 		member.setAuthkey(authkey);
 		mapper.updateAuthkey(member);
 		
@@ -44,9 +46,9 @@ public class MemberServiceImpl implements MemberService{
 				.append(member.getEmail())
 				.append("&authkey=")
 				.append(authkey)
-				.append("' target='_blenk'>이메일 인증 확인</a>")
+				.append("target='_blank'>이메일 인증 확인</a>")
 				.toString());
-		sendMail.setFrom("sspartyroom@gmail.com ", "sspartyroom@gmail.com");
+		sendMail.setFrom(sendEmail, sendEmail);
 		sendMail.setTo(member.getEmail());
 		sendMail.send();
 		
@@ -95,6 +97,34 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public void updatePassword(MemberVO member) {
 		mapper.updatePassword(member);
+	}
+
+	@Transactional
+	@Override
+	public void findPassword(MemberVO member) throws MessagingException, UnsupportedEncodingException {
+		String sendEmail = "sspartyroom@gmail.com";
+		
+		String authkey = new TempKey().getKey(40, false);
+
+		member.setAuthkey(authkey);
+		mapper.updateAuthkey(member);
+		
+		// mail 작성 관련 
+		MailUtils sendMail = new MailUtils(mailSender);
+
+		sendMail.setSubject("[ 더블에스 파티룸 ] 비밀번호 찾기 메일입니다.");
+		sendMail.setText(new StringBuffer().append("<h1>[비밀번호 변경]</h1>")
+				.append("<p>아래 링크를 클릭하시면 비밀번호 변경 페이지로 이동하게 됩니다.</p>")
+				.append("<a href='http://localhost:8080/member/findPwEmailAuth?email=")
+				.append(member.getEmail())
+				.append("&authkey=")
+				.append(authkey)
+				.append("' target='_blank'>비밀번호 변경</a>")
+				.toString());
+		sendMail.setFrom(sendEmail, "더블에스파티룸");
+		sendMail.setTo(member.getEmail());
+		sendMail.send();
+		
 	}
 
 	

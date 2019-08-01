@@ -24,12 +24,16 @@
 <br>
 <!-- 네이버 로그인 화면으로 이동 시키는 URL -->
 <!-- 네이버 로그인 화면에서 ID, PW를 올바르게 입력하면 callback 메소드 실행 요청 -->
-<div id="naver_id_login" style="text-align:center"><a href="${url}"><img width="223" src="${pageContext.request.contextPath}/resources/img/naver_Bn_Green.PNG"/></a></div>
+<div id="naver_id_login" style="text-align:center"><a id="naverLogoBtn" href="${url}"><img width="223" src="${pageContext.request.contextPath}/resources/img/naver_Bn_Green.PNG"/></a></div>
 <br>
 
 <script>
 $(document).ready(function() {
+	
+	$("#naverLogoBtn").on("click", function(e) {
+		
 	self.location = "${url}";
+	});
 		
 	});
 </script>

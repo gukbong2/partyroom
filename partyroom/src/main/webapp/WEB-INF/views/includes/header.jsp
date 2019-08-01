@@ -232,7 +232,7 @@
 			</div>
 
 			<div class="modal-body center">
-				<form method="POST" id="findPwForm" action="/member/findPw">
+				<form method="POST" id="findPwForm" action="/member/findPassword">
 					<input type="text" name="email" id="findPwEmail" class="form-control my-2" placeholder="이메일" > 
 					
 					<input type="button" style="background-color: #475C7A; color: white;" id="findPwBtn"
@@ -262,6 +262,31 @@
  			var exptest = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
  			
  			var emailChk = 0;
+ 			
+ 			$("#findPwBtn").on("click", function() {
+ 				var emailCheckVal = $("#findPwEmail").val();
+ 				console.log(emailCheckVal);
+ 			
+			memberService.idCheck(emailCheckVal, function(idCheck) {
+				if (exptest.test(emailCheckVal)==false) {
+					alert("부적합한 이메일 형식 입니다.");
+					$("#findPwEmail").val("");
+					$("#findPwEmail").focus();
+					return false;
+				} else if (idCheck == 0 || idCheck == null) {
+					alert("가입하지 않은 이메일입니다. 다시 확인해주세요.");
+					$("#findPwEmail").val("");
+					$("#findPwEmail").focus();
+					return false;
+				} else {
+					alert("비밀번호 찾기 이메일을 전송 중입니다. 이메일을 확인해주세요.");
+					$("#findPwForm").submit();
+				}
+				
+				
+			});
+ 				
+		});
  			
  			$("#emailCheck").on("click", function() {
  				console.log("누름");
@@ -384,6 +409,15 @@
 					$("#loginForm").submit();
 		 			}
 				});
+			
+			
+			
+			
+			
+			
+			
+			
+			
  		});	
 			
 			

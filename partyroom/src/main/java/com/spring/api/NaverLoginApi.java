@@ -1,4 +1,4 @@
-package com.spring.social;
+package com.spring.api;
 
 import com.github.scribejava.core.builder.api.DefaultApi20;
 

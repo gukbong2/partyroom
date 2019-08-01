@@ -1,14 +1,17 @@
 package com.spring.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -68,6 +71,7 @@ public class MemberController {
 		return "redirect:/board/list";
 	}
 	
+	
 	@PostMapping("/login")
 	public String login(MemberVO vo, HttpSession session) {
 		vo = service.getMember(vo.getEmail());
@@ -116,6 +120,13 @@ public class MemberController {
 		
 		return "redirect:/board/list";
 	}
+	@PostMapping("findPassword")
+	public String findPassword(MemberVO member) throws UnsupportedEncodingException, MessagingException {
+		
+		service.findPassword(member);
+		
+		return "/page/home";
+	}
 	
 	
 	@PostMapping("/updatePassword")
@@ -127,10 +138,33 @@ public class MemberController {
 
 		service.updatePassword(member);
 		
-		session.setAttribute("member", member);
+		MemberVO vo = service.getMember(email);
+		session.setAttribute("member", vo);
+		
 		return "redirect:/member/info";
 		
 	}
+	
+	@GetMapping("/findPwEmailAuth")
+	public void findPwEmailAuth(@ModelAttribute("member") MemberVO member, Model model) throws Exception {
+		log.info(member.getEmail());
+		
+	}
+	
+	@PostMapping("/resetPassword")
+	public String resetPassword(MemberVO member, @RequestParam("email") String email, 
+			@RequestParam("modifyPassword") String modifyPassword, HttpSession session) {
+		
+		member.setEmail(email);
+		member.setPassword(modifyPassword);
+		
+		service.updatePassword(member);
+		MemberVO vo = service.getMember(email);
+		session.setAttribute("member", vo);
+		return "/page/home";
+	}
+	
+	
 	
 	
 	//ajax 

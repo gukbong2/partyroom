@@ -26,6 +26,6 @@ public interface MemberService {
 
 	public void updatePassword(MemberVO member);
 
-	
+	public void findPassword(MemberVO member) throws MessagingException, UnsupportedEncodingException;
 	
 }

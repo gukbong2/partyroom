@@ -1,24 +1,21 @@
-package com.spring.social;
+package com.spring.api;
 
 import java.io.IOException;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
-import lombok.AllArgsConstructor;
 
 /**
  * Handles requests for the application home page.
@@ -66,12 +63,18 @@ public class LoginController {
 		apiResult = naverLoginBO.getUserProfile(oauthToken);
 
 		System.out.println("apiResult : " + apiResult);
-
 		model.addAttribute("result", apiResult);
-
+		
+		
 		/* 네이버 로그인 성공 페이지 View 호출 */
 		return "naverSuccess";
 	}
+	
+	
+
+	
+	
+	
 
 //	  @RequestMapping(value = "/logout", method = { RequestMethod.GET,  RequestMethod.POST }) 
 //	  public String logout(HttpSession session) throws IOException { 

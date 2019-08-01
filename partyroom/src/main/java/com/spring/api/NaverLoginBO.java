@@ -1,4 +1,4 @@
-package com.spring.social;
+package com.spring.api;
 
 import java.io.IOException;
 import java.util.UUID;

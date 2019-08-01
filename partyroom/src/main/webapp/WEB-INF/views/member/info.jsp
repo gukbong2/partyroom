@@ -14,11 +14,12 @@
  <a class="nav-link" data-toggle="modal" href="#modifyPwd">비밀번호 수정</a>
  <a class="nav-link" data-toggle="modal" href="#removeMember">비밀번호 탈퇴</a>
 	
+	
+<!-- 비밀번호 수정 모달 -->	
 <div class="modal fade" id="modifyPwd" tabindex="-1" role="dialog"
 	aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-
 			<div class="modal-header">
 				<h5 class="modal-title" id="myModalLabel"><strong>비밀번호 수정</strong></h5>
 				<button type="button" class="close" data-dismiss="modal"
@@ -28,7 +29,6 @@
 			</div>
 
 			<div class="modal-body center">
-			
 				<form method="POST" id="ModifyPasswordForm" action="/member/updatePassword">
 					<input type="hidden" name="email" id="email" value="${member.email }" />
 					
@@ -44,12 +44,12 @@
 					<input type="button" style="background-color: #475C7A; color: white;" id="modifyPasswordBtn"
 					class="btn btn-block form-control" value="비밀번호 변경">
 				</form>
-				
 				<hr>
 			</div>
 		</div>
 	</div>
 </div>
+<!-- 비밀번호 수정 모달  끝-->	
 				
 <script>
 	$(document).ready(function(e) {
