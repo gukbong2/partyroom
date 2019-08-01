@@ -15,6 +15,23 @@ var memberService = (function() {
 		});
 	}
 	
+	function remove(email, callback, error) {
+		$.ajax({
+			type : 'delete',
+			url : '/check/' + email,
+			success : function(deleteResult, status, xhr) {
+				if (callback) {
+					callback(deleteResult);
+				}
+			},
+			
+			error : function(xhr, status, er) {
+				if (error) {
+					error(er);
+				}
+			}
+		});
+	}
 	
 	
 	return {

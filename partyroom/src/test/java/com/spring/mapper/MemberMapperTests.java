@@ -36,15 +36,27 @@ public class MemberMapperTests {
 //		log.info("========DELETE COUNT : " + mapper.delete(5L));
 //	}
 	
-	@Test
-	public void getSaltById() {
-		MemberVO member = new MemberVO();
-		
-		member.setEmail("czcz");
+//	@Test
+//	public void getSaltById() {
+//		MemberVO member = new MemberVO();
+//		
+//		member.setEmail("czcz");
+//	
+//		log.info(member);
+//		mapper.getSaltById(member.getEmail());
+//	}
+//	
 	
-		log.info(member);
-		mapper.getSaltById(member.getEmail());
-	}
+//	@Test
+//	public void deleteMember() {
+//		MemberVO member = new MemberVO();
+//		
+//		member.setEmail("angkimozee@gmail.com");
+//		member.setPassword("dkdrlahWL");
+//		
+//		log.info(member);
+//		mapper.deleteMember(member);
+//	}
 	
 	
 }

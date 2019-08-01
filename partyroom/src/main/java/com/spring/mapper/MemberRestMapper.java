@@ -9,5 +9,7 @@ public interface MemberRestMapper {
 	public MemberVO emailVerify(MemberVO member);
 
 	public String remove(String name);
+
+	public int delete(String email);
 	
 }

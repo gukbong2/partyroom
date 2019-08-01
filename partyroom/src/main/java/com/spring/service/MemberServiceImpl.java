@@ -57,7 +57,7 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public boolean remove(Long idx) {
-		return mapper.delete(idx) == 1;
+		return mapper.remove(idx) == 1;
 	}
 
 	@Override
@@ -125,6 +125,11 @@ public class MemberServiceImpl implements MemberService{
 		sendMail.setTo(member.getEmail());
 		sendMail.send();
 		
+	}
+
+	@Override
+	public void deleteMember(MemberVO member) {
+		mapper.deleteMember(member);
 	}
 
 	

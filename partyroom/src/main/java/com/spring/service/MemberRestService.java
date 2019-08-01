@@ -7,6 +7,8 @@ public interface MemberRestService {
 	public MemberVO idCheck(String email);
 
 	public MemberVO emailVerify(MemberVO member);
+
+	public int remove(String email);
 	
 
 }

@@ -10,7 +10,7 @@ public interface MemberMapper {
 	
 	public void insertSelectKey(MemberVO member);
 	
-	public int delete(Long idx);
+	public int remove(Long idx);
 	
 	public MemberVO getMember(String email);
 	
@@ -25,5 +25,7 @@ public interface MemberMapper {
 	public int modifyPassword(MemberVO member);
 
 	public void updatePassword(MemberVO member);
+	
+	public void deleteMember(MemberVO member);
 	
 }

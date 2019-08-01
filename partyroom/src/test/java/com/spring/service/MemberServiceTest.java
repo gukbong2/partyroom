@@ -63,14 +63,24 @@ public class MemberServiceTest {
 //		service.getSaltById(member.getEmail());
 //	}
 
+//	@Test
+//	public void modifyPassword() {
+//		MemberVO member = new MemberVO();
+//		
+//		member.setEmail("junyeon2@gmail.com");
+//		
+//		service.modifyPassword(member);
+//	}
+	
+	
 	@Test
-	public void modifyPassword() {
+	public void deleteMember() {
 		MemberVO member = new MemberVO();
 		
-		member.setEmail("junyeon2@gmail.com");
+		member.setEmail("angkimozee@gmail.com");
+		member.setPassword("dkdrlahWL");
 		
-		service.modifyPassword(member);
+		service.deleteMember(member);
 	}
-	
 	
 }

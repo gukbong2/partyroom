@@ -68,5 +68,12 @@
 		WHERE EMAIL = #{email}
 </update>
 
+<delete id="deleteMember">
+	DELETE MEMBER WHERE EMAIL = #{email} AND PASSWORD = #{password}
+</delete>
+
+
+
+
 
 </mapper>

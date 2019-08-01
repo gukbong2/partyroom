@@ -98,8 +98,8 @@
 			          		${member.name }&nbsp;님
 			        	</a>
 			          <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
-			            <a class="dropdown-item" href="/member/info">회원 정보 관리</a>
-			            <a class="dropdown-item" href="#">내 예약</a>
+			            <a class="dropdown-item" href="/member/modifyPw">비밀번호 변경</a>
+			            <a class="dropdown-item" href="/member/deleteMember">회원 탈퇴</a>
 			           
 			           <div class="dropdown-divider"></div>
 			            <a class="dropdown-item" href="#" onclick="logout()">로그아웃</a> 

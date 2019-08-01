@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -107,8 +108,8 @@ public class MemberController {
 		
 		}
 	
-	@GetMapping("/info")
-	public void memberInfo() {
+	@GetMapping("/modifyPw")
+	public void modifyPw() {
 		
 	}
 	
@@ -138,10 +139,12 @@ public class MemberController {
 
 		service.updatePassword(member);
 		
-		MemberVO vo = service.getMember(email);
-		session.setAttribute("member", vo);
+		//MemberVO vo = service.getMember(email);
 		
-		return "redirect:/member/info";
+		//session.setAttribute("member", vo);
+		session.invalidate();
+		
+		return "redirect:/member/modifyPw";
 		
 	}
 	
@@ -161,6 +164,25 @@ public class MemberController {
 		service.updatePassword(member);
 		MemberVO vo = service.getMember(email);
 		session.setAttribute("member", vo);
+		return "/page/home";
+	}
+	
+	@GetMapping("/deleteMember")
+	public void deleteMember() {
+		
+	}
+	
+	@PostMapping("/deleteMember")
+	public String deleteMember(MemberVO member, @RequestParam("email") String email, 
+			@RequestParam("password") String password, HttpSession session) {
+		
+		member.setEmail(email);
+		member.setPassword(password);
+		
+		service.deleteMember(member);
+		
+		session.invalidate();
+		
 		return "/page/home";
 	}
 	

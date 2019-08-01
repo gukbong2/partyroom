@@ -35,6 +35,12 @@ public class MemberRestServiceImpl implements MemberRestService {
 		
 		return memberRestMapper.emailVerify(member);
 	}
+	
+	@Transactional
+	@Override
+	public int remove(String email) {
+		return memberRestMapper.delete(email);
+	}
 
 	
 	
