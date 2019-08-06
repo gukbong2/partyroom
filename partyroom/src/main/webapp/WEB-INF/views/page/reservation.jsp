@@ -8,3 +8,14 @@
 		style="font-weight: 1000; font-size: 1.5em; background-color: #475C7A;
 		color: white; text-align: center;" >예약하기</p>
 	
+<div>
+	<button  id="reservBtn" onclick="getPage('address','window_name',
+			'width=430,height=300,location=no,status=no,scrollbars=yes');">button</button>
+</div>
+
+<script>
+
+function getPage() {
+	location.href = "/reserv/reservPage";
+}
+</script>

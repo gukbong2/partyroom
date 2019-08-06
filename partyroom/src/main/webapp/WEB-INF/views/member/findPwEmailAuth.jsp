@@ -42,7 +42,7 @@
 					$("#modifyPassword").focus(); 
 					return false;
 				} 
-				
+				 alert("비밀번호가 변경되었습니다. 다시 로그인해주세요.");
 				 $("#resetPwForm").submit();  
 				
 			});

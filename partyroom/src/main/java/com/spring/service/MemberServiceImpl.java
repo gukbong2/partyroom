@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.domain.MemberVO;
+import com.spring.mapper.BoardMapper;
 import com.spring.mapper.MemberMapper;
+import com.spring.mapper.ReplyMapper;
 
 import lombok.AllArgsConstructor;
 import lombok.Setter;
@@ -21,6 +23,12 @@ public class MemberServiceImpl implements MemberService{
 
 	@Setter(onMethod_ = @Autowired)
 	private MemberMapper mapper;
+	
+	@Setter(onMethod_ = @Autowired)
+	private BoardMapper boardMapper;
+	
+	@Setter(onMethod_ = @Autowired)
+	private ReplyMapper replyMapper;
 	
 	@Setter(onMethod_ = @Autowired)
 	private JavaMailSender mailSender;
@@ -126,7 +134,7 @@ public class MemberServiceImpl implements MemberService{
 		sendMail.send();
 		
 	}
-
+	
 	@Override
 	public void deleteMember(MemberVO member) {
 		mapper.deleteMember(member);
