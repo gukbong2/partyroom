@@ -42,6 +42,12 @@ public class MemberRestServiceImpl implements MemberRestService {
 		return memberRestMapper.delete(email);
 	}
 
+	@Override
+	public MemberVO phoneCheck(String phone) {
+		// TODO Auto-generated method stub
+		return memberRestMapper.phoneCheck(phone);
+	}
+
 	
 	
 

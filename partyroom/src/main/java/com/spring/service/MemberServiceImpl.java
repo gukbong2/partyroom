@@ -140,6 +140,11 @@ public class MemberServiceImpl implements MemberService{
 		mapper.deleteMember(member);
 	}
 
+	@Override
+	public int phoneCheck(MemberVO member) {
+		return mapper.phoneCheck(member);
+	}
+
 	
 
 	

@@ -11,5 +11,7 @@ public interface MemberRestMapper {
 	public String remove(String name);
 
 	public int delete(String email);
+
+	public MemberVO phoneCheck(String phone);
 	
 }

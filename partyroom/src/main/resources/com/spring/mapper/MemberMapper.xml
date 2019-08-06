@@ -72,7 +72,10 @@
 	DELETE MEMBER WHERE EMAIL = #{email} AND PASSWORD = #{password}
 </delete>
 
-
+<select id="phoneCheck" parameterType="String" resultType="Integer">
+	SELECT COUNT(*) FROM MEMBER
+	WHERE PHONE = #{phone}
+</select>
 
 
 

@@ -181,15 +181,30 @@
 				<form method="post" id="registerForm" action="/member/register">
 					<input type="text" name="email" id="RegisterEmail" class="form-control my-2" 
 				 	placeholder="이메일" onKeyPress="if (event.keyCode==13){emailChk()}">
+				 	
 					<input type="text" name="emailCheck" id="emailCheck"  class="btn btn-block form-control"
 					style="background-color: #0da197; color: white;" value="이메일 중복체크" readonly="readonly"
 					onKeyPress="if (event.keyCode==13){emailChk()}"> 
-					<input type="text" name="name" id="RegisterName" class="form-control my-2" 
-					onKeyPress="if (event.keyCode==13){enterRegister()}" placeholder="성함" > 
+					
 					<input type="password" name="password" id="RegisterPassword" class="form-control my-2" 
 					onKeyPress="if (event.keyCode==13){enterRegister()}" placeholder="비밀번호">
+					
 					<input type="password" name="passwordChk" id="RegisterPasswordCheck" 
 					onKeyPress="if (event.keyCode==13){enterRegister()}" class="form-control my-2" placeholder="비밀번호 확인">
+					
+					<input type="text" name="name" id="RegisterName" class="form-control my-2" 
+					onKeyPress="if (event.keyCode==13){enterRegister()}" placeholder="성함" > 
+					
+					<input type="text" name="phone" id="RegisterPhone" class="form-control my-2" 
+					onKeyPress="if (event.keyCode==13){phoneChk()}" placeholder="핸드폰 번호" maxlength="11" > 
+					
+					<div>
+						<input type="text" name="phoneCheckBtn" id="phoneCheckBtn"  class="btn btn-block form-control"
+						style="background-color: #0da197; color: white;" value="핸드폰 본인 인증" readonly="readonly"
+						onKeyPress="if (event.keyCode==13){phoneChk()}"> 
+						
+						<input type="text"  id="phoneCheckValue" class="form-control" placeholder="핸드폰인증번호를 입력하세요." />
+					</div>
 					
 					<input type="button" style="background-color: #475C7A; color: white;" id="memberRegiBtn"
 					class="btn btn-block form-control" value="회원가입" 
@@ -288,6 +303,9 @@
  				
 		});
  			
+ 			
+ 							
+ 			
  			$("#emailCheck").on("click", function() {
  				console.log("누름");
  				var emailCheckVal = $("#RegisterEmail").val();
@@ -300,7 +318,7 @@
  					 if (idCheck == 0 && exptest.test(emailCheckVal)==true) {
  						alert("사용 가능한 이메일입니다.");
  						emailChk = 1;
- 						$("#RegisterName").focus();
+ 						$("#RegisterPassword").focus();
  						
  					} else if (exptest.test(emailCheckVal)==false) {
  						alert("이메일형식이 올바르지 않습니다.");
@@ -320,7 +338,6 @@
  				
  			});
  		
- 		
  			$("#memberRegiBtn").on("click", function() {
  				var registerEmail = $("#RegisterEmail").val();
  				var registerName = $("#RegisterName").val();
@@ -335,7 +352,10 @@
  				if (emailChk == 0) {
  	 				console.log("이메일 중복을 확인해주세요");
  	 				return false;
- 	 			} if (registerEmail == null || registerEmail == "") {
+ 	 			} else if (phoneCheck == 0) {
+ 	 				console.log("핸드폰 인증을 하세요");
+ 	 				return false;
+ 	 			} else if (registerEmail == null || registerEmail == "") {
 						alert("이메일을 입력해주세요.");
 						return false;
 				} else if (registerName == null || registerName == "") {
@@ -361,9 +381,38 @@
  			});
  		});
  		
- 		
-
- 		
+		$("#phoneCheckBtn").on("click", function() {
+//			var phone = $("#RegisterPhone").val();
+			var phone = $("#RegisterPhone").serialize();
+			console.log(phone);
+			
+			$.ajax({
+				method : 'post',
+				dataType : 'json',
+				data : phone,
+				url : '/member/phoneCheck',
+				success : function(data) {
+					if(data.cnt == 1) {
+						alert("가입한 회원입니다. 로그인해주세요.");
+						//여기를 모달 #login으로 변경
+						
+					} else if (data.cnt == 0) {
+						console.log(data.cnt);
+					
+							alert("인증번호 발송");
+							
+							//이것도 restapi로 하지말고 그냥 ajax로 모달안꺼지게 바로 나오게 ㄱ 
+						memberService.phoneCheck(phone, function() {
+							
+						});
+						
+					}
+				}
+			
+			
+			});
+		}); 		
+	
  		$("#memberLoginBtn").on("click", function() {
  			var exptest = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
  			
@@ -433,6 +482,10 @@
  		
  		function emailChk() {
  			$("#emailCheck").click();
+ 		}
+ 		
+ 		function phoneChk() {
+ 			$("#phoneCheck").click();
  		}
  		
  		function logout() {

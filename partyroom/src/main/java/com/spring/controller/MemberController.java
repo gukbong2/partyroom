@@ -9,14 +9,17 @@ import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -26,6 +29,8 @@ import com.spring.service.SHA256Util;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
+import net.nurigo.java_sdk.Coolsms;
+import net.nurigo.java_sdk.api.Message;
 import oracle.jdbc.proxy.annotation.Post;
 @AllArgsConstructor
 @RequestMapping("/member/*")
@@ -203,6 +208,43 @@ public class MemberController {
 		return map;
 	}
 	
+	//ajax 
+	@PostMapping("/phoneCheck")
+	@ResponseBody
+	public Map<Object, Object> phoneCheck(MemberVO member) {
+		int count = 0;
+//		, @RequestParam("phone") String phone member.setPhone(phone);
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		count = service.phoneCheck(member);
+		
+		map.put("cnt", count);
+		
+		return map;
+	}
+
+
+	
+	//문자보내기
+	@ResponseBody
+	@RequestMapping(value = "/sendSMS", method = RequestMethod.POST)
+	public void sendSMS(String phone) throws Exception { // 휴대폰 문자보내기
+
+		String api_key = "";
+		String api_secret = "";
+		Message coolsms = new Message(api_key, api_secret);// 메시지보내기 객체 생성
+		//String key = new TempKey().getNumKey(6); // 인증키 생성
+		//service.insertAuthCode(phone, key); // 휴대폰 인증 관련 서비스
+		
+		
+		HashMap<String, String> params = new HashMap<String, String>();
+		params.put("to", phone); // 수신번호
+		params.put("from", "01039222459"); // 발신번호
+		params.put("type", "SMS"); // 문자 타입
+		params.put("text", "안녕하세요 방국봉입니다. 문자테스트"); // 문자내용
+		params.put("charset", "utf-8");
+		
+		coolsms.send(params);
+	}
 	
 	
 	

@@ -27,5 +27,7 @@ public interface MemberMapper {
 	public void updatePassword(MemberVO member);
 	
 	public void deleteMember(MemberVO member);
+
+	public int phoneCheck(MemberVO member);
 	
 }

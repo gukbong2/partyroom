@@ -29,5 +29,7 @@ public interface MemberService {
 	public void findPassword(MemberVO member) throws MessagingException, UnsupportedEncodingException;
 	
 	public void deleteMember(MemberVO member);
+
+	public int phoneCheck(MemberVO member);
 	
 }

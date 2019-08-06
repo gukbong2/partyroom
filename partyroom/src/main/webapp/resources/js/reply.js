@@ -1,5 +1,3 @@
-console.log("reply 모듈");
-
 var replyService = (function() {
 
 	function add(reply, callback, error) {

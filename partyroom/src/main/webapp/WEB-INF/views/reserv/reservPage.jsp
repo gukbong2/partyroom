@@ -141,8 +141,7 @@ body {
                   function getTimeStamp() {
 
                      var d = new Date(startDate);
-                     console.log('new date : ' + d);
-                     console.log('date 확인 : ' + d.toLocaleString());
+                     console.log('start_date : ' + d.toLocaleString());
                      d.setDate(d.getDate() + 6);
                      var day = d.toLocaleString();
 
@@ -164,7 +163,7 @@ body {
                      return zero + n;
                   }
 
-                  console.log('끝나는 날짜 확인 : ' + getTimeStamp());	
+                  console.log('end_date : ' + getTimeStamp());	
                   $("input[name='end_date']").prop('value', getTimeStamp());
                   $(document.getElementsByName('breakfast')).removeAttr("disabled");
                   $(document.getElementsByName('breakfast')[0]).prop("checked", true);
@@ -188,8 +187,7 @@ body {
             	function getTimeStamp() {
 
                   var d = new Date(startDate);
-                  console.log('new date : ' + d);
-                  console.log('date 확인 : ' + d.toLocaleString());
+                  console.log('start_date: ' + d.toLocaleString());
                   d.setDate(d.getDate() + 13);
                   var day = d.toLocaleString();
 
@@ -211,7 +209,7 @@ body {
                   return zero + n;
                }
 
-               console.log('끝나는 날짜 확인 : ' + getTimeStamp());
+               console.log('end_date : ' + getTimeStamp());
                $("input[name='end_date']").prop('value', getTimeStamp());
                $(document.getElementsByName('breakfast')).removeAttr("disabled");
                $(document.getElementsByName('breakfast')[0]).prop("checked", true);
@@ -235,8 +233,7 @@ body {
             	function getTimeStamp() {
 
                   var d = new Date(startDate);
-                  console.log('new date : ' + d);
-                  console.log('date 확인 : ' + d.toLocaleString());
+                  console.log('start_date : ' + d.toLocaleString());
                   d.setDate(d.getDate() + 29);
                   var day = d.toLocaleString();
 
@@ -258,7 +255,7 @@ body {
                   return zero + n;
                }
 
-               console.log('끝나는 날짜 확인 : ' + getTimeStamp());
+               console.log('end_date : ' + getTimeStamp());
                $("input[name='end_date']").prop('value', getTimeStamp());
                $(document.getElementsByName('breakfast')).removeAttr("disabled");
                $(document.getElementsByName('breakfast')[0]).prop("checked", true);
@@ -315,12 +312,14 @@ body {
       var startGetDate = new Date($(document.getElementsByName('start_date')).val()).getTime();
       var endGetDate = new Date($(document.getElementsByName('end_date')).val()).getTime();
       var chk = $(":input:radio[name=roomnum]:checked").val();
+      var roomnum = $(":input:radio[name=roomnum]:checked").val();
       var breakfast = $("#breakfast").val();
       
       console.log("ti_idx : " + ti_idx);
       console.log(startGetDate);
       console.log(endGetDate);
 	  console.log("chk : " + chk);
+	  console.log("roomnum : " + roomnum);
       
       if (chk == null) {
          alert("객실종류를 선택해주세요.");
@@ -496,8 +495,8 @@ body {
                      <tr height="150px;">
                         <td>
                            <div class="radio">
-                              <label><input type="radio" name="roomnum" id="roomnum" value="1">남성 도미토리</label><br>
-                              <label><input type="radio" name="roomnum" id="roomnum" value="2">여성 도미토리</label>
+                              <label><input type="radio" name="roomnum" id="roomnum" value="man">남성 도미토리</label><br>
+                              <label><input type="radio" name="roomnum" id="roomnum" value="women">여성 도미토리</label>
                            </div>
                         </td>
                          <td>

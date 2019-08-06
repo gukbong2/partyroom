@@ -25,4 +25,10 @@
 	DELETE FROM MEMBER WHERE EMAIL = #{email}
 </delete>
 
+
+<select id="phoneCheck" resultType="com.spring.domain.MemberVO">
+	SELECT * FROM MEMBER
+		WHERE PHONE = #{phone}
+</select>
+
 </mapper>
