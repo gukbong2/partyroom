@@ -142,7 +142,7 @@ body {
 
                      var d = new Date(startDate);
                      console.log('start_date : ' + d.toLocaleString());
-                     d.setDate(d.getDate() + 6);
+                     d.setDate(d.getDate() + 7);
                      var day = d.toLocaleString();
 
                      var s = leadingZeros(d.getFullYear(), 4) + '-'
@@ -188,7 +188,7 @@ body {
 
                   var d = new Date(startDate);
                   console.log('start_date: ' + d.toLocaleString());
-                  d.setDate(d.getDate() + 13);
+                  d.setDate(d.getDate() + 14);
                   var day = d.toLocaleString();
 
                   var s = leadingZeros(d.getFullYear(), 4) + '-'
@@ -234,7 +234,7 @@ body {
 
                   var d = new Date(startDate);
                   console.log('start_date : ' + d.toLocaleString());
-                  d.setDate(d.getDate() + 29);
+                  d.setDate(d.getDate() + 28);
                   var day = d.toLocaleString();
 
                   var s = leadingZeros(d.getFullYear(), 4) + '-'
@@ -297,7 +297,7 @@ body {
 </script>
 <script>
    function nullchk(frm) {
-      if (!frm.start_date.value) {star
+      if (!frm.start_date.value) {
          alert("예약 시작 날짜를 선택해주세요.");
          frm.start_date.focus();
          return false;
@@ -308,14 +308,14 @@ body {
          return false;
       }
       
-      var ti_idx = $("input:radio[name='time_idx']:checked").val();
+      var time_idx = $("input:radio[name='time_idx']:checked").val();
       var startGetDate = new Date($(document.getElementsByName('start_date')).val()).getTime();
       var endGetDate = new Date($(document.getElementsByName('end_date')).val()).getTime();
       var chk = $(":input:radio[name=roomnum]:checked").val();
       var roomnum = $(":input:radio[name=roomnum]:checked").val();
       var breakfast = $("#breakfast").val();
       
-      console.log("ti_idx : " + ti_idx);
+      console.log("time_idx : " + time_idx);
       console.log(startGetDate);
       console.log(endGetDate);
 	  console.log("chk : " + chk);
@@ -324,7 +324,7 @@ body {
       if (chk == null) {
          alert("객실종류를 선택해주세요.");
          return false;
-      } else if (ti_idx == 0 || ti_idx == "") {
+      } else if (time_idx == 0 || time_idx == "") {
     	  //정기권 사용 안할 시 조식 0으로 처리
     	  breakfast = 0;
     	  console.log("breakfast : " + breakfast);
@@ -354,7 +354,7 @@ body {
       display: table;
    }
    
-   #calendar, #select { padding: 20px; }
+   #calendar, #info { padding: 20px; }
    #calendar { width: 30%; }
    
    #chk a { text-decoration: none; }
@@ -447,8 +447,9 @@ body {
             </a></li>
          </ul>
       </div>
-
       <!-- 예약 헤더끝 -->
+
+
 
       <div id="ticket" style="box-sizing: border-box;">
       
@@ -479,7 +480,9 @@ body {
                <!-- 데이트피커 끝 -->
 
 
-               <div id="select">
+
+				<!-- 이용안내 -->
+               <div id="info">
                   <h4 class="bold">이용안내</h4>
                   <p>장기간 투숙객 예약 시 조식 제공 (1주일 이상)</p>
                   <p>저희 숙소는 선결제만 가능합니다.</p>
@@ -501,12 +504,12 @@ body {
                         </td>
                          <td>
                            <div class="radio">
-                              <label><input type="radio" id="nope" name="time_idx" value="0" checked="checked">정기권 사용안함</label><br>
+                              <label><input type="radio" id="nope" name="time_idx" value="0" checked="checked">장기권 사용안함</label><br>
                               <div id="userTicket">
                               <!--    <label><input type="radio" id="oneday" name="time_idx" value="103">1일권</label><br> -->
-                                 <label><input type="radio" id="1week" name="time_idx" value="100">1주 선결제</label><br>
-                                 <label><input type="radio" id="2weeks" name="time_idx" value="101">2주 선결제</label><br>
-                                 <label><input type="radio" id="1month" name="time_idx" value="102">1달 선결제</label><br>
+                                 <label><input type="radio" id="1week" name="time_idx" value="100">1주 장기결제</label><br>
+                                 <label><input type="radio" id="2weeks" name="time_idx" value="101">2주 장기결제</label><br>
+                                 <label><input type="radio" id="1month" name="time_idx" value="102">4주 장기결제</label><br>
                               </div>
                            </div>
                         </td>

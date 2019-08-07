@@ -47,7 +47,7 @@ public class MemberRestController {
 	}
 	
 	
-	//핸드폰 중복조회
+	//핸드폰 메세지보내기
 	@PostMapping(value = "/phone/{phone}", produces = { MediaType.APPLICATION_XML_VALUE,
 			MediaType.APPLICATION_JSON_UTF8_VALUE })
 	public ResponseEntity<MemberVO> phoneCheck(@PathVariable("phone") String phone) throws CoolsmsException {
@@ -63,9 +63,9 @@ public class MemberRestController {
 		params.put("to", phone); // 수신번호
 		params.put("from", "01039222459"); // 발신번호
 		params.put("type", "SMS"); // 문자 타입
-		params.put("text", "안녕하세요 방국봉입니다. 테스트문자"); // 문자내용
+		params.put("text", "안녕하세요 방국봉입니다. 테스트문자 오늘도 빡공"); // 문자내용
 		params.put("charset", "utf-8");
-		
+		params.put("delay", "0");
 		coolsms.send(params);
 		
 		return null;//new ResponseEntity<>(service.phoneCheck(phone), HttpStatus.OK);

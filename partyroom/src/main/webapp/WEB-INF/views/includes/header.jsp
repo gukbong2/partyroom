@@ -402,8 +402,17 @@
 							alert("인증번호 발송");
 							
 							//이것도 restapi로 하지말고 그냥 ajax로 모달안꺼지게 바로 나오게 ㄱ 
-						memberService.phoneCheck(phone, function() {
-							
+						$.ajax({
+							method : 'post',
+							dataType : 'json',
+							data : phone,
+							url : '/check/phone/' + phone,
+							success : function() {
+								console.log("인증문자 발송 성공!");
+							}
+						
+						
+						
 						});
 						
 					}
