@@ -12,7 +12,7 @@ public interface ReservMapper {
 	
 	public ReservVO read(Long reserv_idx);
 	
-	public int delete(Long reser_idx);
+	public int delete(Long reserv_idx);
 	
 	public int update(ReservVO reserv);
 	
