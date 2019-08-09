@@ -42,32 +42,31 @@
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
 
 
+
+
+
+
+
 <style>
 body {
    font-family: 'NanumSquare', sans-serif;
    color: #666;
 }
-
 .container {
    max-width: 1500px;
 }	
-
 .normal {
    font-weight: 400
 }
-
 .bold {
    font-weight: 700
 }
-
 .bolder {
    font-weight: 800
 }
-
 .light {
    font-weight: 300
 }
-
 </style>
 
 <style>
@@ -169,38 +168,23 @@ body {
    /* 버튼 끝 */
 </style>
 
-
-<script type="text/javascript">
-   //부트스트랩 캘린더
-   $(function() {
-      $('#datepicker1').datetimepicker({
-         format : 'YYYY-MM-DD',
-         minDate : moment()
-      });
-      $('#datepicker2').datetimepicker({
-         format : 'YYYY-MM-DD',
-         useCurrent : false
-      });
-      $("#datepicker1").on("dp.change", function(e) {
-         $('#datepicker2').data("DateTimePicker").minDate(e.date);
-      });
-      $("#datepicker2").on("dp.change", function(e) {
-         $('#datepicker1').data("DateTimePicker").maxDate(e.date);
-      });
-      
-
-      
-   });
-</script>
-
 <script>
 	$(document).ready(function() {
 		
 		$("#reservBackBtn").on("click", function() {
 			console.log("click");
 			
-			history.go(-1);
+			location.href = "/reserv/reservPage";
 		});
+		
+		$("#reservCheckBtn").on("click", function() {
+			
+			console.log("click");
+			
+			location.href = "/reserv/paypal";
+			
+		});
+		
 	});
 </script>
 
@@ -270,9 +254,10 @@ body {
                   			<th>인원수</th>
                   		</tr>	
                   	</thead>
-                  	
+
+
                   	<tbody>
-                  		 <tr class="table-info" style="text-align : center;">
+                  		 <tr class="table-default">
 					        <td>
 					        	${reserv.reserv_name }
 					        </td>
@@ -304,11 +289,13 @@ body {
                   </table>
                   
                   
-                  
+                  <div class="center">
+                  	<h2><strong>숙박요금 :: $${reserv.price }</strong></h2>
+                  </div>
 
                   <div class="center" style="padding: 10px;">
                      <button type="button" id="reservBackBtn">이전단계</button>
-                     <button type="button" id="reservCheckBtn">결제하기</button>
+                     <button type="button" id="reservCheckBtn">페이팔 결제하기</button>
                   </div>
 
                </div>

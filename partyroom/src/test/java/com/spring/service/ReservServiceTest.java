@@ -36,7 +36,7 @@ public class ReservServiceTest {
 		Date end = sdf.parse(enddate);
 		
 		reserv.setBreakfast("X");
-		reserv.setPrice("15000");
+		reserv.setPrice(10L);
 		reserv.setReserv_name("박비듬");
 		reserv.setRoomnum("여성 도미토리");
 		reserv.setStart_date(start);

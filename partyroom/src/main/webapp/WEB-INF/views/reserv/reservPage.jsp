@@ -321,7 +321,6 @@ body {
                   var s = leadingZeros(d.getFullYear(), 4) + '-'
                         + leadingZeros(d.getMonth() + 1, 2) + '-'
                         + leadingZeros(d.getDate(), 2);
-
                   return s;
                }
 
@@ -335,7 +334,7 @@ body {
                   }
                   return zero + n;
                }
-
+			   
                console.log('end_date : ' + getTimeStamp());
                $("input[name='end_date']").prop('value', getTimeStamp());
                $(document.getElementsByName('breakfast')).removeAttr("disabled");
@@ -367,7 +366,9 @@ body {
 		
 		$("#reservCheckBtn").on("click", function() {
 			console.log("버튼 클릭");
+			  
 			
+			 
 			  var time_idx = $("input:radio[name='time_idx']:checked").val();
 		      var startGetDate = new Date($(document.getElementsByName('start_date')).val()).getTime();
 		      var endGetDate = new Date($(document.getElementsByName('end_date')).val()).getTime();
@@ -375,7 +376,11 @@ body {
 		      var roomnum = $(":input:radio[name=roomnum]:checked").val();
 		      var breakfast = $("#breakfast").val();
 		      var count = $("input:radio[name='count']:checked").val();
+		      var price = $("#price").val();
+		      var priceAddCount = price * count;
 		      
+		      console.log("price : " + price);
+		      console.log("priceAddCount : " + priceAddCount);
 			  console.log("count : " + count);		      
 		      console.log("time_idx : " + time_idx);
 		      console.log(startGetDate);
@@ -395,7 +400,7 @@ body {
 			  } 
 			  console.log("breakfast : " + breakfast);
 				  
-			 $("#reservForm").submit();
+			  $("#reservForm").submit();
 		});
 		
 	});
@@ -435,6 +440,7 @@ body {
          <div class="boxoutside">
          
             <form method="get" action="/reserv/CheckReserv" id="reservForm">
+               <input type="hidden" name="price" id="price" value="1"/>
                <input type="hidden" id="reserv_name" name="reserv_name" value="${member.name }"/>
                <!-- 달력 -->
                
@@ -472,6 +478,7 @@ body {
                   <hr>
 					
                   <table class="table table-bordered" style="width: 100%; background-color: white;">
+                  		
                      <tr>
                         <th style="text-align: center; width: 20%;">객실 / 투숙공간</th>
                         <th style="text-align: center; width: 40%;">장기간 투숙객 할인</th>

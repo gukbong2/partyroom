@@ -43,7 +43,7 @@ public class ReservMapperTest {
 		Date end = sdf.parse(enddate);
 		
 		reserv.setBreakfast("O");
-		reserv.setPrice("25000");
+		reserv.setPrice(1L);
 		reserv.setReserv_name("방국봉");
 		reserv.setRoomnum("남성 도미토리");
 		reserv.setStart_date(start);
