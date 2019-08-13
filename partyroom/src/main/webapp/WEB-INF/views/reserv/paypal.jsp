@@ -17,6 +17,8 @@ $(document).ready(function() {
 	console.log(name);  
 	var phone = "${member.phone}";
 	console.log(phone);
+	var start_date = "${reserv.start_date}";
+	var end_date = "${reserv.end_date}";
 var IMP = window.IMP;
 IMP.init('imp86425090');
 IMP.request_pay({
@@ -32,6 +34,8 @@ IMP.request_pay({
     buyer_email : 'email',
     buyer_name : 'name',
     buyer_tel : 'phone',
+    start_date : 'start_date',
+    end_date : 'end_date',
     //buyer_addr : '서울특별시 강남구 삼성동',
     //buyer_postcode : '123-456',
     m_redirect_url : 'http://localhost:8080/reserv/confirm'

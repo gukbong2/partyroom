@@ -83,8 +83,13 @@ public class ReservController {
 		session.getAttribute("member");
 	}
 	
+	
 	@GetMapping("/confirm")
-	public void confirm() {
+	public void confirm(HttpSession session) throws ParseException {
+		
+
+		ReservVO vo = (ReservVO) session.getAttribute("reserv");
+		service.insert(vo);
 		
 	}
 }

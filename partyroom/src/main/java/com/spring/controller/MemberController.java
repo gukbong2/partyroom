@@ -107,7 +107,7 @@ public class MemberController {
 			
 			session.setAttribute("member", vo);
 			System.out.println("member : " + vo);
-			return "redirect:/board/list";
+			return "/page/home";
 			
 			}
 		
@@ -124,7 +124,7 @@ public class MemberController {
 	public String logout(HttpSession session) {
 		session.invalidate();
 		
-		return "redirect:/board/list";
+		return "/page/home";
 	}
 	@PostMapping("findPassword")
 	public String findPassword(MemberVO member) throws UnsupportedEncodingException, MessagingException {
@@ -149,7 +149,7 @@ public class MemberController {
 		//session.setAttribute("member", vo);
 		session.invalidate();
 		
-		return "redirect:/member/modifyPw";
+		return "/page/home";
 		
 	}
 	

@@ -16,8 +16,8 @@
 		SELECT SEQ_RESERVATION.NEXTVAL FROM DUAL
 	</selectKey> -->
 	
-	INSERT INTO RESERVATION(RESERV_IDX, PRICE, BREAKFAST, ROOMNUM, RESERV_NAME, START_DATE, END_DATE, PRICE)
-		VALUES (SEQ_RESERVATION.NEXTVAL, #{price}, #{breakfast}, #{roomnum}, #{reserv_name}, #{start_date}, #{end_date}, #{price})
+	INSERT INTO RESERVATION(RESERV_IDX, PRICE, BREAKFAST, ROOMNUM, RESERV_NAME, START_DATE, END_DATE)
+		VALUES (SEQ_RESERVATION.NEXTVAL, #{price}, #{breakfast}, #{roomnum}, #{reserv_name}, #{start_date}, #{end_date})
 
 </insert>
 

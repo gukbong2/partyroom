@@ -54,6 +54,29 @@
  a:link { color: #646464; text-decoration: none;}
  a:visited { color: #646464; text-decoration: none;}
  a:hover { color: #646464; text-decoration: underline;}
+ 
+ 
+#map {
+	height: 800px;
+	width: 1000px;
+	margin: 0px auto; 
+}
+
+.images, .image-slide  {
+	width : 2000px;
+	height : 1000px;
+	vertical-align: top;
+}
+
+
+#reservPageBtn {
+	background-color: #475C7A; 
+	color: white;
+	text-align: center;
+}
+
+ 
+ 
 </style>
 
 
@@ -78,7 +101,6 @@
 
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item"><a class="nav-link" href="/page/gallery">갤러리</a></li>
 				<li class="nav-item"><a class="nav-link" href="/page/guide">이용안내</a></li>
 				<li class="nav-item"><a class="nav-link" href="/page/reservation">예약하기</a></li>
 				<li class="nav-item"><a class="nav-link" href="/board/list">문의게시판</a></li>

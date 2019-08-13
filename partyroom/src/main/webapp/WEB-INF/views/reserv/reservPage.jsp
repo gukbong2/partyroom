@@ -219,7 +219,7 @@ body {
                   return false;
                } else {
             	   
-                  function getTimeStamp() {
+                  function dayCalc() {
 
                      var d = new Date(startDate);
                      console.log('start_date : ' + d.toLocaleString());
@@ -244,8 +244,8 @@ body {
                      return zero + n;
                   }
 
-                  console.log('end_date : ' + getTimeStamp());	
-                  $("input[name='end_date']").prop('value', getTimeStamp());
+                  console.log('end_date : ' + dayCalc());	
+                  $("input[name='end_date']").prop('value', dayCalc());
                   $(document.getElementsByName('breakfast')).removeAttr("disabled");
                   $(document.getElementsByName('breakfast')[0]).prop("checked", true);
                   $(document.getElementsByName('breakfast')[1]).prop("disabled", true);
@@ -265,7 +265,7 @@ body {
                return false;
             } else {
 
-            	function getTimeStamp() {
+            	function dayCalc() {
 
                   var d = new Date(startDate);
                   console.log('start_date: ' + d.toLocaleString());
@@ -290,8 +290,8 @@ body {
                   return zero + n;
                }
 
-               console.log('end_date : ' + getTimeStamp());
-               $("input[name='end_date']").prop('value', getTimeStamp());
+               console.log('end_date : ' + dayCalc());
+               $("input[name='end_date']").prop('value', dayCalc());
                $(document.getElementsByName('breakfast')).removeAttr("disabled");
                $(document.getElementsByName('breakfast')[0]).prop("checked", true);
                $(document.getElementsByName('breakfast')[1]).prop("disabled", true);
@@ -311,7 +311,7 @@ body {
                return false;
             } else {
 
-            	function getTimeStamp() {
+            	function dayCalc() {
 
                   var d = new Date(startDate);
                   console.log('start_date : ' + d.toLocaleString());
@@ -335,8 +335,8 @@ body {
                   return zero + n;
                }
 			   
-               console.log('end_date : ' + getTimeStamp());
-               $("input[name='end_date']").prop('value', getTimeStamp());
+               console.log('end_date : ' + dayCalc());
+               $("input[name='end_date']").prop('value', dayCalc());
                $(document.getElementsByName('breakfast')).removeAttr("disabled");
                $(document.getElementsByName('breakfast')[0]).prop("checked", true);
                $(document.getElementsByName('breakfast')[1]).prop("disabled", true);
@@ -488,8 +488,8 @@ body {
                      <tr height="150px;">
                         <td>
                            <div class="radio" style="text-align : center;">
-                              <label><input type="radio" name="roomnum" id="roomnum" value="남성 도미토리">남성 도미토리</label><br>
-                              <label><input type="radio" name="roomnum" id="roomnum" value="여성 도미토리">여성 도미토리</label>
+                              <label><input type="radio" name="roomnum" id="roomnum" value="남성 캡슐">남성 캡슐</label><br>
+                              <label><input type="radio" name="roomnum" id="roomnum" value="여성 캡슐">여성 캡슐</label>
                            </div>
                         </td>
                          <td>

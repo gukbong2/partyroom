@@ -9,13 +9,15 @@
 		color: white; text-align: center;" >예약하기</p>
 	
 <div>
-	<button  id="reservBtn" onclick="getPage('address','window_name',
-			'width=430,height=300,location=no,status=no,scrollbars=yes');">button</button>
+	<button class="btn-btn primary" onclick="showPopup();">예약하기</button>
 </div>
 
 <script>
 
-function getPage() {
-	location.href = "/reserv/reservPage";
-}
+
+
+function showPopup() { 
+	window.open("/reserv/reservPage", "a", "width=1200, height=800, left=250, top=50"); 
+	
+	}
 </script>

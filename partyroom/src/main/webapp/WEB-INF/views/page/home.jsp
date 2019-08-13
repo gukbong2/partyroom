@@ -3,98 +3,149 @@
    
 <%@include file="../includes/header.jsp"%>
 
-<style>
-.customoverlay {position:relative;bottom:85px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;}
-.customoverlay:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}
-.customoverlay a {display:block;text-decoration:none;color:#000;text-align:center;border-radius:6px;font-size:14px;font-weight:bold;overflow:hidden;background: #d95050;background: #d95050 url(http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center;}
-.customoverlay .title {display:block;text-align:center;background:#fff;margin-right:35px;padding:10px 15px;font-size:14px;font-weight:bold;}
-.customoverlay:after {content:'';position:absolute;margin-left:-12px;left:50%;bottom:-12px;width:22px;height:12px;background:url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css"/>
+
+
+
+<script>
+$(document).ready(function(){
 	
-.carousel slide {
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-}
-</style>
+	$("#map").hide();
+	
+	$('.image-slide').slick({
+
+		autoplay : true, //자동재생
+
+		dots: false, //이미지 밑에 점
+
+		speed : 500 , // 이미지가 슬라이딩시 걸리는 시간 
+
+		infinite: true, //무한반복
+
+		autoplaySpeed: 1200,  //이미지가 다른 이미지로 넘어 갈때의 텀 
+
+		arrows: true,
+
+		slidesToShow: 1,
+
+		slidesToScroll: 1,
+
+		fade: false
+
+	});
+
+	
+	$("#mapBtn").on("click", function() {
+		console.log("맵버튼누름");
+		
+		   var con = document.getElementById("map");
+		    if(con.style.display=='none'){
+		        con.style.display = 'block';
+		    }else{
+		        con.style.display = 'none';
+		    }
+		});
+
+	
+	$("#reservPageBtn").on("click", function() {
+		console.log("리저브페이지버튼 누름");
+	
+	});
+	
+	
+});
+</script>
 
 
-<p class="center jumbotron jumbotron-fluid"
-		style="font-weight: 1000; font-size: 1.5em; background-color: #475C7A;
-		color: white; text-align: center;" >메인</p>
-		
-		
-<!--- 메인 이미지 슬라이드 -->
-   <div id="slides" class="carousel slide" data-ride="carousel">
-      <ul class="carousel-indicators">
-         <li data-target="#slides" data-slide-to="0" class="active"></li>
-      </ul>
-      <div class="carousel-inner">
-         <div class="carousel-item active">
-            <img src="/resources/image/main1.jpg">
-            <div class="carousel-caption">
-            <h1>1번사진</h1>
-            
-            </div>
-         </div>
-         <div class="carousel-item">
-            <img src="/resources/image/main2.jpg">
-            <div class="carousel-caption">
-            <h1>2번사진</h1>
-            </div>
-         </div>
-         
-      </div>
-   </div>		
-		
-		
-<div id="map" style="width:1200px;height:500px;"></div>
 
-
+	<!-- 이미지 슬라이드  -->	
+ <div class="image-slide">
+      <div><img src="/resources/image/home1.jpg" alt="home1" class="images" /></div>	
+	  <div><img src="/resources/image/home2.jpg" alt="home2" class="images" /></div>
+	  <div><img src="/resources/image/home3.jpg" alt="home3" class="images" /></div>
+	  <div><img src="/resources/image/home4.jpg" alt="home4" class="images" /></div>
+	  <div><img src="/resources/image/home5.jpg" alt="home5" class="images" /></div>
+	  <div><img src="/resources/image/home6.jpg" alt="home6" class="images" /></div>
+	  <div><img src="/resources/image/home7.jpg" alt="home7" class="images" /></div>
+ </div>	
+		
+		
+	<div class="jumbotron jumbotron-fluid">
+		<div>
 			
+			<div>
+				<h5  style="text-align: center;">숙소 예약하러가기</h5>
+				<a href="/page/reservation">
+				<button type="button" class="btn btn-primary" id="reservPageBtn">예약하러가기</button>
+			 	</a>
+			</div>
+		</div>
+	</div>
+
+		
+		
+		
+	<!-- 지도 -->	
+	<button class="btn btn-lg btn-block fun py-3" id="mapBtn" onclick="setZoomable(false)">게스트하우스 찾아오는 법</button>
+	<div id="map">
+	</div>
+ 
+  
+
+
+
+
+
+
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3ebce737ee3dff4cd2887f0369ec5b64"></script>
 <script>
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-  mapOption = { 
-	center: new kakao.maps.LatLng(37.549890, 126.920627), // 지도의 중심좌표
-        level: 4 // 지도의 확대 레벨
-    };
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
+mapOption = { 
+    center: new kakao.maps.LatLng(37.533873, 126.993767), // 지도의 중심좌표
+    level: 2 // 지도의 확대 레벨
+};
 
-var map = new kakao.maps.Map(mapContainer, mapOption);
+var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
-var imageSrc = 'http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
-    imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
-    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+//마커를 표시할 위치와 title 객체 배열입니다 
+var positions = [
+{
+    title: '이태원 1호점', 
+    latlng: new kakao.maps.LatLng(37.533036, 126.993197)
 
-// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
-var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
-    markerPosition = new kakao.maps.LatLng(37.549890, 126.920627); // 마커가 표시될 위치입니다
+}
+];
+
+//마커 이미지의 이미지 주소입니다
+var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+
+for (var i = 0; i < positions.length; i ++) {
+
+// 마커 이미지의 이미지 크기 입니다
+var imageSize = new kakao.maps.Size(24, 35); 
+
+// 마커 이미지를 생성합니다    
+var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
 
 // 마커를 생성합니다
 var marker = new kakao.maps.Marker({
-  position: markerPosition,
-  image: markerImage // 마커이미지 설정 
+    map: map, // 마커를 표시할 지도
+    position: positions[i].latlng, // 마커를 표시할 위치
+    title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+    image : markerImage // 마커 이미지 
 });
+}
 
-// 마커가 지도 위에 표시되도록 설정합니다
-marker.setMap(map);  
+function setZoomable(zoomable) {
+    // 마우스 휠로 지도 확대,축소 가능여부를 설정합니다
+    map.setZoomable(zoomable);    
+}
 
-// 커스텀 오버레이에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-var content = '<div class="customoverlay">' +
-    '  <a href="https://map.kakao.com/?itemId=946982008" target="_blank">' +
-    '    <span class="title">더블에스 파티룸</span>' +
-    '  </a>' +
-    '</div>';
-
-// 커스텀 오버레이가 표시될 위치입니다 
-var position = new kakao.maps.LatLng(37.549890, 126.920627);  
-
-// 커스텀 오버레이를 생성합니다
-var customOverlay = new kakao.maps.CustomOverlay({
-    map: map,
-    position: position,
-    content: content,
-    yAnchor: 1 
-});
 </script>
+
+
+<%@include file="../includes/footer.jsp"%>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"></script>
+
+
