@@ -12,10 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> -->
     
-   <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 
    
@@ -26,13 +23,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
     
-    
-    
-    
     <!-- 써머노트 -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
 	<script src="/resources/js/summernote-ko-KR.js"></script>
+	
+	<!-- slick.js -->
+	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css"/>
+	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css"/>
+	
 	
 	<!-- member.js 시작 -->
 	<script type="text/javascript" src="/resources/js/member.js"></script>
@@ -56,24 +55,7 @@
  a:hover { color: #646464; text-decoration: underline;}
  
  
-#map {
-	height: 800px;
-	width: 1000px;
-	margin: 0px auto; 
-}
 
-.images, .image-slide  {
-	width : 2000px;
-	height : 1000px;
-	vertical-align: top;
-}
-
-
-#reservPageBtn {
-	background-color: #475C7A; 
-	color: white;
-	text-align: center;
-}
 
  
  
@@ -537,8 +519,6 @@
  
  
  
- 
-</body>
-</html>
+
 
 

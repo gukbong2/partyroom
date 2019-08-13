@@ -8,33 +8,23 @@
 
 
 
+
 <script>
 $(document).ready(function(){
 	
 	$("#map").hide();
 	
 	$('.image-slide').slick({
-
 		autoplay : true, //자동재생
-
 		dots: false, //이미지 밑에 점
-
 		speed : 500 , // 이미지가 슬라이딩시 걸리는 시간 
-
 		infinite: true, //무한반복
-
-		autoplaySpeed: 1200,  //이미지가 다른 이미지로 넘어 갈때의 텀 
-
+		autoplaySpeed: 1000,  //이미지가 다른 이미지로 넘어 갈때의 텀 
 		arrows: true,
-
 		slidesToShow: 1,
-
 		slidesToScroll: 1,
-
 		fade: false
-
 	});
-
 	
 	$("#mapBtn").on("click", function() {
 		console.log("맵버튼누름");
@@ -46,7 +36,6 @@ $(document).ready(function(){
 		        con.style.display = 'none';
 		    }
 		});
-
 	
 	$("#reservPageBtn").on("click", function() {
 		console.log("리저브페이지버튼 누름");
@@ -61,13 +50,10 @@ $(document).ready(function(){
 
 	<!-- 이미지 슬라이드  -->	
  <div class="image-slide">
-      <div><img src="/resources/image/home1.jpg" alt="home1" class="images" /></div>	
-	  <div><img src="/resources/image/home2.jpg" alt="home2" class="images" /></div>
-	  <div><img src="/resources/image/home3.jpg" alt="home3" class="images" /></div>
-	  <div><img src="/resources/image/home4.jpg" alt="home4" class="images" /></div>
-	  <div><img src="/resources/image/home5.jpg" alt="home5" class="images" /></div>
-	  <div><img src="/resources/image/home6.jpg" alt="home6" class="images" /></div>
-	  <div><img src="/resources/image/home7.jpg" alt="home7" class="images" /></div>
+	  <div><img src="/resources/image/home3.jpg" alt="home3" class="images" style="width:100%"/></div>
+	  <div><img src="/resources/image/home4.jpg" alt="home4" class="images" style="width:100%"/></div>
+	  <div><img src="/resources/image/home5.jpg" alt="home5" class="images" style="width:100%"/></div>
+	  <div><img src="/resources/image/home7.jpg" alt="home7" class="images" style="width:90%"/></div>
  </div>	
 		
 		
@@ -105,29 +91,21 @@ mapOption = {
     center: new kakao.maps.LatLng(37.533873, 126.993767), // 지도의 중심좌표
     level: 2 // 지도의 확대 레벨
 };
-
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
 //마커를 표시할 위치와 title 객체 배열입니다 
 var positions = [
 {
     title: '이태원 1호점', 
     latlng: new kakao.maps.LatLng(37.533036, 126.993197)
-
 }
 ];
-
 //마커 이미지의 이미지 주소입니다
 var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
-
 for (var i = 0; i < positions.length; i ++) {
-
 // 마커 이미지의 이미지 크기 입니다
 var imageSize = new kakao.maps.Size(24, 35); 
-
 // 마커 이미지를 생성합니다    
 var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
-
 // 마커를 생성합니다
 var marker = new kakao.maps.Marker({
     map: map, // 마커를 표시할 지도
@@ -136,16 +114,12 @@ var marker = new kakao.maps.Marker({
     image : markerImage // 마커 이미지 
 });
 }
-
 function setZoomable(zoomable) {
     // 마우스 휠로 지도 확대,축소 가능여부를 설정합니다
     map.setZoomable(zoomable);    
 }
-
 </script>
 
 
 <%@include file="../includes/footer.jsp"%>
 <script type="text/javascript" src="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"></script>
-
-
