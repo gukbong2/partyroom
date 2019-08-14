@@ -14,4 +14,6 @@ public class ReservVO {
 	private Date start_date;
 	private Date end_date;
 	private Long count;
+	private Long male;
+	private Long female;
 }

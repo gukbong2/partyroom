@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
    
 <%@include file="../includes/header.jsp"%>
-
+<!-- fontawesome -->
+	<script src="https://kit.fontawesome.com/8824bffde2.js"></script>
 
 <p class="center jumbotron jumbotron-fluid"
 		style="font-weight: 1000; font-size: 1.5em; background-color: #475C7A;

@@ -32,6 +32,8 @@
 	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css"/>
 	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css"/>
 	
+	<!-- fontawesome -->
+	 <script src="https://kit.fontawesome.com/8824bffde2.js"></script> 
 	
 	<!-- member.js 시작 -->
 	<script type="text/javascript" src="/resources/js/member.js"></script>
@@ -39,6 +41,7 @@
 </head>
 
 <style>
+
 
 .nav-item {
 	font-weight: 800;
@@ -70,10 +73,10 @@
 <body>
     <!-- header -->
     
-    <nav class="navbar navbar-expand-lg navbar-light bg-light  static-top" >
+    <nav class="navbar navbar-expand-lg navbar-light bg-light  fixed-top" >
 		<div class="container-fluid">
 			<a class="navbar-brand" href="/page/home">
-				 <img src="/resources/image/logo.jpg" width="80px" height="100px"> 
+				 <img src="/resources/image/7hours.jpg" width="100px" height="100px"> 
 			</a>
 		
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -83,9 +86,20 @@
 
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item"><a class="nav-link" href="/page/guide">이용안내</a></li>
-				<li class="nav-item"><a class="nav-link" href="/page/reservation">예약하기</a></li>
-				<li class="nav-item"><a class="nav-link" href="/board/list">문의게시판</a></li>
+				<li class="nav-item"><a class="nav-link" href="#guide">이용안내</a></li>
+				<li class="nav-item"><a class="nav-link" href="#reservation">예약하기</a></li>
+				<li class="nav-item"><a class="nav-link" href="#map">찾아 오는 길</a></li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="navdropdown">게시판
+					</a>
+					
+					<div class="dropdown-menu" id="navbarDropdown">
+						<a href="/board/list" class="dropdown-item">문의게시판</a>
+						<a href="#" class="dropdown-item">자주 묻는 질문</a>
+					</div>
+					
+				</li>
+				
 			</ul>
 
 			<ul class="navbar-nav ml-auto">

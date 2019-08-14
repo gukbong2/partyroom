@@ -154,8 +154,9 @@ public class MemberController {
 	}
 	
 	@GetMapping("/findPwEmailAuth")
-	public void findPwEmailAuth(@ModelAttribute("member") MemberVO member, Model model) throws Exception {
+	public void findPwEmailAuth(@ModelAttribute("member") MemberVO member, HttpSession session) throws Exception {
 		log.info(member.getEmail());
+		
 		
 	}
 	
@@ -167,8 +168,8 @@ public class MemberController {
 		member.setPassword(modifyPassword);
 		
 		service.updatePassword(member);
-		MemberVO vo = service.getMember(email);
-		session.setAttribute("member", vo);
+	    service.getMember(email);
+		session.invalidate();
 		return "/page/home";
 	}
 	

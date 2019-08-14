@@ -34,6 +34,9 @@
    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
    crossorigin="anonymous"></script>
 
+<!-- fontawesome -->
+	<script src="https://kit.fontawesome.com/8824bffde2.js"></script>
+
 <!-- 부트스트랩 캘린더 =========================================================================== -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js?ver=1"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.0/moment-with-locales.js"></script>
@@ -259,7 +262,7 @@ body {
                   	<tbody>
                   		 <tr class="table-default">
 					        <td>
-					        	${reserv.reserv_name }
+					        	${reserv.reserv_name } 님
 					        </td>
 					        
 					        <td>
@@ -275,11 +278,11 @@ body {
 					        </td>
 					        
 					        <td>
-					        	${reserv.roomnum }
+					        	남자 ${reserv.male } 명 / 여성 ${reserv.female } 명
 					        </td>
 					        
 					        <td>
-					        	${reserv.count }명
+					        	총 인원 : ${reserv.count }명
 					        </td>
 					    </tr>
                   	
@@ -293,9 +296,12 @@ body {
                   	<h2><strong>숙박요금 :: $${reserv.price }</strong></h2>
                   </div>
 
-                  <div class="center" style="padding: 10px;">
-                     <button type="button" id="reservBackBtn">이전단계</button>
-                     <button type="button" id="reservCheckBtn">페이팔 결제하기</button>
+                  <div class="center" >
+                     <button type="button" id="reservBackBtn" style="height : 30%; width : 115px;">이전단계</button>
+                   <button type="button" id="reservCheckBtn">
+                   <img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_100x26.png"
+                    alt="PayPal Logo">
+                   </button> 
                   </div>
 
                </div>

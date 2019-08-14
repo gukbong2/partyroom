@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<footer>
+    
+<style>
+.footer {
+	background-color : #252525;
+	color : white;
+ }
+
+</style>   
+<footer class="footer">
 		<div class="container-fluid padding">
 			<div class="row text-center">
 				<div class="col-md-4">
@@ -23,11 +31,13 @@
 					<hr class="light">
 					<h5>국봉 게스트하우스 소셜미디어</h5>
 					<hr class="light">
-					<p>여기에 페이스북, 인스타그램 이미지 넣기</p>
+					<a href="https://www.facebook.com"><img src="/resources/image/facebook.png" alt="facebookImage" /></a>
+					<a href="https://www.instagram.com"><img src="/resources/image/instagram.png" alt="instaGramImage" /></a>
+					<a href="https://www.twitter.com"><img src="/resources/image/twitter.png" alt="twitterImage" /></a>
 				</div>
 				<div class="col-12">
 					<hr class="light-100">
-					<h5>&copy; gukbong's guesthouse</h5>
+					<h5><i class="fas fa-copyright"></i> gukbong's guesthouse</h5>
 				</div>
 			</div>
 		</div>

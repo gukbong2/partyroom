@@ -135,6 +135,9 @@
 		</div>
 	</div>
 </div>
+<%@include file="../includes/footer.jsp"%>
+
+
 
 <script>
 	$(document).ready(function() {

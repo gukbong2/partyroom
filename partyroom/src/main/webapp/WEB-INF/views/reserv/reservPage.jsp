@@ -32,6 +32,9 @@
    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
    crossorigin="anonymous"></script>
 
+<!-- fontawesome -->
+	<script src="https://kit.fontawesome.com/8824bffde2.js"></script>
+
 <!-- 부트스트랩 캘린더 =========================================================================== -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js?ver=1"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.0/moment-with-locales.js"></script>
@@ -45,27 +48,21 @@ body {
    font-family: 'NanumSquare', sans-serif;
    color: #666;
 }
-
 .container {
    max-width: 1500px;
 }	
-
 .normal {
    font-weight: 400
 }
-
 .bold {
    font-weight: 700
 }
-
 .bolder {
    font-weight: 800
 }
-
 .light {
    font-weight: 300
 }
-
 </style>
 
 <style>
@@ -186,7 +183,6 @@ body {
          $('#datepicker1').data("DateTimePicker").maxDate(e.date);
       });
       
-
       
    });
 </script>
@@ -196,23 +192,12 @@ body {
    $(function() {
       $(document.getElementsByName('breakfast')).attr('disabled', true);
       
- 	 var room = document.getElementsByName('roomnum');
       
-      $(room[0]).click(function() {
-         $('#userTicket').show();
-      });
-      
-      $(room[1]).click(function() {
-         $('#userTicket').show();
-      });
-      
-
          //1주
          $('#1week').click(
             function() {
                var startDate = $(document.getElementsByName('start_date')).val();
                console.log('start_date : ' + startDate);
-
                if (startDate == "") {
                   alert('시작 날짜를 먼저 선택해주세요.');
                   $(document.getElementsByName('start_date')).focus();
@@ -220,30 +205,24 @@ body {
                } else {
             	   
                   function dayCalc() {
-
                      var d = new Date(startDate);
                      console.log('start_date : ' + d.toLocaleString());
                      d.setDate(d.getDate() + 7);
                      var day = d.toLocaleString();
-
                      var s = leadingZeros(d.getFullYear(), 4) + '-'
                            + leadingZeros(d.getMonth() + 1, 2) + '-'
                            + leadingZeros(d.getDate(), 2);
-
                      return s;
                   }
-
                   function leadingZeros(n, digits) {
                      var zero = '';
                      n = n.toString();
-
                      if (n.length < digits) {
                         for (i = 0; i < digits - n.length; i++)
                            zero += '0';
                      }
                      return zero + n;
                   }
-
                   console.log('end_date : ' + dayCalc());	
                   $("input[name='end_date']").prop('value', dayCalc());
                   $(document.getElementsByName('breakfast')).removeAttr("disabled");
@@ -258,38 +237,30 @@ body {
          function() {
             var startDate = $(document.getElementsByName('start_date')).val();
             console.log('start_date : ' + startDate);
-
             if (startDate == "") {
                alert('시작 날짜를 먼저 선택해주세요.');
                $(document.getElementsByName('start_date')).focus();
                return false;
             } else {
-
             	function dayCalc() {
-
                   var d = new Date(startDate);
                   console.log('start_date: ' + d.toLocaleString());
                   d.setDate(d.getDate() + 14);
                   var day = d.toLocaleString();
-
                   var s = leadingZeros(d.getFullYear(), 4) + '-'
                         + leadingZeros(d.getMonth() + 1, 2) + '-'
                         + leadingZeros(d.getDate(), 2);
-
                   return s;
                }
-
                function leadingZeros(n, digits) {
                   var zero = '';
                   n = n.toString();
-
                   if (n.length < digits) {
                      for (i = 0; i < digits - n.length; i++)
                         zero += '0';
                   }
                   return zero + n;
                }
-
                console.log('end_date : ' + dayCalc());
                $("input[name='end_date']").prop('value', dayCalc());
                $(document.getElementsByName('breakfast')).removeAttr("disabled");
@@ -297,37 +268,30 @@ body {
                $(document.getElementsByName('breakfast')[1]).prop("disabled", true);
             }
          });
-
 	      
       //1달
       $('#1month').click(
          function() {
             var startDate = $(document.getElementsByName('start_date')).val();
             console.log('start_date : ' + startDate);
-
             if (startDate == "") {
                alert('시작 날짜를 먼저 선택해주세요.');
                $(document.getElementsByName('start_date')).focus();
                return false;
             } else {
-
             	function dayCalc() {
-
                   var d = new Date(startDate);
                   console.log('start_date : ' + d.toLocaleString());
                   d.setDate(d.getDate() + 28);
                   var day = d.toLocaleString();
-
                   var s = leadingZeros(d.getFullYear(), 4) + '-'
                         + leadingZeros(d.getMonth() + 1, 2) + '-'
                         + leadingZeros(d.getDate(), 2);
                   return s;
                }
-
                function leadingZeros(n, digits) {
                   var zero = '';
                   n = n.toString();
-
                   if (n.length < digits) {
                      for (i = 0; i < digits - n.length; i++)
                         zero += '0';
@@ -372,21 +336,28 @@ body {
 			  var time_idx = $("input:radio[name='time_idx']:checked").val();
 		      var startGetDate = new Date($(document.getElementsByName('start_date')).val()).getTime();
 		      var endGetDate = new Date($(document.getElementsByName('end_date')).val()).getTime();
-		      var chk = $(":input:radio[name=roomnum]:checked").val();
-		      var roomnum = $(":input:radio[name=roomnum]:checked").val();
 		      var breakfast = $("#breakfast").val();
-		      var count = $("input:radio[name='count']:checked").val();
+		      var count = $("#count").val();
+		      
+		      //남성 숙박 인원 수
+		      var male = $("#male").val();
+		      male = Number(male);
+		      //여성 숙박 인원 수 
+		      var female = $("#female").val();
+		      female = Number(female);
+		      count = male + female; 
+		      $("#count").val(count);
+		      // 숙박 가격
 		      var price = $("#price").val();
+		      // 숙박 가격 + 인원수
 		      var priceAddCount = price * count;
 		      
-		      console.log("price : " + price);
-		      console.log("priceAddCount : " + priceAddCount);
-			  console.log("count : " + count);		      
-		      console.log("time_idx : " + time_idx);
+		     console.log("price 숙박 가격: " + price);
+		      console.log("priceAddCount 숙박가격 곱하기 인원수: " + priceAddCount);
+		      console.log("count 인원수: " + count);		      
 		      console.log(startGetDate);
 		      console.log(endGetDate);
-			  console.log("chk : " + chk);
-			  console.log("roomnum : " + roomnum);
+			 // console.log("chk : " + chk);
 			
 			  if(!startGetDate) {
 				  alert("체크인 날짜를 입력하세요");
@@ -394,10 +365,9 @@ body {
 			  } else if (!endGetDate) {
 				  alert("체크아웃 날짜를 입력하세요");
 				  return false;
-			  } else if (!chk) {
-				  alert("객실 / 투숙공간을 선택해주세요");
-				  return false;
-			  } 
+			  } else if (male == 0 && female == 0) {
+				  alert("투숙객 인원수를 설정해주세요.");
+			  }
 			  console.log("breakfast : " + breakfast);
 				  
 			  $("#reservForm").submit();
@@ -441,6 +411,7 @@ body {
          
             <form method="get" action="/reserv/CheckReserv" id="reservForm">
                <input type="hidden" name="price" id="price" value="1"/>
+               <input type="hidden" name="count" id="count" value="0"/>
                <input type="hidden" id="reserv_name" name="reserv_name" value="${member.name }"/>
                <!-- 달력 -->
                
@@ -474,23 +445,35 @@ body {
                   <h4 class="bold">이용안내</h4>
                   <p>장기간 투숙객 예약 시 조식 제공 (1주일 이상)</p>
                   <p>저희 숙소는 선결제만 가능합니다.</p>
+				  <p><i class="fas fa-key">락커 키를 잃어버리시면 +5000원 입니다.</i></p>
+				  <p><i class="fas fa-smoking">객실 내 흡연 절대 불가능</i></p>
                   <p>이용안내 문구 더 적기</p>
                   <hr>
 					
                   <table class="table table-bordered" style="width: 100%; background-color: white;">
                   		
                      <tr>
-                        <th style="text-align: center; width: 20%;">객실 / 투숙공간</th>
+                        <th style="text-align: center; width: 30%;">객실 / 투숙공간</th>
                         <th style="text-align: center; width: 40%;">장기간 투숙객 할인</th>
-                        <th style="text-align: center; width: 20%;">투숙객 인원수</th>
-                        <th style="text-align: center; width: 20%;">조식 여부</th>
+                        <th style="text-align: center; width: 30%;">조식 여부</th>
                      </tr>
                      <tr height="150px;">
                         <td>
-                           <div class="radio" style="text-align : center;">
-                              <label><input type="radio" name="roomnum" id="roomnum" value="남성 캡슐">남성 캡슐</label><br>
-                              <label><input type="radio" name="roomnum" id="roomnum" value="여성 캡슐">여성 캡슐</label>
-                           </div>
+                              <select name="male" id="male">
+                                 <option value="0" selected="selected">남성 인원</option>
+                                 <option value="1">남성 1명</option>
+                                 <option value="2">남성 2명</option>
+                                 <option value="3">남성 3명</option>
+                                 <option value="4">남성 4명</option>
+                              </select>
+                              
+                              <select name="female" id="female">
+                                 <option value="0" selected="selected">여성 인원</option>
+                                 <option value="1">여성 1명</option>
+                                 <option value="2">여성 2명</option>
+                                 <option value="3">여성 3명</option>
+                                 <option value="4">여성 4명</option>
+                              </select>
                         </td>
                          <td>
                            <div class="radio" style="text-align : center;">
@@ -503,16 +486,7 @@ body {
                            </div>
                         </td>
 						
-						<td>
-							<div class="radio" style="text-align : center;">
-								<div>
-								<label><input type="radio" id="1people" name="count" value="1"  checked="checked"/>1명</label><br>
-								<label><input type="radio" id="2people" name="count" value="2" />2명</label><br>
-								<label><input type="radio" id="3people" name="count" value="3" />3명</label><br>
-								<label><input type="radio" id="4people" name="count" value="4" />4명</label><br>
-								</div>
-							</div>
-						</td>
+						
 						
                         <td>
                            <div style="text-align : center;">
