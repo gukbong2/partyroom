@@ -269,8 +269,8 @@ body {
             }
          });
 	      
-      //1달
-      $('#1month').click(
+      //5일
+      $('#5days').click(
          function() {
             var startDate = $(document.getElementsByName('start_date')).val();
             console.log('start_date : ' + startDate);
@@ -282,7 +282,7 @@ body {
             	function dayCalc() {
                   var d = new Date(startDate);
                   console.log('start_date : ' + d.toLocaleString());
-                  d.setDate(d.getDate() + 28);
+                  d.setDate(d.getDate() + 5);
                   var day = d.toLocaleString();
                   var s = leadingZeros(d.getFullYear(), 4) + '-'
                         + leadingZeros(d.getMonth() + 1, 2) + '-'
@@ -443,10 +443,11 @@ body {
 				<!-- 이용안내 -->
                <div id="info">
                   <h4 class="bold">이용안내</h4>
-                  <p>장기간 투숙객 예약 시 조식 제공 (1주일 이상)</p>
-                  <p>저희 숙소는 선결제만 가능합니다.</p>
+                  <p><i class="fas fa-hiking">장기간 투숙객 예약 시 조식 제공 (5일 이상)</i></p>
+                  <p><i class="fas fa-hand-holding-usd">저희 숙소는 선결제만 가능합니다.</i></p>
 				  <p><i class="fas fa-key">락커 키를 잃어버리시면 +5000원 입니다.</i></p>
 				  <p><i class="fas fa-smoking">객실 내 흡연 절대 불가능</i></p>
+				  <p><i class="fas fa-id-card">체크인 시 여권을 보여주세요.</i></p>
                   <p>이용안내 문구 더 적기</p>
                   <hr>
 					
@@ -479,9 +480,9 @@ body {
                            <div class="radio" style="text-align : center;">
                               <div id="userTicket">
                               	 <label><input type="radio" id="nope" name="time_idx" value="99">장기권 사용안함</label><br>
-                                 <label><input type="radio" id="1week" name="time_idx" value="100">1주 장기결제</label><br>
-                                 <label><input type="radio" id="2weeks" name="time_idx" value="101">2주 장기결제</label><br>
-                                 <label><input type="radio" id="1month" name="time_idx" value="102">4주 장기결제</label><br>
+                                 <label><input type="radio" id="5days" name="time_idx" value="102">5일 결제</label><br>
+                                 <label><input type="radio" id="1week" name="time_idx" value="100">1주 결제</label><br>
+                                 <label><input type="radio" id="2weeks" name="time_idx" value="101">2주 결제</label><br>
                               </div>
                            </div>
                         </td>

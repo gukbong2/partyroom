@@ -239,7 +239,7 @@ margin : auto;
 			<div>
 				<h2 style="text-align: center;"><strong>7Hours 예약하기</strong></h2>
 				<button class="btn btn-lg btn-block" style="background-color : #ececec;" onclick="showPopup();">
-					<img src="/resources/image/booked.png" alt="" style="width : 150px;" />
+					<img src="/resources/image/booking.png" alt="" style="width : 150px;" />
 				</button>
 			</div>
 		</div>
@@ -265,14 +265,14 @@ margin : auto;
 		<div>
 			<div>
 				<h2  style="text-align: center;"><strong>7hours가 여행자들에게  제공하는 7가지</strong></h2>
-				<button class="btn btn-lg btn-block" style="background-color : #ececec;">
-					<i class="fas fa-wifi x7">무료 와이파이</i><BR>
-					<i class="fas fa-umbrella x7">무료 우산 대여</i><br />
-					<i class="fas fa-biking x7">무료 자전거대여</i><br>
-					<i class="fas fa-suitcase-rolling x7">>무료 여행용 짐 보관 </i><br />
-					<i class="fas fa-map x7">서울 시티 투어맵 증정</i><br />
-					<i class="fas fa-beer x7">21시부터 맥주 1병 공짜</i><br>		
-					<i class="fas fa-ice-cream x7">아이스크림 2000원 할인 </i><br>
+				<button class="btn btn-lg btn-block" style="background-color : #ececec; margin : 0 auto;">
+					<i class="fas fa-wifi  fa-fw x7">무료 와이파이</i><BR>
+					<i class="fas fa-umbrella  fa-fw x7">무료 우산 대여</i><br />
+					<i class="fas fa-biking  fa-fw x7">무료 자전거대여</i><br>
+					<i class="fas fa-suitcase-rolling  fa-fw x7">>무료 여행용 짐 보관 </i><br />
+					<i class="fas fa-map  fa-fw x7">서울 시티 투어맵 증정</i><br />
+					<i class="fas fa-beer  fa-fw x7">21시부터 맥주 1병 공짜</i><br>		
+					<i class="fas fa-ice-cream  fa-fw x7">아이스크림 2000원 할인 </i><br>
 				</button>
 				
 				
