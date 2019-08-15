@@ -18,9 +18,9 @@
 
 <insert id="insertSelectKey">
 
-<selectKey keyProperty="bno" order="BEFORE" resultType="long">
+<!-- <selectKey keyProperty="bno" order="BEFORE" resultType="long">
 	SELECT SEQ_BOARD.NEXTVAL FROM DUAL
-</selectKey>
+</selectKey> -->
 	
 	<!-- SELECT SEQ_BOARD.NEXTVAL FROM DUAL 쿼리가 먼저 실행 후, 결과를 이용해서 bno값 처리 -->
 

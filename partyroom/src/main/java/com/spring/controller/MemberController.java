@@ -9,17 +9,12 @@ import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -29,9 +24,6 @@ import com.spring.service.SHA256Util;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
-import net.nurigo.java_sdk.Coolsms;
-import net.nurigo.java_sdk.api.Message;
-import oracle.jdbc.proxy.annotation.Post;
 @AllArgsConstructor
 @RequestMapping("/member/*")
 @Controller
@@ -41,7 +33,7 @@ public class MemberController {
 	private MemberService service;
 
 	//회원가입
-	@PostMapping(value="/register")
+	@PostMapping("/register")
 	public String register(MemberVO member, HttpSession session,
 			HttpServletRequest request) throws Exception {
 		
@@ -62,10 +54,11 @@ public class MemberController {
 		
 		session.setAttribute("member", member);
 			
-		return "board/emailNotVerify";
+		return "member/emailNotVerify";
 		
 	}
 	
+	//auth 1로 업데이트
 	@GetMapping("/emailAuth")
 	public String emailAuth(@ModelAttribute("member") MemberVO member, Model model) throws Exception {
 		log.info(member.getEmail() + " :  auth confrimed");
@@ -74,10 +67,11 @@ public class MemberController {
 		
 		//model.addAttribute("auth_check", 1);
 		
-		return "redirect:/board/list";
+		return "/page/home";
 	}
 	
 	
+	//로그인 
 	@PostMapping("/login")
 	public String login(MemberVO vo, HttpSession session) {
 		vo = service.getMember(vo.getEmail());
@@ -98,7 +92,7 @@ public class MemberController {
 		//이메일 인증이 안되어있다면
 		if (vo.getAuth() == 0) {
 			System.out.println("===========================auth 값 : " + vo.getAuth());
-			return "board/emailNotVerify";
+			return "member/emailNotVerify";
 			
 			} else {
 		
@@ -113,19 +107,22 @@ public class MemberController {
 		
 		}
 	
+	//비밀번호 수정 페이지로
 	@GetMapping("/modifyPw")
 	public void modifyPw() {
 		
 	}
 	
 	
-	
+	//로그아웃
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		
 		return "/page/home";
 	}
+	
+	//비밀번호 찾기
 	@PostMapping("findPassword")
 	public String findPassword(MemberVO member) throws UnsupportedEncodingException, MessagingException {
 		
@@ -135,6 +132,7 @@ public class MemberController {
 	}
 	
 	
+	//비밀번호 수정
 	@PostMapping("/updatePassword")
 	public String updatePassword(MemberVO member, @RequestParam("email") String email, 
 			@RequestParam("modifyPassword") String modifyPassword, HttpSession session) {
@@ -153,6 +151,7 @@ public class MemberController {
 		
 	}
 	
+	//비밀번호 찾기 시 이메일에서 링크 클릭 후 변경값 적는곳
 	@GetMapping("/findPwEmailAuth")
 	public void findPwEmailAuth(@ModelAttribute("member") MemberVO member, HttpSession session) throws Exception {
 		log.info(member.getEmail());
@@ -160,6 +159,7 @@ public class MemberController {
 		
 	}
 	
+	//위의 변경값으로 업데이트
 	@PostMapping("/resetPassword")
 	public String resetPassword(MemberVO member, @RequestParam("email") String email, 
 			@RequestParam("modifyPassword") String modifyPassword, HttpSession session) {
@@ -173,11 +173,14 @@ public class MemberController {
 		return "/page/home";
 	}
 	
+	
+	//회원 탈퇴 페이지
 	@GetMapping("/deleteMember")
 	public void deleteMember() {
 		
 	}
 	
+	//회원 탈퇴 
 	@PostMapping("/deleteMember")
 	public String deleteMember(MemberVO member, @RequestParam("email") String email, 
 			@RequestParam("password") String password, HttpSession session) {
@@ -192,6 +195,12 @@ public class MemberController {
 		return "/page/home";
 	}
 	
+	
+	//이메일 인증 x 페이지
+	@GetMapping("/emailNotVerify")
+	public void emailNotVerify() {
+
+	}
 	
 	
 	
@@ -225,27 +234,6 @@ public class MemberController {
 
 
 	
-	//문자보내기
-	@ResponseBody
-	@RequestMapping(value = "/sendSMS", method = RequestMethod.POST)
-	public void sendSMS(String phone) throws Exception { // 휴대폰 문자보내기
-
-		String api_key = "";
-		String api_secret = "";
-		Message coolsms = new Message(api_key, api_secret);// 메시지보내기 객체 생성
-		//String key = new TempKey().getNumKey(6); // 인증키 생성
-		//service.insertAuthCode(phone, key); // 휴대폰 인증 관련 서비스
-		
-		
-		HashMap<String, String> params = new HashMap<String, String>();
-		params.put("to", phone); // 수신번호
-		params.put("from", "01039222459"); // 발신번호
-		params.put("type", "SMS"); // 문자 타입
-		params.put("text", "안녕하세요 방국봉입니다. 문자테스트"); // 문자내용
-		params.put("charset", "utf-8");
-		
-		coolsms.send(params);
-	}
 	
 	
 	

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
    
-<%@include file="../includes/header.jsp"%>
+	<%@include file="../includes/header.jsp"%>
 
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css"/>
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css"/>
@@ -193,7 +193,7 @@ margin : auto;
 	   <img src="/resources/image/home3.jpg" alt="home3" class="images" />
 	    <div class="info">
 	      <p class="slider-subheading lead">
-	      	 <strong>금쪽같은 휴가를 즐기려 여행왔는데 1박에 10만원? 싸고 편리한 7hours에 온 당신은 이제 호구가 아닙니다.</strong>
+	      	 <strong>7hours에 오신걸 환영합니다.</strong>
 	      </p>
 	      <p class="down-arrow">
 	        <a class="btn btn-large btn-down-arrow" href="#theend">
@@ -206,7 +206,9 @@ margin : auto;
 	  <div>
 	   <img src="/resources/image/home4.jpg" alt="home4" class="images" />
 	    <div class="info">
-	      <p class="slider-subheading lead">서브헤더2</p>
+	      <p class="slider-subheading lead">
+	      	<strong>7hours에 오신걸 환영합니다.</strong>
+      	</p>
 	      <p class="down-arrow">
 	        <a class="btn btn-large btn-down-arrow" href="#theend">
 	          <i class="fa fa-chevron-down fa-lg" aria-hidden="true"></i>
@@ -218,7 +220,9 @@ margin : auto;
 	  <div>
 	   <img src="/resources/image/home5.jpg" alt="home5" class="images" />
 	    <div class="info">
-	      <p class="slider-subheading lead">서브헤더3</p>
+	      <p class="slider-subheading lead">
+	      	<strong>7hours에 오신걸 환영합니다.</strong>
+	      </p>
 	      <p class="down-arrow">
 	        <a class="btn btn-large btn-down-arrow" href="#theend">
 	          <i class="fa fa-chevron-down fa-lg" aria-hidden="true"></i>
@@ -232,24 +236,32 @@ margin : auto;
 
  
  		
-		<!-- jumbotron -->
+<!-- jumbotron -->
 <section id="reservation">
-	<div class="jumbotron jumbotron-fluid" style="background-color : #ececec; vertical-align: top;">
+	<div class="jumbotron jumbotron-fluid" style="background-color : #ececec; vertical-align: bottom;">
 		<div>
 			<div>
 				<h2 style="text-align: center;"><strong>7Hours 예약하기</strong></h2>
 				<button class="btn btn-lg btn-block" style="background-color : #ececec;" onclick="showPopup();">
 					<img src="/resources/image/booking.png" alt="" style="width : 150px;" />
+					
+					<h5>가성비가 좋은 7Hours</h5>
+					<h5>가성비가 좋은 7Hours</h5>
+					<h5>가성비가 좋은 7Hours</h5>
+					<h5>가성비가 좋은 7Hours</h5>
+					<h5>가성비가 좋은 7Hours</h5>
+					<h5>가성비가 좋은 7Hours</h5>
+					<h5>가성비가 좋은 7Hours</h5>
+					
 				</button>
 			</div>
 		</div>
 	</div>
 </section>
 		
-	<!-- jumbotron -->
-		
+<!-- jumbotron -->
 <section id="guide">
-	<div class="jumbotron jumbotron-fluid" style="background-color : #ececec; vertical-align: top;">
+	<div class="jumbotron jumbotron-fluid" style="background-color : #ececec; vertical-align: bottom;">
 		<div>
 			<div>
 				<h2 style="text-align: center;"><strong>7hours 사용방법이 궁금하신가요?</strong></h2>
@@ -260,19 +272,20 @@ margin : auto;
 	</div>
 </section>
 
+<!-- jumbotron -->
 <section id="service">
-	<div class="jumbotron jumbotron-fluid" style="background-color : #ececec; vertical-align: top;">
+	<div class="jumbotron jumbotron-fluid" style="background-color : #ececec; vertical-align: bottom;">
 		<div>
 			<div>
 				<h2  style="text-align: center;"><strong>7hours가 여행자들에게  제공하는 7가지</strong></h2>
-				<button class="btn btn-lg btn-block" style="background-color : #ececec; margin : 0 auto;">
-					<i class="fas fa-wifi  fa-fw x7">무료 와이파이</i><BR>
-					<i class="fas fa-umbrella  fa-fw x7">무료 우산 대여</i><br />
-					<i class="fas fa-biking  fa-fw x7">무료 자전거대여</i><br>
-					<i class="fas fa-suitcase-rolling  fa-fw x7">>무료 여행용 짐 보관 </i><br />
-					<i class="fas fa-map  fa-fw x7">서울 시티 투어맵 증정</i><br />
-					<i class="fas fa-beer  fa-fw x7">21시부터 맥주 1병 공짜</i><br>		
-					<i class="fas fa-ice-cream  fa-fw x7">아이스크림 2000원 할인 </i><br>
+				<button class="btn btn-lg btn-block" style="background-color : #ececec;">
+					<h5>무료 와이파이<i class="fas fa-wifi fa-fw x7"></i></h5><BR>
+					<h5>무료 우산 대여<i class="fas fa-umbrella fa-fw x7"></i></h5><br />
+					<h5>무료 자전거대여<i class="fas fa-biking fa-fw x7"></i></h5><br>
+					<h5>무료 여행용 짐 보관<i class="fas fa-suitcase-rolling  fa-fw x7"> </i></h5><br />
+					<h5>서울 시티 투어맵 증정<i class="fas fa-map fa-fw x7"></i></h5><br />
+					<h5>21시부터 맥주 1병 공짜<i class="fas fa-beer fa-fw x7"></i></h5><br>		
+					<h5>아이스크림 2000원 할인<i class="fas fa-ice-cream fa-fw x7"></i></h5><br>
 				</button>
 				
 				
@@ -314,8 +327,8 @@ jQuery(function($){
 	    nextArrow: '<div class="chevron-container slick-right"><i class="fa fa-chevron-right" aria-hidden="true"></i></span><span class="sr-only">Next</span></div>',
 	    prevArrow: '<div class="chevron-container"><i class="fa fa-chevron-left" aria-hidden="true"></i></span><span class="sr-only">Previous</span></div>',
 	    slidesToShow: 1,
-	    autoplaySpeed : 5000,
-	    speed : 1500,
+	    autoplaySpeed : 1000,
+	    speed : 1000,
 	    autoplay : true
 	  });
 	});
@@ -326,7 +339,7 @@ $(document).ready(function(){
 	
 	$("#kakaoMap").hide();
 	
-	$('.image-slide').slick({
+	/* $('.image-slide').slick({
 		autoplay : true, //자동재생
 		dots: false, //이미지 밑에 점
 		speed : 500 , // 이미지가 슬라이딩시 걸리는 시간 
@@ -338,7 +351,7 @@ $(document).ready(function(){
 		fade: false,
 		 adaptiveHeight: true,
 		 adaptiveWidth : true
-	});
+	}); */
 	
 	
 	$("#mapBtn").on("click", function() {

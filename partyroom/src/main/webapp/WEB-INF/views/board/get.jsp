@@ -3,7 +3,7 @@
 <!-- reply.js 시작 -->
 <script type="text/javascript" src="/resources/js/reply.js"></script>
 
-<%@include file="../includes/header.jsp"%>
+<%@include file="../includes/headerForBoard.jsp"%>
 
 
 

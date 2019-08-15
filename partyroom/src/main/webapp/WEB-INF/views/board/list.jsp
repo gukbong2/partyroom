@@ -4,20 +4,14 @@
 <%@include file="../includes/headerForBoard.jsp"%>
 
 
-
+<br /><br /><br /><br /><br />
 
 <p class="center jumbotron jumbotron-fluid"
 		style="font-weight: 1000; font-size: 1.5em; background-color: #475C7A;
 		color: white; text-align: center;" >문의 게시판</p>
 		
 
-
-<div class="row">
-	<div>
-		<button id='regBtn' type="button" class="btn btn-xs pull-right"
-		style="margin-left : 1550px;">글 작성</button>
-	</div>
-</div>
+	
 
 <div class="row">
 	<div class="col-lg-12" >
@@ -27,8 +21,11 @@
 			
 			
 			<!-- /.panel-heading -->
-			<div class="panel-body">
-				<table class="table table-hover" style="font-size: 20px; width: 80%; margin-right : auto; margin-left : auto;">
+			<div class="panel-body" style="font-size: 20px; width: 80%; margin-right : auto; margin-left : auto;">
+				<button class='btn btn-default' id="regBtn" 
+							style="text-align: right;">글작성</button>
+				<table class="table table-hover">
+				
 			<thead>
 				<tr>
 					<th width="8%">No.</th>
@@ -60,9 +57,9 @@
 				
 				<div class='row'>
 					<div class="col-lg-12">
-
+							
 						<form id='searchForm' action="/board/list" method='get'
-						style="font-size: 20px; width: 35%; margin-right : auto; margin-left : auto;">
+						style="font-size: 20px; width: 55%; margin-right : auto; margin-left : auto;">
 							<select name='type'>
 								<option value=""
 									<c:out value="${pageMaker.cri.type == null?'selected':''}"/>>===============</option>
@@ -84,9 +81,10 @@
 								value='<c:out value="${pageMaker.cri.pageNum}"/>' /> <input
 								type='hidden' name='amount'
 								value='<c:out value="${pageMaker.cri.amount}"/>' />
-							<button class='btn btn-default'>검색</button>
-							
+							<button class='btn btn-default' id="searchBtn">검색</button>
+								
 						</form>
+							
 						
 						
 					</div>
@@ -169,7 +167,7 @@
 	
 	var searchForm = $("#searchForm");
 	
-	$("#searchForm button").on("click", function(e) {
+	$("#searchBtn").on("click", function(e) {
 		if(!searchForm.find("option:selected").val()) {
 			alert("검색 종류를 선택하세요.");
 			return false;

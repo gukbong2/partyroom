@@ -7,7 +7,7 @@
 <head>
 
 
-    <title>7hours</title>
+    <title>7Hours</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
@@ -76,7 +76,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light  fixed-top" >
 		<div class="container-fluid">
 			<a class="navbar-brand" href="/page/home">
-				 <img src="/resources/image/7hours.jpg" width="100px" height="100px"> 
+				 <img src="/resources/image/logo.png" width="100px" height="100px"> 
 			</a>
 		
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
