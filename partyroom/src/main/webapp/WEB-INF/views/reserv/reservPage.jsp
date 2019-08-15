@@ -338,7 +338,7 @@ body {
 		      var endGetDate = new Date($(document.getElementsByName('end_date')).val()).getTime();
 		      var breakfast = $("#breakfast").val();
 		      var count = $("#count").val();
-		      
+		      alert(time_idx);
 		      //남성 숙박 인원 수
 		      var male = $("#male").val();
 		      male = Number(male);
@@ -367,6 +367,7 @@ body {
 				  return false;
 			  } else if (male == 0 && female == 0) {
 				  alert("투숙객 인원수를 설정해주세요.");
+				  return false;
 			  }
 			  console.log("breakfast : " + breakfast);
 				  
@@ -410,7 +411,7 @@ body {
          <div class="boxoutside">
          
             <form method="get" action="/reserv/CheckReserv" id="reservForm">
-               <input type="hidden" name="price" id="price" value="1"/>
+               <input type="hidden" name="price" id="price" value="3"/>
                <input type="hidden" name="count" id="count" value="0"/>
                <input type="hidden" id="reserv_name" name="reserv_name" value="${member.name }"/>
                <!-- 달력 -->
@@ -479,10 +480,10 @@ body {
                          <td>
                            <div class="radio" style="text-align : center;">
                               <div id="userTicket">
-                              	 <label><input type="radio" id="nope" name="time_idx" value="99">장기권 사용안함</label><br>
-                                 <label><input type="radio" id="5days" name="time_idx" value="102">5일 결제</label><br>
-                                 <label><input type="radio" id="1week" name="time_idx" value="100">1주 결제</label><br>
-                                 <label><input type="radio" id="2weeks" name="time_idx" value="101">2주 결제</label><br>
+                              	 <label><input type="radio" id="nope" name="time_idx" value="1">장기권 사용안함</label><br>
+                                 <label><input type="radio" id="5days" name="time_idx" value="2">5일 결제</label><br>
+                                 <label><input type="radio" id="1week" name="time_idx" value="3">1주 결제</label><br>
+                                 <label><input type="radio" id="2weeks" name="time_idx" value="4">2주 결제</label><br>
                               </div>
                            </div>
                         </td>
@@ -500,7 +501,7 @@ body {
                   </table>
 
                   <div class="center" style="padding: 10px;">
-                     <button type="button" id="reservCheckBtn">예약확인</button>
+                     <button type="button" id="reservCheckBtn">예약 정보 확인</button>
                   </div>
 
                </div>

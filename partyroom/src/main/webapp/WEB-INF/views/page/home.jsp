@@ -241,6 +241,7 @@ margin : auto;
 	<div class="jumbotron jumbotron-fluid" style="background-color : #ececec; vertical-align: bottom;">
 		<div>
 			<div>
+				<br /><br />	
 				<h2 style="text-align: center;"><strong>7Hours 예약하기</strong></h2>
 				<button class="btn btn-lg btn-block" style="background-color : #ececec;" onclick="showPopup();">
 					<img src="/resources/image/booking.png" alt="" style="width : 150px;" />
@@ -264,6 +265,7 @@ margin : auto;
 	<div class="jumbotron jumbotron-fluid" style="background-color : #ececec; vertical-align: bottom;">
 		<div>
 			<div>
+				<br /><br />
 				<h2 style="text-align: center;"><strong>7hours 사용방법이 궁금하신가요?</strong></h2>
 				<button class="btn btn-lg btn-block" style="background-color : #ececec;">
 				</button>
@@ -273,7 +275,7 @@ margin : auto;
 </section>
 
 <!-- jumbotron -->
-<section id="service">
+<section>
 	<div class="jumbotron jumbotron-fluid" style="background-color : #ececec; vertical-align: bottom;">
 		<div>
 			<div>
@@ -282,10 +284,10 @@ margin : auto;
 					<h5>무료 와이파이<i class="fas fa-wifi fa-fw x7"></i></h5><BR>
 					<h5>무료 우산 대여<i class="fas fa-umbrella fa-fw x7"></i></h5><br />
 					<h5>무료 자전거대여<i class="fas fa-biking fa-fw x7"></i></h5><br>
-					<h5>무료 여행용 짐 보관<i class="fas fa-suitcase-rolling  fa-fw x7"> </i></h5><br />
+					<h5 >무료 여행용 짐 보관<i class="fas fa-suitcase-rolling  fa-fw x7"> </i></h5><br />
 					<h5>서울 시티 투어맵 증정<i class="fas fa-map fa-fw x7"></i></h5><br />
 					<h5>21시부터 맥주 1병 공짜<i class="fas fa-beer fa-fw x7"></i></h5><br>		
-					<h5>아이스크림 2000원 할인<i class="fas fa-ice-cream fa-fw x7"></i></h5><br>
+					<h5 id="service">아이스크림 2000원 할인<i class="fas fa-ice-cream fa-fw x7"></i></h5><br>
 				</button>
 				
 				
@@ -301,7 +303,8 @@ margin : auto;
 	<div class="jumbotron jumbotron-fluid" style="background-color : #ececec; vertical-align: top;">
 		<div>
 			<div>
-				<h6  style="text-align: center;"><strong>7hours은 어디에 있을까?</strong></h6>
+				<br /><br />
+				<h2  style="text-align: center;"><strong>7hours의 달달한 위치를 확인해보세요!</strong></h2>
 				<button class="btn btn-lg btn-block" id="mapBtn" onclick="setZoomable(false)" 
 				style="background-color : #ececec;">	
 					<img src="/resources/image/map.png" alt="" style="width : 150px;" />

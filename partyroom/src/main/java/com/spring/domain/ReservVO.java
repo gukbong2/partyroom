@@ -16,4 +16,6 @@ public class ReservVO {
 	private Long count;
 	private Long male;
 	private Long female;
+	private Long time_idx;
+	private String ticket;
 }

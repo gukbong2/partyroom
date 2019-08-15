@@ -42,7 +42,8 @@ public class ReservController {
 			@RequestParam("count") Long count,
 			@RequestParam("male") Long male,
 			@RequestParam("female") Long female,
-			@RequestParam("price") Long price
+			@RequestParam("price") Long price,
+			@RequestParam("time_idx") Long time_idx
 			) throws ParseException {
 		
 		
@@ -63,19 +64,47 @@ public class ReservController {
 		System.out.println("price : " + price);
 		System.out.println("인원수 : " + count);
 		
+		
+		count = male + female;
 		price = price * calDateDays * count;
 		System.out.println("인원*날짜*가격 : " + price);
-		count = male + female;
 		reserv.setBreakfast(breakfast);
 		reserv.setReserv_name(reserv_name);
 		reserv.setStart_date(start);
 		reserv.setEnd_date(end);
 		reserv.setCount(count);
-		reserv.setPrice(price);
+		
 		reserv.setMale(male);
 		reserv.setFemale(female);
+		System.out.println("정기권 : " + time_idx);
+		
+		if (time_idx == 1) {
+			reserv.setTime_idx(time_idx);
+			reserv.setPrice(price);
+		} else if (time_idx == 2) {
+			long discount = count * 3;
+			price = (long) (price - discount);
+			System.out.println("5일 정기권  3달러 할인 x 인원수 : " + price);
+			reserv.setTime_idx(time_idx);
+			reserv.setPrice(price);
+			reserv.setTicket("5일 정기권");
+		} else if (time_idx == 3) {
+			long discount = count * 6;
+			price = (long) (price - discount);
+			System.out.println("1주일 정기권  6달러 할인 x 인원수: " + price);
+			reserv.setTime_idx(time_idx);
+			reserv.setPrice(price);
+			reserv.setTicket("1주 정기권");
+		} else if (time_idx == 4) {
+			long discount = count * 10;
+			price = (long) (price - discount);
+			System.out.println("2주 정기권 10달러 할인 x 인원수 : " + price);
+			reserv.setTime_idx(time_idx);
+			reserv.setPrice(price);
+			reserv.setTicket("2주 정기권");
+		} 
 		session.setAttribute("reserv", reserv);
-	
+		
 	
 		
 	}

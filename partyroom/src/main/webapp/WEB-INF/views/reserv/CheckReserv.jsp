@@ -293,7 +293,9 @@ body {
                   
                   
                   <div class="center">
-                  	<h2><strong>숙박요금 :: $${reserv.price }</strong></h2>
+                  
+                  	<h2><strong>결제금액 : $${reserv.price }</strong></h2>
+                  	<h3> ${reserv.ticket }</h3>
                   </div>
 
                   <div class="center" >
