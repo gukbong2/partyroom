@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%> 
@@ -75,7 +75,7 @@
     
     <nav class="navbar navbar-expand-lg navbar-light bg-light  fixed-top" >
 		<div class="container-fluid">
-			<a class="navbar-brand" href="/page/home">
+			<a class="navbar-brand" href="/">
 				 <img src="/resources/image/logo.png" width="100px" height="100px"> 
 			</a>
 		
@@ -113,7 +113,7 @@
 					<li class="nav-item dropdown">
 			        	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
 			        	  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			          		${member.name }&nbsp;님
+			          		${member.name } ${naverName }&nbsp;님
 			        	</a>
 			          <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
 			            <a class="dropdown-item" href="/member/modifyPw">비밀번호 변경</a>
@@ -162,9 +162,9 @@
 				<hr>
 
 				<form style="text-align: center;">
-					<!-- 소셜 로그인 추후 -->	
-				 <a href="/social/login"><img src="/resources/image/naverlogo.PNG" alt="" width="80px;" /></a> 
-						<!--<a href="${url}"><img src="/resources/image/naverlogo.PNG" alt="" width="80px;" /></a>-->
+					<!-- 네이버 -->
+				   <a href="${url}" id="naverBtn"><img src="/resources/image/naverlogo.PNG" alt="" width="80px;" /></a>
+					<!-- 카카오 -->
 					<a href="javascript:loginWithKakao()"><img src="/resources/image/kakaologo.png" alt="" width="80px;" /></a>
 				</form>
 				<hr>
@@ -638,6 +638,17 @@
 
 
  <!-- 네이버 로그인 시작-->
+
+<script>
+	$("#naverBtn").on("click", function() {
+		
+		console.log("클릭됨");
+		
+		
+	});
+	
+	
+</script>
 
 
  

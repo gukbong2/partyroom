@@ -81,6 +81,7 @@ public class ReservController {
 		if (time_idx == 1) {
 			reserv.setTime_idx(time_idx);
 			reserv.setPrice(price);
+			reserv.setTicket("정기권 사용안함");
 		} else if (time_idx == 2) {
 			long discount = count * 3;
 			price = (long) (price - discount);

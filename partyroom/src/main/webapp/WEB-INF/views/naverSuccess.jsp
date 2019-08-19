@@ -10,47 +10,92 @@
 	charset="utf-8"></script>
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-<style type="text/css">
-html, div, body, h3 {
-	margin: 0;
-	padding: 0;
-}
 
-h3 {
-	display: inline-block;
-	padding: 0.6em;
-}
-</style>
+
+
+
 <script type="text/javascript">
-	$(document).ready(function() {
 		
-		var name = ${result}.response.name;
-		var email = ${result}.response.email;
-		var gender = ${result}.response.gender;
-		var birthday = ${result}.response.birthday;
-		console.log(name);
-		console.log(email);
-		console.log(gender);
-		console.log(birthday);
 		
-		$("#name").html("환영합니다. "+name+"님");
-		$("#email").html(email);
-		$("#gender").html(gender);
-		$("#birthday").html(birthday);
-	  });
+		
+	    var name = ${result}.response.name;
+	    var email = ${result}.response.email;
+	    var api_id = ${result}.response.id;
+		
+		 var params = {
+				'name' : name,
+				'email' : email,
+				'api_id' : api_id,
+				'type' : 'naver'
+		} 
+		
+		console.log(params); 
+		
+		
+		
+		$.ajax({
+			
+			url : "/social/count",
+			type : 'post',
+			data : params,
+			dataType : 'json',
+			success : function(data) {
+				console.log(data);
+				console.log("data.cnt : " + data.cnt);
+				if(data.cnt == 0) {
+					
+					var insertForm = document.socialInsertForm;
+					console.log("insertForm : " + insertForm);
+					insertForm.email.value = email;
+					insertForm.name.value = name;
+					insertForm.api_id.value = api_id;
+					insertForm.type.value = 'naver';
+					
+					insertForm.submit();
+					
+					
+					
+				} else if (data.cnt >= 1) {
+					console.log("data.cnt : " + data.cnt);
+					
+					var updateForm = document.socialUpdateForm;
+					console.log("updateform : " + updateForm);
+					updateForm.email.value = email;
+					updateForm.name.value = name;
+					updateForm.api_id.value = api_id;
+					updateForm.type.value = 'naver';
+					
+					updateForm.submit();
+					
+					
+				}
+				
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				alert("에러 발생 : " + jqXHR.status + "에러임");
+			}
+		});   
 </script>
 
 </head>
 <body>
-	<div
-		style="background-color: #15a181; width: 100%; height: 50px; text-align: center; color: white;">
-		<h3>SIST Naver_Login Success</h3>
-	</div>
-	<br>
-	<h2 style="text-align: center" id="name"></h2>
-	<h4 style="text-align: center" id="email"></h4>
-	<h4 style="text-align: center" id="gender"></h4>
-	<h4 style="text-align: center" id="birthday"></h4>
+	
+	
+	<!-- api 히든 폼 --> 
+<form action="/social/insert" name="socialInsertForm" method="post">
+	<input type="hidden" name="email" value="">
+    <input type="hidden" name="api_id" value=""> 
+	<input type="hidden" name="name" value="">
+	<input type="hidden" name="type" value="">
+</form>
 
+<form action="/social/update" name="socialUpdateForm" method="post">
+	<input type="hidden" name="email" value="">
+	<input type="hidden" name="api_id" value="">
+	<input type="hidden" name="name" value="">
+	<input type="hidden" name="type" value="">
+</form>
+<!-- api 히든 폼 끝 -->
+	
 </body>
 </html>

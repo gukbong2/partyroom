@@ -119,7 +119,7 @@ public class MemberController {
 	public String logout(HttpSession session) {
 		session.invalidate();
 		
-		return "/page/home";
+		return "redirect:/page/home";
 	}
 	
 	//비밀번호 찾기
@@ -128,7 +128,7 @@ public class MemberController {
 		
 		service.findPassword(member);
 		
-		return "/page/home";
+		return "redirect:/page/home";
 	}
 	
 	
@@ -147,7 +147,7 @@ public class MemberController {
 		//session.setAttribute("member", vo);
 		session.invalidate();
 		
-		return "/page/home";
+		return "redirect:/page/home";
 		
 	}
 	
@@ -170,7 +170,7 @@ public class MemberController {
 		service.updatePassword(member);
 	    service.getMember(email);
 		session.invalidate();
-		return "/page/home";
+		return "redirect:/page/home";
 	}
 	
 	

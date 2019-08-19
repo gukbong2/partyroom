@@ -338,7 +338,6 @@ body {
 		      var endGetDate = new Date($(document.getElementsByName('end_date')).val()).getTime();
 		      var breakfast = $("#breakfast").val();
 		      var count = $("#count").val();
-		      alert(time_idx);
 		      //남성 숙박 인원 수
 		      var male = $("#male").val();
 		      male = Number(male);
