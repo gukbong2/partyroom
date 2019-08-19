@@ -163,8 +163,9 @@
 
 				<form style="text-align: center;">
 					<!-- 소셜 로그인 추후 -->	
-					<a href="/social/login"><img src="/resources/image/naverlogo.PNG" alt="" width="80px;" /></a>
-					<a href="/social/login"><img src="/resources/image/kakaologo.png" alt="" width="80px;" /></a>
+				 <a href="/social/login"><img src="/resources/image/naverlogo.PNG" alt="" width="80px;" /></a> 
+						<!--<a href="${url}"><img src="/resources/image/naverlogo.PNG" alt="" width="80px;" /></a>-->
+					<a href="javascript:loginWithKakao()"><img src="/resources/image/kakaologo.png" alt="" width="80px;" /></a>
 				</form>
 				<hr>
 
@@ -289,6 +290,23 @@
 	</div>
 </div>    
 <!-- 회원가입 모달 끝--> 
+ 
+<!-- api 히든 폼 --> 
+<form action="/social/insert" name="socialInsertForm" method="post">
+	<input type="hidden" name="email" value="">
+    <input type="hidden" name="api_id" value=""> 
+	<input type="hidden" name="name" value="">
+	<input type="hidden" name="type" value="">
+</form>
+
+<form action="/social/update" name="socialUpdateForm" method="post">
+	<input type="hidden" name="email" value="">
+	<input type="hidden" name="api_id" value="">
+	<input type="hidden" name="name" value="">
+	<input type="hidden" name="type" value="">
+</form>
+<!-- api 히든 폼 끝 -->
+ 
  
  <script>
  		
@@ -542,9 +560,86 @@
 
  </script>
  
- 
- 
- 
+<!-- 카카오 로그인 api -->
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script type='text/javascript'>
+	// 사용할 앱의 JavaScript 키를 설정해 주세요.
+	Kakao.init('3c2b575265288831f680b032fa87f3d1'); /* 클라이언트 id 숨겨두기 */
+	// 카카오 로그인 버튼을 생성합니다.
+	function loginWithKakao() {
+		Kakao.Auth.login({
+			success : function(authObj) {
+				/* alert(JSON.stringify(authObj)); */
+
+				Kakao.API.request({
+					url : '/v1/user/me',
+					success : function(res) {
+						console.log(res);
+						console.log(res.id);
+						var params = {
+								'api_id' : res.id,
+								'email' : res.kaccount_email,
+								'name' : res.properties['nickname'],
+								'type' : 'kakao'
+						}
+						
+						console.log(params);
+						
+					 	$.ajax({
+							url : "/social/count",
+							type : 'post',
+							data : params,
+							dataType : 'json',
+							success : function(data) {
+								console.log(data);
+								console.log("data.cnt : " + data.cnt);
+								if(data.cnt == 0) {
+									
+									var insertForm = document.socialInsertForm;
+									console.log("insertForm : " + insertForm);
+									insertForm.email.value = res.kaccount_email;
+									insertForm.name.value = res.properties['nickname'];
+									insertForm.api_id.value = res.id;
+									insertForm.type.value = 'kakao';
+									
+									insertForm.submit();
+									
+									
+								} else if (data.cnt >= 1) {
+									console.log("data.cnt : " + data.cnt);
+									
+									var updateForm = document.socialUpdateForm;
+									console.log("updateform : " + updateForm);
+									updateForm.email.value = res.kaccount_email;
+									updateForm.name.value = res.properties['nickname'];
+									updateForm.api_id.value = res.id;
+									updateForm.type.value = 'kakao';
+									
+									updateForm.submit();
+									
+								}
+								
+							},
+							error : function(jqXHR, textStatus, errorThrown) {
+								alert("에러 발생 : " + jqXHR.status + "에러임");
+							}
+						}); 
+
+					}
+				})
+			},
+			fail : function(err) {
+				alert(JSON.stringify(err));
+			}
+		});
+	}; /* 카카오 로그인 끝 */
+</script>
+
+
+
+ <!-- 네이버 로그인 시작-->
+
+
  
  
  

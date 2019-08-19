@@ -304,13 +304,16 @@ margin : auto;
 		<div>
 			<div>
 				<br /><br />
-				<h2  style="text-align: center;"><strong>7hours의 달달한 위치를 확인해보세요!</strong></h2>
+				<h2  style="text-align: center;"><strong>7hours의 위치를 확인해보세요!</strong></h2>
 				<button class="btn btn-lg btn-block" id="mapBtn" onclick="setZoomable(false)" 
 				style="background-color : #ececec;">	
 					<img src="/resources/image/map.png" alt="" style="width : 150px;" />
 				</button>	
 				
-				<div id="kakaoMap"></div>  
+				
+				
+				<div id="kakaoMap">
+				</div>  
 			</div>
 		</div>
 	</div>
@@ -341,21 +344,6 @@ jQuery(function($){
 $(document).ready(function(){
 	
 	$("#kakaoMap").hide();
-	
-	/* $('.image-slide').slick({
-		autoplay : true, //자동재생
-		dots: false, //이미지 밑에 점
-		speed : 500 , // 이미지가 슬라이딩시 걸리는 시간 
-		infinite: true, //무한반복
-		autoplaySpeed: 1200,  //이미지가 다른 이미지로 넘어 갈때의 텀 
-		arrows: true,
-		slidesToShow: 1,
-		slidesToScroll: 1,
-		fade: false,
-		 adaptiveHeight: true,
-		 adaptiveWidth : true
-	}); */
-	
 	
 	$("#mapBtn").on("click", function() {
 		console.log("맵버튼누름");
@@ -388,7 +376,7 @@ $(document).ready(function(){
 });
 </script>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=32c6bbd14c5c778d687207adf8e8289d"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3c2b575265288831f680b032fa87f3d1"></script>
 <script>
 	var mapContainer = document.getElementById('kakaoMap'); // 지도를 표시할 div  
 	var mapOption = { 

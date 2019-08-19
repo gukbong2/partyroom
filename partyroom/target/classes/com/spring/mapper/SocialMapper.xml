@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.mapper.SocialMapper">
+
+<insert id="insert">
+	INSERT INTO SOCIAL(SOCIAL_IDX, API_ID, EMAIL, NAME, TYPE, LAST_DATE)
+		VALUES (SEQ_SOCIAL.NEXTVAL, #{api_id}, #{email}, #{name}, #{type}, SYSDATE)
+</insert>
+
+<update id="update">
+	UPDATE SOCIAL SET LAST_DATE = SYSDATE
+		WHERE API_ID = #{api_id} AND TYPE = #{type} AND EMAIL = #{email} AND NAME = #{name}
+</update>
+
+<select id="count" parameterType="String" resultType="int">
+	SELECT COUNT(*) FROM SOCIAL 
+		WHERE API_ID = #{api_id} AND TYPE = #{type} AND EMAIL = #{email} AND NAME = #{name}
+</select>
+
+</mapper>
