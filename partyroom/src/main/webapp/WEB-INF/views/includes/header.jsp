@@ -24,9 +24,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
     
     <!-- 써머노트 -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
-	<script src="/resources/js/summernote-ko-KR.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 	
 	<!-- slick.js -->
 	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css"/>
@@ -58,6 +57,14 @@
  a:hover { color: #646464; text-decoration: none;}
  a:active {text-decoration:none; color:#646464; }
  
+ .dropdown-content a:hover {
+	background-color: #646464;
+	text-decoration: none;
+}
+ .dropdown-content a:active {
+	background-color: #646464;
+	text-decoration: none;
+}
  
 
 

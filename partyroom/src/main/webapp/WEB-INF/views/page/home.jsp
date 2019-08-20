@@ -233,7 +233,7 @@ margin : auto;
 </div> 
  <!--slick 이미지 슬라이드 끝  -->
 		
-
+<br /><br />
  
  		
 <!-- jumbotron -->
@@ -246,13 +246,10 @@ margin : auto;
 				<button class="btn btn-lg btn-block" style="background-color : #ececec;" onclick="showPopup();">
 					<img src="/resources/image/booking.png" alt="" style="width : 150px;" />
 					
-					<h5>가성비가 좋은 7Hours</h5>
-					<h5>가성비가 좋은 7Hours</h5>
-					<h5>가성비가 좋은 7Hours</h5>
-					<h5>가성비가 좋은 7Hours</h5>
-					<h5>가성비가 좋은 7Hours</h5>
-					<h5>가성비가 좋은 7Hours</h5>
-					<h5>가성비가 좋은 7Hours</h5>
+					<br />
+					<br />
+					<br />
+					<br />
 					
 				</button>
 			</div>

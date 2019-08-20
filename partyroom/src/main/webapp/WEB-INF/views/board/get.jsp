@@ -5,36 +5,35 @@
 
 <%@include file="../includes/headerForBoard.jsp"%>
 
-
+<br /><br /><br /><br /><br />
 
 <!-- 글 상세보기 시작 -->
-<div class="row" style="font-size: 20px; width: 80%; margin-right : auto; margin-left : auto;">
+<div class='row' style="font-size: 20px; width: 80%; margin-right : auto; margin-left : auto;">
   <div class="col-lg-12">
     <div class="panel panel-default">
 
-      <div class="panel-heading">Board Read Page</div>
+      <div class="panel-heading"></div>
       <div class="panel-body">
 
           <div class="form-group">
-          <label>Bno</label> <input class="form-control" name='bno'
-            value='<c:out value="${board.bno }"/>' readonly="readonly">
-        </div>
+            <p class="center"><strong>#${board.bno }</strong></p>
+            <p> ${board.title }</p>
+            <p> ${member.name } 님</p>
+         </div>
+
+		<hr />
+		
 
         <div class="form-group">
-          <label>Title</label> <input class="form-control" name='title'
-            value='<c:out value="${board.title }"/>' readonly="readonly">
+        
+         <p>${board.content }</p>
         </div>
+        
+        <br /><br /><br />
+        
+        <hr />
 
-        <div class="form-group">
-          <label>Text area</label>
-          <textarea class="form-control" rows="3" name='content'
-            readonly="readonly"><c:out value="${board.content}" /></textarea>
-        </div>
-
-        <div class="form-group">
-          <label>Writer</label> <input class="form-control" name='writer'
-            value='<c:out value="${member.name }"/>' readonly="readonly">
-        </div>
+        
 
 
 

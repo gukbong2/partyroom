@@ -30,7 +30,7 @@
 	<context:component-scan base-package="com.spring.api" />
 	<beans:bean id="naverLoginBO" class="com.spring.api.NaverLoginBO" />
 	
-	
+	<resources location="/WEB-INF/views/ckeditor/" mapping="/ckeditor/**"></resources>
 	
 	
 </beans:beans>
