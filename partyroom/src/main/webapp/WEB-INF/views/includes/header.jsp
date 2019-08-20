@@ -55,7 +55,8 @@
 
  a:link { color: #646464; text-decoration: none;}
  a:visited { color: #646464; text-decoration: none;}
- a:hover { color: #646464; text-decoration: underline;}
+ a:hover { color: #646464; text-decoration: none;}
+ a:active {text-decoration:none; color:#646464; }
  
  
 
@@ -253,7 +254,7 @@
 					<input type="text" name="name" id="RegisterName" class="form-control my-2" 
 					onKeyPress="if (event.keyCode==13){enterRegister()}" placeholder="성함" > 
 					
-					<input type="text" name="phone" id="RegisterPhone" class="form-control my-2" 
+					<!-- <input type="text" name="phone" id="RegisterPhone" class="form-control my-2" 
 					onKeyPress="if (event.keyCode==13){phoneChk()}" placeholder="핸드폰 번호" maxlength="11" > 
 					
 					<div>
@@ -263,7 +264,7 @@
 						
 						<input type="text"  id="RegisterPhoneCheck" class="form-control my-2" 
 						onKeyPress="if (event.keyCode==13){enterRegister() return false;}"placeholder="핸드폰인증번호를 입력하세요." />
-					</div>
+					</div> -->
 					
 					<input type="button" style="background-color: #475C7A; color: white;" id="memberRegiBtn"
 					class="btn btn-block form-control" value="회원가입" 
@@ -272,8 +273,10 @@
 				<hr>
 
 				<form style="text-align: center;">
-					<!-- 소셜 로그인 추후 -->	
-					
+					<!-- 네이버 -->
+				   <a href="${url}" id="naverBtn"><img src="/resources/image/naverlogo.PNG" alt="" width="80px;" /></a>
+					<!-- 카카오 -->
+					<a href="javascript:loginWithKakao()"><img src="/resources/image/kakaologo.png" alt="" width="80px;" /></a>
 				</form>
 				<hr>
 
@@ -386,9 +389,9 @@
  				var registerName = $("#RegisterName").val();
  				var registerPassword = $("#RegisterPassword").val();
  				var registerPasswordCheck = $("#RegisterPasswordCheck").val();
- 				var RegisterPhoneCheck = $("#RegisterPhoneCheck").val();
-				var PhoneAuthKey = "${message.authkey}";
-				console.log(PhoneAuthKey);
+ 				//var RegisterPhoneCheck = $("#RegisterPhoneCheck").val();
+				//var PhoneAuthKey = "${message.authkey}";
+				//console.log(PhoneAuthKey);
 
  				console.log("누름");
  				
@@ -412,13 +415,13 @@
 						alert("이메일형식이 올바르지 않습니다.");
 						$("#RegisterEmail").val("");
 						return false;
-				} else if (RegisterPhoneCheck != PhoneAuthKey) {
+				} /* else if (RegisterPhoneCheck != PhoneAuthKey) {
 					alert("인증번호가 일치하지 않습니다.");
 				} else if (RegisterPhoneCheck == PhoneAuthKey) {
 					phoneChk = 1;
-				}
+				} */
  	 				
- 	 				
+ 	 			alert("가입이 완료되었습니다. 이메일 인증을 완료되어야 사이트 이용이 가능합니다.");
  				$("#registerForm").submit();
  	 				
  	 			
@@ -428,7 +431,7 @@
  		
  		
  		//핸드폰 문자전송 버튼을 누르면 일단 member테이블에 핸드폰 중복조회를 한 후, data.cnt == 0 이면 문자 전송
-		$("#phoneCheckBtn").on("click", function() {
+/* 		$("#phoneCheckBtn").on("click", function() {
 //			var phone = $("#RegisterPhone").val();
 			var phone = $("#RegisterPhone").serialize();
 			console.log(phone);
@@ -467,7 +470,7 @@
 			
 			
 			});
-		}); 		
+		}); 		 */
 	
  		//로그인 버튼 클릭 시
  		$("#memberLoginBtn").on("click", function() {
@@ -535,7 +538,7 @@
  		
 		//회원가입 모달에서 입력하고 엔터치면 회원가입 버튼 클릭
  		function enterRegister() {
- 			$("#registerBtn").click();
+ 			$("#memberRegiBtn").click();
  		}
  		
 		//회원가입 모달 - 이메일 입력 부분에서 엔터치면 이메일 중복확인 버튼 클릭

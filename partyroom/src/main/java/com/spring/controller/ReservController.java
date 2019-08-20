@@ -43,7 +43,8 @@ public class ReservController {
 			@RequestParam("male") Long male,
 			@RequestParam("female") Long female,
 			@RequestParam("price") Long price,
-			@RequestParam("time_idx") Long time_idx
+			@RequestParam("time_idx") Long time_idx,
+			@RequestParam("reserv_email") String reserv_email
 			) throws ParseException {
 		
 		
@@ -62,10 +63,12 @@ public class ReservController {
 		
 		System.out.println("체크아웃 날짜 - 체크인 날짜 : " + calDateDays);
 		System.out.println("price : " + price);
-		System.out.println("인원수 : " + count);
+		System.out.println("남성인원 : " + male);
+		System.out.println("여성인원 : " + female);
+		System.out.println("인원총합 : " + count);
 		
 		
-		count = male + female;
+		//count = male + female;
 		price = price * calDateDays * count;
 		System.out.println("인원*날짜*가격 : " + price);
 		reserv.setBreakfast(breakfast);
@@ -73,6 +76,7 @@ public class ReservController {
 		reserv.setStart_date(start);
 		reserv.setEnd_date(end);
 		reserv.setCount(count);
+		reserv.setReserv_email(reserv_email);
 		
 		reserv.setMale(male);
 		reserv.setFemale(female);

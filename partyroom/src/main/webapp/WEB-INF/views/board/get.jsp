@@ -38,7 +38,7 @@
 
 
 
-<c:if test="${member.name eq board.writer }">
+<c:if test="${member.name eq board.writer && member.email eq board.email}">
 <button data-oper='modify' class="btn btn-default">글 수정</button>
 </c:if>
 <button data-oper='list' class="btn btn-info">글 목록</button>

@@ -11,8 +11,8 @@
 </select>
 
 <insert id="insert">
-	INSERT INTO BOARD(BNO, TITLE, CONTENT, WRITER) 
-		VALUES (SEQ_BOARD.NEXTVAL, #{title}, #{content}, #{writer})
+	INSERT INTO BOARD(BNO, TITLE, CONTENT, WRITER, EMAIL) 
+		VALUES (SEQ_BOARD.NEXTVAL, #{title}, #{content}, #{writer}, #{email})
 </insert>
 
 
@@ -24,8 +24,8 @@
 	
 	<!-- SELECT SEQ_BOARD.NEXTVAL FROM DUAL 쿼리가 먼저 실행 후, 결과를 이용해서 bno값 처리 -->
 
-	INSERT INTO BOARD(BNO, TITLE, CONTENT, WRITER) 
-		VALUES (SEQ_BOARD.NEXTVAL, #{title}, #{content}, #{writer})	
+	INSERT INTO BOARD(BNO, TITLE, CONTENT, WRITER, EMAIL) 
+		VALUES (SEQ_BOARD.NEXTVAL, #{title}, #{content}, #{writer}, #{email})	
 </insert>
 
 <select id="read" resultType="com.spring.domain.BoardVO">

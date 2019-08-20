@@ -19,6 +19,7 @@
 		<!-- 로그인 만든 후 작성자는 hidden 처리 -->
 		<input type="text" name="title" style="width: 100%;" placeholder="제목"/><br>
 		<input type="hidden" name="writer" value="${member.name }"/><br>
+		<input type="hidden" name="email" value="${member.email }"/><br>
 		<textarea id="summernote" name="content"></textarea>
 		<input id="subBtn" type="button" value="글 작성" class="btn btn-secondary" style="float: right;" onclick="register(this.form)" /> 
 	</form>
@@ -43,7 +44,7 @@ function register(frm) {
 	var title = frm.title.value;
 	var writer = frm.writer.value;
 	var content = frm.content.value;
-	
+	var email = frm.email.value;
 	if (title.trim() == ''){
 		alert("제목을 입력해주세요");
 		return false;

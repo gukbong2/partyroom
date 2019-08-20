@@ -39,20 +39,19 @@ public class MemberController {
 		
 		log.info("register : " + member);
 		
-//		String salt = SHA256Util.generateSalt();
-//		member.setSalt(salt);
-//		System.out.println("salt : " + salt);
-//		
-//		String password = member.getPassword();
-//		password = SHA256Util.getEncrypt(password, salt);
-//		System.out.println("password : " + password);
-//		
-//		member.setPassword(password);
-//		System.out.println("마지막 password : " + password);
+		String salt = SHA256Util.generateSalt();
+		member.setSalt(salt);
+		System.out.println("salt : " + salt);
+		
+		String password = member.getPassword();
+		password = SHA256Util.getEncrypt(password, salt);
+		System.out.println("password : " + password);
+		
+		member.setPassword(password);
+		System.out.println("마지막 password : " + password);
 		
 		service.memberRegister(member);
 		
-		session.setAttribute("member", member);
 			
 		return "member/emailNotVerify";
 		
@@ -72,40 +71,41 @@ public class MemberController {
 	
 	
 	//로그인 
-	@PostMapping("/login")
-	public String login(MemberVO vo, HttpSession session) {
-		vo = service.getMember(vo.getEmail());
-		//String salt = service.getSaltById(vo.getEmail());
-		//String password = vo.getPassword();
-		int auth = service.getAuth(vo.getEmail());
-		vo.setAuth(auth);
-		System.out.println("member auth : " + auth);
-		//System.out.println("salt : " + salt);
-		//System.out.println("password : " + password);
-		//password = SHA256Util.getEncrypt(password, salt);
-		//vo.setPassword(password);
-		//System.out.println("마지막 password : " + password);
-		
-		service.login(vo);
-		//MemberVO member = service.login(vo);
-		
-		//이메일 인증이 안되어있다면
-		if (vo.getAuth() == 0) {
-			System.out.println("===========================auth 값 : " + vo.getAuth());
-			return "member/emailNotVerify";
+		@PostMapping("/login")
+		public String login(MemberVO vo, HttpSession session) {
+			vo = service.getMember(vo.getEmail());
+			String salt = service.getSaltById(vo.getEmail());
+			String password = vo.getPassword();
+			int auth = service.getAuth(vo.getEmail());
+			vo.setAuth(auth);
+			System.out.println("member auth : " + auth);
+			System.out.println("salt : " + salt);
+			System.out.println("password : " + password);
+			password = SHA256Util.getEncrypt(password, salt);
+			vo.setPassword(password);
+			System.out.println("마지막 password : " + password);
 			
-			} else {
-		
-			System.out.println("===========================auth 값 : " + vo.getAuth());
+			service.login(vo);
+			//MemberVO member = service.login(vo);
 			
+			//이메일 인증이 안되어있다면
+			if (vo.getAuth() == 0) {
+				System.out.println("===========================auth 값 : " + vo.getAuth());
+				return "member/emailNotVerify";
+				
+				} else {
 			
-			session.setAttribute("member", vo);
-			System.out.println("member : " + vo);
-			return "/page/home";
+				System.out.println("===========================auth 값 : " + vo.getAuth());
+				
+				
+				session.setAttribute("member", vo);
+				System.out.println("member : " + vo);
+				return "/page/home";
+				
+				}
 			
 			}
 		
-		}
 	
 	//비밀번호 수정 페이지로
 	@GetMapping("/modifyPw")
@@ -210,6 +210,16 @@ public class MemberController {
 	public Map<Object, Object> modifyPassword(MemberVO member) {
 		int count = 0;
 		Map<Object, Object> map = new HashMap<Object, Object>();
+		
+		String salt = service.getSaltById(member.getEmail());
+		String password = member.getPassword();
+//		int auth = service.getAuth(member.getEmail());
+//		member.setAuth(auth);
+//		System.out.println("member auth : " + auth);
+		System.out.println("salt : " + salt);
+		System.out.println("password : " + password);
+		password = SHA256Util.getEncrypt(password, salt);
+		member.setPassword(password);
 		
 		count = service.modifyPassword(member);
 		

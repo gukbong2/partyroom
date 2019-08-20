@@ -18,4 +18,6 @@ public class ReservVO {
 	private Long female;
 	private Long time_idx;
 	private String ticket;
+	private String reserv_email;
+	private Date biling_date;
 }

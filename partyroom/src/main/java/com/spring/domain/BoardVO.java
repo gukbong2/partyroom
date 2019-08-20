@@ -15,5 +15,6 @@ public class BoardVO {
 	
 	private int replycnt;
 	
+	private String email;
 	
 }

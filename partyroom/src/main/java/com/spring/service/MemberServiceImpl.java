@@ -16,9 +16,11 @@ import com.spring.mapper.ReplyMapper;
 
 import lombok.AllArgsConstructor;
 import lombok.Setter;
+import lombok.extern.log4j.Log4j;
 
 @Service
 @AllArgsConstructor
+@Log4j
 public class MemberServiceImpl implements MemberService{
 
 	@Setter(onMethod_ = @Autowired)
@@ -34,14 +36,17 @@ public class MemberServiceImpl implements MemberService{
 	private JavaMailSender mailSender;
 	
 	@Override
-	//@Transactional
+	@Transactional
 	public void memberRegister(MemberVO member) throws MessagingException, UnsupportedEncodingException {
 		// 임의의 authkey 생성
-		String authkey = new TempKey().getKey(40, false);
+		String authkey = new TempKey().getKey(20, false);
 		String sendEmail = "sspartyroom@gmail.com";
 		sendEmail.trim();
 		
 		member.setAuthkey(authkey);
+		
+		log.info("서비스 authkey : " + authkey);
+		
 		mapper.updateAuthkey(member);
 		
 		// mail 작성 관련 
@@ -54,7 +59,7 @@ public class MemberServiceImpl implements MemberService{
 				.append(member.getEmail())
 				.append("&authkey=")
 				.append(authkey)
-				.append("target='_blank'>이메일 인증 확인</a>")
+				.append("&target='_blank'>이메일 인증 확인</a>")
 				.toString());
 		sendMail.setFrom(sendEmail, sendEmail);
 		sendMail.setTo(member.getEmail());

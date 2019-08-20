@@ -413,6 +413,7 @@ body {
                <input type="hidden" name="price" id="price" value="3"/>
                <input type="hidden" name="count" id="count" value="0"/>
                <input type="hidden" id="reserv_name" name="reserv_name" value="${member.name }"/>
+               <input type="hidden" id="reserv_email" name="reserv_email" value="${member.email }"/>
                <!-- 달력 -->
                
                <br>
