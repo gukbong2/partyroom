@@ -203,9 +203,8 @@
                 <div class="row contacts">
                     <div class="col invoice-to">
                         <div class="text-gray-light">INVOICE TO:</div>
-                        <h2 class="to">${member.name }</h2>
-                        <h5 class="to"><a href="mailto:junyeon2459@gmail.com">${member.email }</a></h5>
-                       <!--  <div class="address">796 Silver Harbour, TX 79273, US</div> -->
+                        <h5 class="to"><a href="mailto:junyeon2459@gmail.com">${reserv.reserv_email }</a></h5>
+                      <div class="address">796 Silver Harbour, TX 79273, US</div> 
                     </div>
                     <div class="col invoice-details">
                         <h1 class="invoice-id">INVOICE 3-2-1</h1>
@@ -252,7 +251,7 @@
                         <tr>
                             <td colspan="2"></td>
                             <td colspan="2">결제금액</td>
-                            <td>${reserv.price }</td>
+                            <td>$ ${reserv.price }</td>
                         </tr>
                     </tfoot>
                 </table>
@@ -267,26 +266,7 @@
     </div>
 </div>
 
-<script>
-document.ready(function() {
-	
-	/* var name = '${reserv.name}';
-	var start_date = '${reserv_start_date}';
-	var end_date = '${reserv_end_date}';
-	var price = '${reserv.price}';
-	var biling_date 
-	
-	
-	$.ajax({
-		
-		
-		
-	}); */
-	
-	
-});
 
-</script>
 
 
 

@@ -51,8 +51,9 @@ public class HomeController {
 		
 		System.out.println("네이버:" + naverAuthUrl);
 		//네이버
-		model.addAttribute("url", naverAuthUrl);
-
+		//model.addAttribute("url", naverAuthUrl);
+		session.setAttribute("url", naverAuthUrl);
+		session.setAttribute("urlboard", naverAuthUrl);
 		/* 생성한 인증 URL을 View로 전달 */
 		
 		return "/page/home";

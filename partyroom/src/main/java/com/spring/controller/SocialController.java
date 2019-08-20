@@ -54,7 +54,7 @@ public class SocialController {
 		service.insert(social);
 		session.setAttribute("member", social);
 		
-		return "/page/home";
+		return "redirect:/";
 	}
 	
 	//첫번쨰 이후 로그인 시, 마지막 접속 날짜값만 SYSDATE로 업데이트
@@ -65,7 +65,7 @@ public class SocialController {
 		service.modify(social);
 		session.setAttribute("member", social);
 		
-		return "/page/home";
+		return "redirect:/";
 	}
 	
 	//db에 저장이 되어있는지 안되어있는지 count Ajax
@@ -116,6 +116,42 @@ public class SocialController {
 			
 	        /* 네이버 로그인 성공 페이지 View 호출 */
 			return "naverSuccess";
+		}
+		
+		@RequestMapping(value = "/callbackForBoard", method = { RequestMethod.GET, RequestMethod.POST })
+		public String callbackForBoard(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
+				throws IOException {
+			System.out.println("callback으로 옴");
+			OAuth2AccessToken oauthToken;
+	        oauthToken = naverLoginBO.getAccessToken(session, code, state);
+	        //로그인 사용자 정보를 읽어온다.
+		    apiResult = naverLoginBO.getUserProfile(oauthToken);
+			model.addAttribute("result", apiResult);
+			
+	        /* 네이버 로그인 성공 페이지 View 호출 */
+			return "naverSuccessForBoard";
+		}
+		
+		//db에 처음 로그인 했을 때 데이터 저장
+		@PostMapping("/insertForBoard")
+		public String insertForBoard(SocialVO social, HttpSession session) {
+			log.info("insertForBoard : " + social);
+			
+			service.insert(social);
+			session.setAttribute("member", social);
+			
+			return "/";
+		}
+		
+		//첫번쨰 이후 로그인 시, 마지막 접속 날짜값만 SYSDATE로 업데이트
+		@PostMapping("/updateForBoard")
+		public String updateForBoard(SocialVO  social,HttpSession session) {
+			log.info("updateForBoard : " + social);
+			
+			service.modify(social);
+			session.setAttribute("member", social);
+			
+			return "/";
 		}
 		
 		

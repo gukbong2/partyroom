@@ -82,14 +82,14 @@
 	
 	
 	<!-- api 히든 폼 --> 
-<form action="/social/insert" name="socialInsertForm" method="post">
+<form action="/social/insertForBoard" name="socialInsertForm" method="post">
 	<input type="hidden" name="email" value="">
     <input type="hidden" name="api_id" value=""> 
 	<input type="hidden" name="name" value="">
 	<input type="hidden" name="type" value="">
 </form>
 
-<form action="/social/update" name="socialUpdateForm" method="post">
+<form action="/social/updateForBoard" name="socialUpdateForm" method="post">
 	<input type="hidden" name="email" value="">
 	<input type="hidden" name="api_id" value="">
 	<input type="hidden" name="name" value="">

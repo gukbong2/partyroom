@@ -30,13 +30,15 @@ public class BoardController {
 	private BoardService service;
 	
 	@GetMapping("/list")
-	public void list(Criteria cri, Model model) {
+	public void list(Criteria cri, Model model, HttpSession session) {
 
 		log.info("list: " + cri);
 		model.addAttribute("list", service.getList(cri));
-
+		
 		int total = service.getTotal(cri);
 
+		session.getAttribute("url");
+		
 		log.info("total: " + total);
 
 		model.addAttribute("pageMaker", new PageDTO(cri, total));

@@ -57,11 +57,11 @@
  a:hover { color: #646464; text-decoration: none;}
  a:active {text-decoration:none; color:#646464; }
  
- .dropdown-content a:hover {
+ .dropdown-item a:hover {
 	background-color: #646464;
 	text-decoration: none;
 }
- .dropdown-content a:active {
+ .dropdown-item a:active {
 	background-color: #646464;
 	text-decoration: none;
 }

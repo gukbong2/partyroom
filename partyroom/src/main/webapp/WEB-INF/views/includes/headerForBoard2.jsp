@@ -1,4 +1,4 @@
-	<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%> 
@@ -24,8 +24,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
     
     <!-- 써머노트 -->
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
+	<script src="/resources/js/summernote-ko-KR.js"></script>
 	
 	<!-- slick.js -->
 	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css"/>
@@ -83,7 +84,7 @@
     
     <nav class="navbar navbar-expand-lg navbar-light bg-light  fixed-top" >
 		<div class="container-fluid">
-			<a class="navbar-brand" href="/">
+			<a class="navbar-brand" href="/page/home">
 				 <img src="/resources/image/logo.png" width="100px" height="100px"> 
 			</a>
 		
@@ -95,7 +96,7 @@
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item"><a class="nav-link" href="/page/home">이용안내</a></li>
-				<li class="nav-item"><a class="nav-link" href="/page/home">예약하기</a></li>
+				<li class="nav-item"><a class="nav-link" href="#" onclick="showPopup();">예약하기</a></li>
 				<li class="nav-item"><a class="nav-link" href="/page/home">찾아 오는 길</a></li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="navdropdown">게시판
@@ -121,7 +122,7 @@
 					<li class="nav-item dropdown">
 			        	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
 			        	  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			          		${member.name } ${naverName }&nbsp;님
+			          		${member.name }&nbsp;님
 			        	</a>
 			          <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
 			            <a class="dropdown-item" href="/member/modifyPw">비밀번호 변경</a>
@@ -171,7 +172,7 @@
 
 				<form style="text-align: center;">
 					<!-- 네이버 -->
-				   <a href="${urlboard}" id="naverBtn"><img src="/resources/image/naverlogo.PNG" alt="" width="80px;" /></a>
+				   <a href="${url}" id="naverBtn"><img src="/resources/image/naverlogo.PNG" alt="" width="80px;" /></a>
 					<!-- 카카오 -->
 					<a href="javascript:loginWithKakao()"><img src="/resources/image/kakaologo.png" alt="" width="80px;" /></a>
 				</form>
@@ -190,7 +191,77 @@
 </div>
 <!-- 로그인 모달 -->
 
+<!-- 회원가입 모달 -->
+<div class="modal fade" id="register" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
 
+			<div class="modal-header">
+				<h5 class="modal-title" id="myModalLabel"><strong>회원가입</strong></h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div> 
+			
+			<div class="modal-body center">
+				<form method="post" id="registerForm" action="/member/register">
+					<input type="text" name="email" id="RegisterEmail" class="form-control my-2" 
+				 	placeholder="이메일" onKeyPress="if (event.keyCode==13){emailChk()}">
+				 	
+					<input type="text" name="emailCheck" id="emailCheck"  class="btn btn-block form-control"
+					style="background-color: #0da197; color: white;" value="이메일 중복체크" readonly="readonly"
+					onKeyPress="if (event.keyCode==13){emailChk()}"> 
+					
+					<input type="password" name="password" id="RegisterPassword" class="form-control my-2" 
+					onKeyPress="if (event.keyCode==13){enterRegister()}" placeholder="비밀번호">
+					
+					<input type="password" name="passwordChk" id="RegisterPasswordCheck" 
+					onKeyPress="if (event.keyCode==13){enterRegister()}" class="form-control my-2" placeholder="비밀번호 확인">
+					
+					<input type="text" name="name" id="RegisterName" class="form-control my-2" 
+					onKeyPress="if (event.keyCode==13){enterRegister()}" placeholder="성함" > 
+					
+					<input type="text" name="phone" id="RegisterPhone" class="form-control my-2" 
+					onKeyPress="if (event.keyCode==13){phoneChk()}" placeholder="핸드폰 번호" maxlength="11" > 
+					
+					<div>
+						<input type="text" name="phoneCheckBtn" id="phoneCheckBtn"  class="btn btn-block form-control"
+						style="background-color: #0da197; color: white;" value="핸드폰 본인 인증" readonly="readonly"
+						onKeyPress="if (event.keyCode==13){phoneChk()}"> 
+						
+						<input type="text"  id="phoneCheckValue" class="form-control" placeholder="핸드폰인증번호를 입력하세요." />
+					</div>
+					
+					<input type="button" style="background-color: #475C7A; color: white;" id="memberRegiBtn"
+					class="btn btn-block form-control" value="회원가입" 
+					 onKeyPress="if (event.keyCode==13){enterRegister()}">
+				</form>
+				<hr>
+
+				<form style="text-align: center;">
+					<!-- 소셜 로그인 추후 -->	
+						<!-- 네이버 -->
+				    <a href="${url}" id="naverBtn"><img src="/resources/image/naverlogo.PNG" alt="" width="80px;" /></a>
+					<!-- 카카오 -->
+					<a href="javascript:loginWithKakao()"><img src="/resources/image/kakaologo.png" alt="" width="80px;" /></a>
+				</form>
+				<hr>
+
+				<div class="text-center">
+					<a data-toggle="modal" data-dismiss="modal" href="#findPW"
+					data-target="#findPW">비밀번호 찾기</a><br>
+					<a data-toggle="modal" data-dismiss="modal" href="#login"
+						data-target="#login">로그인</a>
+				</div>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>    
+<!-- 회원가입 모달 끝-->
  
 <!-- 비밀번호 모달 -->
 <div class="modal fade" id="findPW" tabindex="-1" role="dialog"
@@ -227,81 +298,9 @@
 	</div>
 </div>
 <!-- 비밀번호 모달 --> 
- 
- 
-<!-- 회원가입 모달 -->
-<div class="modal fade" id="register" tabindex="-1" role="dialog"
-	aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
 
-			<div class="modal-header">
-				<h5 class="modal-title" id="myModalLabel"><strong>회원가입</strong></h5>
-				<button type="button" class="close" data-dismiss="modal"
-					aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div> 
-			
-			<div class="modal-body center">
-				<form method="post" id="registerForm" action="/member/register">
-					<input type="text" name="email" id="RegisterEmail" class="form-control my-2" 
-				 	placeholder="이메일" onKeyPress="if (event.keyCode==13){emailChk()}">
-				 	
-					<input type="text" name="emailCheck" id="emailCheck"  class="btn btn-block form-control"
-					style="background-color: #0da197; color: white;" value="이메일 중복체크" readonly="readonly"
-					onKeyPress="if (event.keyCode==13){emailChk()}"> 
-					
-					<input type="password" name="password" id="RegisterPassword" class="form-control my-2" 
-					onKeyPress="if (event.keyCode==13){enterRegister()}" placeholder="비밀번호">
-					
-					<input type="password" name="passwordChk" id="RegisterPasswordCheck" 
-					onKeyPress="if (event.keyCode==13){enterRegister()}" class="form-control my-2" placeholder="비밀번호 확인">
-					
-					<input type="text" name="name" id="RegisterName" class="form-control my-2" 
-					onKeyPress="if (event.keyCode==13){enterRegister()}" placeholder="성함" > 
-					
-					<!-- <input type="text" name="phone" id="RegisterPhone" class="form-control my-2" 
-					onKeyPress="if (event.keyCode==13){phoneChk()}" placeholder="핸드폰 번호" maxlength="11" > 
-					
-					<div>
-						<input type="text" name="phoneCheckBtn" id="phoneCheckBtn"  class="btn btn-block form-control"
-						style="background-color: #0da197; color: white;" value="핸드폰 본인 인증" readonly="readonly"
-						onKeyPress="if (event.keyCode==13){phoneChk() return false;}"> 
-						
-						<input type="text"  id="RegisterPhoneCheck" class="form-control my-2" 
-						onKeyPress="if (event.keyCode==13){enterRegister() return false;}"placeholder="핸드폰인증번호를 입력하세요." />
-					</div> -->
-					
-					<input type="button" style="background-color: #475C7A; color: white;" id="memberRegiBtn"
-					class="btn btn-block form-control" value="회원가입" 
-					 onKeyPress="if (event.keyCode==13){enterRegister()}">
-				</form>
-				<hr>
 
-				<form style="text-align: center;">
-					<!-- 네이버 -->
-				   <a href="${url}" id="naverBtn"><img src="/resources/image/naverlogo.PNG" alt="" width="80px;" /></a>
-					<!-- 카카오 -->
-					<a href="javascript:loginWithKakao()"><img src="/resources/image/kakaologo.png" alt="" width="80px;" /></a>
-				</form>
-				<hr>
-
-				<div class="text-center">
-					<a data-toggle="modal" data-dismiss="modal" href="#findPW"
-					data-target="#findPW">비밀번호 찾기</a><br>
-					<a data-toggle="modal" data-dismiss="modal" href="#login"
-						data-target="#login">로그인</a>
-				</div>
-			</div>
-			
-			
-		</div>
-	</div>
-</div>    
-<!-- 회원가입 모달 끝--> 
- 
-<!-- api 히든 폼 --> 
+ <!-- api 히든 폼 --> 
 <form action="/social/insert" name="socialInsertForm" method="post">
 	<input type="hidden" name="email" value="">
     <input type="hidden" name="api_id" value=""> 
@@ -317,7 +316,6 @@
 </form>
 <!-- api 히든 폼 끝 -->
  
- 
  <script>
  		
  		$(document).ready(function() {
@@ -326,9 +324,7 @@
  			var exptest = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
  			
  			var emailChk = 0;
- 			var phoneChk = 0;
  			
- 			//email체크
  			$("#findPwBtn").on("click", function() {
  				var emailCheckVal = $("#findPwEmail").val();
  				console.log(emailCheckVal);
@@ -356,7 +352,7 @@
  			
  			
  							
- 			//이메일 중복확인을 누르면
+ 			
  			$("#emailCheck").on("click", function() {
  				console.log("누름");
  				var emailCheckVal = $("#RegisterEmail").val();
@@ -388,23 +384,23 @@
  				});
  				
  			});
- 			
- 			
- 			//회원가입 버튼을 누르면
+ 		
  			$("#memberRegiBtn").on("click", function() {
  				var registerEmail = $("#RegisterEmail").val();
  				var registerName = $("#RegisterName").val();
  				var registerPassword = $("#RegisterPassword").val();
  				var registerPasswordCheck = $("#RegisterPasswordCheck").val();
- 				//var RegisterPhoneCheck = $("#RegisterPhoneCheck").val();
-				//var PhoneAuthKey = "${message.authkey}";
-				//console.log(PhoneAuthKey);
+
+
 
  				console.log("누름");
  				
  				/* 모달이던 oninput이던 아무거나 변경 */
  				if (emailChk == 0) {
  	 				console.log("이메일 중복을 확인해주세요");
+ 	 				return false;
+ 	 			} else if (phoneCheck == 0) {
+ 	 				console.log("핸드폰 인증을 하세요");
  	 				return false;
  	 			} else if (registerEmail == null || registerEmail == "") {
 						alert("이메일을 입력해주세요.");
@@ -422,13 +418,9 @@
 						alert("이메일형식이 올바르지 않습니다.");
 						$("#RegisterEmail").val("");
 						return false;
-				} /* else if (RegisterPhoneCheck != PhoneAuthKey) {
-					alert("인증번호가 일치하지 않습니다.");
-				} else if (RegisterPhoneCheck == PhoneAuthKey) {
-					phoneChk = 1;
-				} */
+				} 
  	 				
- 	 			alert("가입이 완료되었습니다. 이메일 인증을 완료되어야 사이트 이용이 가능합니다.");
+ 	 				
  				$("#registerForm").submit();
  	 				
  	 			
@@ -436,9 +428,7 @@
  			});
  		});
  		
- 		
- 		//핸드폰 문자전송 버튼을 누르면 일단 member테이블에 핸드폰 중복조회를 한 후, data.cnt == 0 이면 문자 전송
-/* 		$("#phoneCheckBtn").on("click", function() {
+		$("#phoneCheckBtn").on("click", function() {
 //			var phone = $("#RegisterPhone").val();
 			var phone = $("#RegisterPhone").serialize();
 			console.log(phone);
@@ -456,8 +446,8 @@
 					} else if (data.cnt == 0) {
 						console.log(data.cnt);
 					
-						alert("인증문자 발송 성공!");
-						console.log("인증문자 발송 성공!");
+							alert("인증번호 발송");
+							
 							//이것도 restapi로 하지말고 그냥 ajax로 모달안꺼지게 바로 나오게 ㄱ 
 						$.ajax({
 							method : 'post',
@@ -465,7 +455,7 @@
 							data : phone,
 							url : '/check/phone/' + phone,
 							success : function() {
-								
+								console.log("인증문자 발송 성공!");
 							}
 						
 						
@@ -477,9 +467,8 @@
 			
 			
 			});
-		}); 		 */
+		}); 		
 	
- 		//로그인 버튼 클릭 시
  		$("#memberLoginBtn").on("click", function() {
  			var exptest = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
  			
@@ -538,27 +527,23 @@
 			
 			
 			
-		//로그인 모달에서 입력하고 엔터치면 로그인 버튼 클릭
+			
  		function enterLogin() {
  			$("#memberLoginBtn").click();
  		}
  		
-		//회원가입 모달에서 입력하고 엔터치면 회원가입 버튼 클릭
  		function enterRegister() {
- 			$("#memberRegiBtn").click();
+ 			$("#registerBtn").click();
  		}
  		
-		//회원가입 모달 - 이메일 입력 부분에서 엔터치면 이메일 중복확인 버튼 클릭
  		function emailChk() {
  			$("#emailCheck").click();
  		}
  		
-		//회원가입 모달 - 핸드폰 입력 부분에서 엔터치면 핸드폰 문자전송 버튼 클릭
  		function phoneChk() {
- 			$("#phoneCheckBtn").click();
+ 			$("#phoneCheck").click();
  		}
  		
-		//로그아웃 클릭 시 이동
  		function logout() {
  			if (confirm("로그 아웃 하시겠습니까?")) {
  				location.href = "/member/logout";
@@ -567,10 +552,17 @@
  				return false;
  			}
  		}
+ 		
+ 		 function showPopup() { 
+ 			//결제 창 열기
+ 			 window.open("/reserv/reservPage", "a", "width=1200, height=800, left=250, top=50"); 
+ 				
+ 		} 
 
  </script>
  
-<!-- 카카오 로그인 api -->
+ 
+ <!-- 카카오 로그인 api -->
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type='text/javascript'>
 	// 사용할 앱의 JavaScript 키를 설정해 주세요.
@@ -601,6 +593,7 @@
 							data : params,
 							dataType : 'json',
 							success : function(data) {
+								console.log(data);
 								console.log("data.cnt : " + data.cnt);
 								if(data.cnt == 0) {
 									
@@ -628,7 +621,7 @@
 									
 								}
 								
-							}, 
+							},
 							error : function(jqXHR, textStatus, errorThrown) {
 								alert("에러 발생 : " + jqXHR.status + "에러임");
 							}
@@ -643,23 +636,7 @@
 		});
 	}; /* 카카오 로그인 끝 */
 </script>
-
-
-
- <!-- 네이버 로그인 시작-->
-
-<script>
-	$("#naverBtn").on("click", function() {
-		
-		console.log("클릭됨");
-		
-		
-	});
-	
-	
-</script>
-
-
+ 
  
  
  

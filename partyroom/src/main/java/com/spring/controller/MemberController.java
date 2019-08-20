@@ -119,7 +119,7 @@ public class MemberController {
 	public String logout(HttpSession session) {
 		session.invalidate();
 		
-		return "redirect:/page/home";
+		return "redirect:/";
 	}
 	
 	//비밀번호 찾기

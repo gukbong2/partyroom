@@ -13,7 +13,7 @@ $(document).ready(function() {
 	console.log(price);
 	var email = "${member.email}";
 	console.log(email);
-	var name = "${member.name}";
+	var name = "${reserv.reserv_name}";
 	console.log(name);  
 	var start_date = "${reserv.start_date}";
 	var end_date = "${reserv.end_date}";

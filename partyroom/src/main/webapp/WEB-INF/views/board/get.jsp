@@ -18,7 +18,7 @@
           <div class="form-group">
             <p class="center"><strong>#${board.bno }</strong></p>
             <p> ${board.title }</p>
-            <p> ${member.name } 님</p>
+            <p> ${board.writer } 님</p>
          </div>
 
 		<hr />
