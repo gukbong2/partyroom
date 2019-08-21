@@ -42,7 +42,7 @@
 </c:if>
 <button data-oper='list' class="btn btn-info">글 목록</button>
 
-
+<hr>
 
 <form id='operForm' action="/boad/modify" method="get">
   <input type='hidden' id='bno' name='bno' value='<c:out value="${board.bno}"/>'>
@@ -72,6 +72,7 @@
        	</form>
        </c:if>
       </div>      
+      <br><br>
       
       	<!-- 댓글 입력  -->
       	  <div class="panel-body">
@@ -189,9 +190,8 @@ $(document).ready(function() {
 					return	;
 				}
 				for (var i = 0, len = list.length || 0; i < len; i++) {
-					str +="<li class='left clearfix' data-rno='"+list[i].rno+"'>";
-					 str +="  <div><div class='header'><strong class='primary-font'>["
-						   +list[i].rno+"] "+list[i].replyer+"</strong>"; 
+					str +="<li style='list-style:none;' class='left clearfix' data-rno='"+list[i].rno+"'>";
+					 str +="  <div><div class='header'><strong class='primary-font'>"+list[i].replyer+"</strong>"; 
 					str += "<small class='pull-right text-muted'>"+replyService.displayTime(list[i].replydate) + "</small></div>";
 					str += "<p>" + list[i].reply + "</p></div></li>";
 					str += "<hr />";

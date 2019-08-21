@@ -32,5 +32,9 @@
 	
 	<resources location="/WEB-INF/views/ckeditor/" mapping="/ckeditor/**"></resources>
 	
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"></beans:bean>
+	
+
+	
 	
 </beans:beans>

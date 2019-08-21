@@ -23,7 +23,7 @@
 			<!-- /.panel-heading -->
 			<div class="panel-body" style="font-size: 20px; width: 80%; margin-right : auto; margin-left : auto;">
 				<button class='btn btn-default' id="regBtn" 
-							style="text-align: right;">글작성</button>
+							style="margin-right : auto; margin-left : auto;">글작성</button>
 				<table class="table table-hover">
 				
 			<thead>
