@@ -16,6 +16,9 @@
 	
 	<dependencies>
 		
+		
+	 
+		
 	   <!-- 썸네일 생성 -->
 		<dependency>
 		    <groupId>net.coobird</groupId>

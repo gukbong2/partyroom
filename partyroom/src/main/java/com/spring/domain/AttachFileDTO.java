@@ -1,0 +1,13 @@
+package com.spring.domain;
+
+import lombok.Data;
+
+@Data
+public class AttachFileDTO {
+
+	
+		private String filename;
+		private String uploadPath;
+		private String uuid;
+		private boolean image;
+}
