@@ -26,7 +26,7 @@
 }
 
 .uploadResult ul li img {
-	width: 100px;
+	width: 30px;
 }
 </style>
 

@@ -3,6 +3,7 @@ package com.spring.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -10,6 +11,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,6 +22,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -190,6 +194,54 @@ public class UploadController {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	
+	@ResponseBody
+	@GetMapping(value="/download", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+	public ResponseEntity<Resource> downloadFile(@RequestHeader("User-agent") String userAgent, String filename) {
+		log.info("download file : " + filename);
+		
+		Resource resource = new FileSystemResource("d:\\upload\\" + filename);
+
+		if(resource.exists() == false) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			
+		}
+		
+		String resourceName = resource.getFilename();
+		
+		HttpHeaders headers = new HttpHeaders();
+		
+		try {
+
+			String downloadName = null;
+			
+			if(userAgent.contains("Trident")) {
+				log.info("ie browser");
+			
+				downloadName = URLEncoder.encode(resourceName, "UTF-8").replaceAll("\\+", " ");
+			
+			} else if (userAgent.contains("Edge")) {
+				
+				log.info("edge browser");
+				
+				downloadName = URLEncoder.encode(resourceName, "UTF-8");
+				
+				log.info("edge name : " + downloadName);
+				
+			} else {
+				log.info("chrome browser");
+				downloadName = new String(resourceName.getBytes("UTF-8"), "ISO-8859-1");
+			}
+			
+			headers.add("Content-Disposition", "Attachment; filename=" + downloadName);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return new ResponseEntity<Resource>(resource, headers, HttpStatus.OK);
+		
 	}
 	
 }
