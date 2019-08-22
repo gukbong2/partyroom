@@ -3,6 +3,7 @@ package com.spring.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
@@ -131,7 +132,7 @@ public class UploadController {
 					
 					thumbnail.close();
 					
-				}
+				} 
 				
 				list.add(attachDTO);
 				
@@ -205,12 +206,15 @@ public class UploadController {
 
 		if(resource.exists() == false) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-			
 		}
 		
 		String resourceName = resource.getFilename();
 		
+		//다운로드 시 uuid 삭제
+		String resourceOriginalName = resourceName.substring(resourceName.indexOf("_") + 1);
+		
 		HttpHeaders headers = new HttpHeaders();
+		
 		
 		try {
 
@@ -219,19 +223,19 @@ public class UploadController {
 			if(userAgent.contains("Trident")) {
 				log.info("ie browser");
 			
-				downloadName = URLEncoder.encode(resourceName, "UTF-8").replaceAll("\\+", " ");
+				downloadName = URLEncoder.encode(resourceOriginalName, "UTF-8").replaceAll("\\+", " ");
 			
 			} else if (userAgent.contains("Edge")) {
 				
 				log.info("edge browser");
 				
-				downloadName = URLEncoder.encode(resourceName, "UTF-8");
+				downloadName = URLEncoder.encode(resourceOriginalName, "UTF-8");
 				
 				log.info("edge name : " + downloadName);
 				
 			} else {
 				log.info("chrome browser");
-				downloadName = new String(resourceName.getBytes("UTF-8"), "ISO-8859-1");
+				downloadName = new String(resourceOriginalName.getBytes("UTF-8"), "ISO-8859-1");
 			}
 			
 			headers.add("Content-Disposition", "Attachment; filename=" + downloadName);
@@ -243,5 +247,52 @@ public class UploadController {
 		return new ResponseEntity<Resource>(resource, headers, HttpStatus.OK);
 		
 	}
+	
+	@ResponseBody
+	@PostMapping("/deleteFile")
+	public ResponseEntity<String> deleteFile(String filename, String type) {
+		
+		log.info("deleteFile : " + filename);
+		
+		File file;
+		
+		try {
+			file = new File("d:\\upload\\" + URLDecoder.decode(filename, "UTF-8"));
+			
+			file.delete();
+			
+			if(type.equals("image")) {
+				String largeFileName = file.getAbsolutePath().replace("s_", "");
+				
+				log.info("largeFileName : " + largeFileName);
+				
+				file = new File(largeFileName);
+				
+				file.delete();
+			}
+			
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+
+			return new ResponseEntity<>("deleted", HttpStatus.OK);
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
