@@ -2,6 +2,7 @@ package com.spring.service;
 
 import java.util.List;
 
+import com.spring.domain.AttachVO;
 import com.spring.domain.BoardVO;
 import com.spring.domain.Criteria;
 
@@ -21,7 +22,7 @@ public interface BoardService {
 
 	public BoardVO deleteAll(String writer);
 
-
+	public List<AttachVO> getAttachList(Long bno);
 
 
 

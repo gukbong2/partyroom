@@ -6,14 +6,14 @@
 
 <insert id="insert">
 	INSERT INTO ATTACH (UUID, UPLOADPATH, FILENAME, FILETYPE, BNO)
-		VALUES (#{uuid}, #{uploadpath}, #{filename}, #{filetype}, #{bno)
+		VALUES (#{uuid}, #{uploadPath}, #{filename}, #{filetype}, #{bno})
 </insert>
 
 <delete id="delete">
 	DELETE FROM ATTACH WHERE UUID = #{uuid}
 </delete>
 
-<select id="findByBno">
+<select id="findByBno" resultType="com.spring.domain.AttachVO">
 	SELECT * FROM ATTACH WHERE BNO = #{bno}
 </select>
 

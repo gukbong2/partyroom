@@ -1,7 +1,12 @@
 package com.spring.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,8 +14,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.spring.domain.AttachVO;
 import com.spring.domain.BoardVO;
 import com.spring.domain.Criteria;
 import com.spring.domain.PageDTO;
@@ -54,6 +61,13 @@ public class BoardController {
 	public String register(BoardVO board, RedirectAttributes rttr) {
 		
 		log.info("register : " + board);
+		
+		if(board.getAttachList() != null) {
+			log.info("==============================Attach================================");
+			board.getAttachList().forEach(attach -> log.info(attach));
+		}
+		
+		log.info("==============================");
 		
 		service.register(board);
 		
@@ -103,8 +117,20 @@ public class BoardController {
 
 		return "redirect:/board/list" + cri.getListLink();
 	}
+
 	
 	
+	@ResponseBody
+	@GetMapping(value = "/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<List<AttachVO>> getAttachList(Long bno) {
+		log.info("=====================================================");
+		log.info("=====================================================");
+		log.info("getAttachList : " + bno);
+		log.info("=====================================================");
+		log.info("=====================================================");
+		
+		return new ResponseEntity<>(service.getAttachList(bno), HttpStatus.OK);
+	}
 	
 	
 	

@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.spring.domain.AttachVO;
 
-public interface AtachMapper {
+public interface AttachMapper {
 
 	public void insert(AttachVO attach);
 	
