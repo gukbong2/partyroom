@@ -48,7 +48,7 @@
 </select>
 
 <delete id="deleteAll">
-	 DELETE FROM REPLY WHERE REPLYER = #{replyer}
+	 DELETE REPLY WHERE BNO = #{bno}
 </delete>
 
 

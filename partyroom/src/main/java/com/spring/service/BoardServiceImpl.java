@@ -11,6 +11,7 @@ import com.spring.domain.BoardVO;
 import com.spring.domain.Criteria;
 import com.spring.mapper.AttachMapper;
 import com.spring.mapper.BoardMapper;
+import com.spring.mapper.ReplyMapper;
 
 import lombok.AllArgsConstructor;
 import lombok.Setter;
@@ -26,6 +27,8 @@ public class BoardServiceImpl implements BoardService {
 	@Setter(onMethod_ = @Autowired)
 	private AttachMapper attachMapper;
 	
+	@Setter(onMethod_ = @Autowired)
+	private ReplyMapper replyMapper;
 	
 	@Transactional
 	@Override
@@ -60,9 +63,12 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.update(board) == 1;
 	}
 
+	@Transactional
 	@Override
 	public boolean remove(Long bno) {
 		System.out.println("remove : " + bno);
+		attachMapper.deleteAll(bno);
+		replyMapper.deleteAll(bno);
 		return mapper.delete(bno) == 1;
 	}
 

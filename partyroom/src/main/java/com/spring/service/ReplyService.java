@@ -20,6 +20,6 @@ public interface ReplyService {
 	
 	public ReplyPageDTO getListPage(Criteria cri,Long bno);
 	
-	public ReplyVO deleteAll(String replyer);
+	public void deleteAll(Long bno);
 	
 }

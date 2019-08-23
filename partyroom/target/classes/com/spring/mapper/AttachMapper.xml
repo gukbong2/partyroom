@@ -17,6 +17,9 @@
 	SELECT * FROM ATTACH WHERE BNO = #{bno}
 </select>
 
+<delete id="deleteAll">
+	DELETE ATTACH WHERE BNO = #{bno}
 
+</delete>
 
 </mapper>

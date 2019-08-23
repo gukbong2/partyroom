@@ -12,4 +12,6 @@ public interface AttachMapper {
 	
 	public List<AttachVO> findByBno(Long bno);
 	
+	public void deleteAll(Long bno);
+	
 }

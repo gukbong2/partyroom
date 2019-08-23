@@ -1,5 +1,8 @@
 package com.spring.controller;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -106,15 +109,16 @@ public class BoardController {
 	public String remove(@RequestParam("bno") Long bno, Criteria cri, RedirectAttributes rttr) {
 
 		log.info("remove..." + bno);
+
+		List<AttachVO> attachList = service.getAttachList(bno);
+
 		if (service.remove(bno)) {
+
+			// delete Attach Files
+			deleteFiles(attachList);
+
 			rttr.addFlashAttribute("result", "success");
 		}
-		
-//		rttr.addAttribute("pageNum", cri.getPageNum());
-//		rttr.addAttribute("amount", cri.getAmount());
-//		rttr.addAttribute("type", cri.getType());
-//		rttr.addAttribute("keyword", cri.getKeyword());
-
 		return "redirect:/board/list" + cri.getListLink();
 	}
 
@@ -132,6 +136,34 @@ public class BoardController {
 		return new ResponseEntity<>(service.getAttachList(bno), HttpStatus.OK);
 	}
 	
+private void deleteFiles(List<AttachVO> attachList) {
+	    
+	    if(attachList == null || attachList.size() == 0) {
+	      return;
+	    }
+	    
+	    log.info("delete attach files...................");
+	    log.info(attachList);
+	    
+	    attachList.forEach(attach -> {
+	      try {        
+	    	  Path file  = Paths.get("D:\\upload\\"+attach.getUploadPath()+"\\" + attach.getUuid()+"_"+ attach.getFilename());
+	        
+	        	Files.deleteIfExists(file);
+	        
+	        if (Files.probeContentType(file).startsWith("image")) {
+	        
+	          Path thumbNail = Paths.get("D:\\upload\\"+attach.getUploadPath()+"\\s_" + attach.getUuid()+"_"+ attach.getFilename());
+	          
+	          Files.delete(thumbNail);
+	        }
 	
+	      } catch(Exception e) {
+	        log.error("delete file error" + e.getMessage());
+	      } 
+	    
+	    }); 
+	    
+	  }
 	
 }

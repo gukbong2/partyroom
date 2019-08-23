@@ -62,8 +62,8 @@ public class ReplyServiceImpl implements ReplyService{
 	}
 
 	@Override
-	public ReplyVO deleteAll(String replyer) {
-		return mapper.deleteAll(replyer);
+	public void deleteAll(Long bno) {
+		 mapper.deleteAll(bno);
 	}
 
 	

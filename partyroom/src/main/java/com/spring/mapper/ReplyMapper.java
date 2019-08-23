@@ -22,7 +22,7 @@ public interface ReplyMapper {
 	
 	public int getCountByBno(Long bno);
 	
-	public ReplyVO deleteAll(String replyer);
+	public void deleteAll(Long bno);
 	
 	
 	
