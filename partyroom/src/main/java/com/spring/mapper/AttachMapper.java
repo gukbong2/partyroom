@@ -14,4 +14,6 @@ public interface AttachMapper {
 	
 	public void deleteAll(Long bno);
 	
+	public List<AttachVO> getOldFiles();
+	
 }

@@ -215,6 +215,7 @@ body {
                <b><span id="num" class="back">STEP3</span>
                <span id="select" class="select">결제하기</span></b>
             </a></li>
+            
          </ul>
       </div>
       <!-- 예약 헤더끝 -->
@@ -300,10 +301,7 @@ body {
 
                   <div class="center" >
                      <button type="button" id="reservBackBtn" style="height : 30%; width : 115px;">이전단계</button>
-                   <button type="button" id="reservCheckBtn">
-                   <img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_100x26.png"
-                    alt="PayPal Logo">
-                   </button> 
+                     <button type="button" id="reservCheckBtn" style="height : 30%; width : 115px;">결제하기</button>
                   </div>
 
                </div>

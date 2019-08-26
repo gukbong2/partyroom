@@ -10,16 +10,27 @@
 </insert>
 
 <delete id="delete">
-	DELETE FROM ATTACH WHERE UUID = #{uuid}
+	DELETE FROM ATTACH 
+		WHERE UUID = #{uuid}
 </delete>
 
 <select id="findByBno" resultType="com.spring.domain.AttachVO">
-	SELECT * FROM ATTACH WHERE BNO = #{bno}
+	SELECT * FROM ATTACH 
+		WHERE BNO = #{bno}
 </select>
 
 <delete id="deleteAll">
-	DELETE ATTACH WHERE BNO = #{bno}
+	DELETE ATTACH 
+		WHERE BNO = #{bno}
 
 </delete>
+
+<select id="getOldFiles" resultType="com.spring.domain.AttachVO">
+	
+	SELECT * FROM ATTACH 
+		WHERE UPLOADPATH = to_char(sysdate -1, 'yyyy\mm\dd')
+	
+</select>
+
 
 </mapper>

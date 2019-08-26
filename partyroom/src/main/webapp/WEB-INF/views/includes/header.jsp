@@ -9,9 +9,11 @@
 
     <title>7Hours</title>
     <meta charset="utf-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
     
    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 
@@ -39,8 +41,10 @@
 	
 </head>
 
-<style>
 
+
+<style>
+body, table, div, p{ font-family: 'Nanum Barun Gothic'; }
 
 .nav-item {
 	font-weight: 800;
@@ -67,6 +71,51 @@
 }
  
 
+.dropbtn {
+	cursor: pointer;
+}
+
+
+
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+
+.dropdown-content2 {
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+
+.dropdown-content a {
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+	font-weight: 400;
+}
+
+.dropdown-content a:hover {
+	background-color: #475C7A;
+	color: white;
+	font-weight: 400;
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
 
  
  
@@ -97,15 +146,14 @@
 				<li class="nav-item"><a class="nav-link" href="#guide">이용안내</a></li>
 				<li class="nav-item"><a class="nav-link" href="#reservation">예약하기</a></li>
 				<li class="nav-item"><a class="nav-link" href="#map">찾아 오는 길</a></li>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="navdropdown">게시판
-					</a>
-					
-					<div class="dropdown-menu" id="navbarDropdown">
-						<a href="/board/list" class="dropdown-item">문의게시판</a>
-						<a href="#" class="dropdown-item">자주 묻는 질문</a>
+			    <li class="nav-item">
+					<div class="dropdown">
+						<a class="nav-link dropbtn" href="#">게시판</a>
+						<div class="dropdown-content">
+								<a href="/board/list" style="font-size : 0.9em;">문의게시판</a>
+								<a href="/board/faq" style="font-size : 0.9em;">자주 묻는 질문</a>
+						</div>
 					</div>
-					
 				</li>
 				
 			</ul>
@@ -118,20 +166,31 @@
 					</c:when>
 					
 					<c:otherwise>
-					<li class="nav-item dropdown">
-			        	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
-			        	  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			          		${member.name } ${naverName }&nbsp;님
-			        	</a>
-			          <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
-			            <a class="dropdown-item" href="/member/modifyPw">비밀번호 변경</a>
-			            <a class="dropdown-item" href="/member/deleteMember">회원 탈퇴</a>
-			           
-			           <div class="dropdown-divider"></div>
-			            <a class="dropdown-item" href="#" onclick="logout()">로그아웃</a> 
-			           
-			          </div>
-			        </li>
+				<%-- 	<li class="nav-item dropdown">
+				        	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
+				        	  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				          		${member.name } ${naverName }&nbsp;님
+				        	</a>
+				          <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
+				            <a class="dropdown-item" href="/member/profile">회원 정보 수정</a>
+				           
+				           <div class="dropdown-divider"></div>
+				            <a class="dropdown-item" href="#" onclick="logout()">로그아웃</a> 
+				           
+				          </div>
+			        </li>  --%>
+			        
+			         <li class="nav-item">
+					<div class="dropdown">
+						<a class="nav-link dropbtn" href="#">${member.name } ${naverName }&nbsp;님</a>
+						<div class="dropdown-content">
+								<a href="/member/profile" style="font-size : 0.9em;">회원 정보 수정</a>
+								<a href="#" onclick="logout()" style="font-size : 0.9em;">로그아웃</a> 
+						</div>
+					</div>
+					</li>
+			        
+		      
 					</c:otherwise>
 				</c:choose>
 				

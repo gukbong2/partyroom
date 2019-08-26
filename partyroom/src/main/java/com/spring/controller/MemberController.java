@@ -32,6 +32,19 @@ public class MemberController {
 	
 	private MemberService service;
 
+	//회원 정보 수정 페이지
+	@GetMapping("/profile")
+	public void profile() {
+		
+	}
+	
+	@GetMapping("/loginPage")
+	public void loginPage() {
+		
+	}
+	
+	
+	
 	//회원가입
 	@PostMapping("/register")
 	public String register(MemberVO member, HttpSession session,

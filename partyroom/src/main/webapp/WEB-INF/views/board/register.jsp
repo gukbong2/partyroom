@@ -104,7 +104,7 @@
 font-size: 1.5em; background-color: #475C7A; color: white; text-align: center;" > 문의글 작성</p>
 
 
-<div class="row">
+<div class="row" style="font-size: 20px; width: 80%; margin-right : auto; margin-left : auto;">
   <div class="col-lg-12">
     <div class="panel panel-default">
 
@@ -119,7 +119,7 @@ font-size: 1.5em; background-color: #475C7A; color: white; text-align: center;" 
 
           <div class="form-group">
             <label>Text area</label>
-            <textarea class="form-control" rows="3" name='content' id="content"></textarea>
+            <textarea class="form-control" rows="8" name='content' id="content"></textarea>
           </div>
 
          
@@ -142,7 +142,7 @@ font-size: 1.5em; background-color: #475C7A; color: white; text-align: center;" 
 <!-- /.row -->
 
 
-<div class="row">
+<div class="row" >
   <div class="col-lg-12">
     <div class="panel panel-default">
 
@@ -247,8 +247,9 @@ $(document).ready(function(e){
     $.ajax({
       url: '/upload/uploadAjaxAction',
       processData: false, 
-      contentType: false,data: 
-      formData,type: 'POST',
+      contentType: false,
+      data: formData,
+      type: 'POST',
       dataType:'json',
         success: function(result){
           console.log(result); 
@@ -310,24 +311,25 @@ $(document).ready(function(e){
     
     var targetLi = $(this).closest("li");
     
-    $.ajax({
-      url: '/upload/deleteFile',
-      data: {filename: targetFile, type:type},
-      dataType:'text',
-      type: 'POST',
-        success: function(result){
-           console.log(result);
-           
-           
-           
-           targetLi.remove();
-         }
-    }); //$.ajax
+	    $.ajax({
+	      url: '/upload/deleteFile',
+	      data: {filename: targetFile, type:type},
+	      dataType:'text',
+	      type: 'POST',
+	        success: function(result){
+	           console.log(result);
+	           
+	           
+	           
+	           targetLi.remove();
+	         }
+	    }); //$.ajax
    });
 
 
   
 });
+
 
 </script>
 
