@@ -9,23 +9,19 @@
 	width: 100%;
 	background-color: gray;
 }
-
 .uploadResult ul {
 	display: flex;
 	flex-flow: row;
 	justify-content: center;
 	align-items: center;
 }
-
 .uploadResult ul li {
 	list-style: none;
 	padding: 10px;
 }
-
 .uploadResult ul li img {
 	width: 80px;
 }
-
 .bigPictureWrapper {
   position: absolute;
   display: none;
@@ -37,7 +33,6 @@
   background-color: gray; 
   z-index: 100;
 }
-
 .bigPicture {
   position: relative;
   display:flex;
@@ -61,19 +56,16 @@
 	width: 100%;
 	background-color: gray;
 }
-
 .uploadResult ul {
 	display: flex;
 	flex-flow: row;
 	justify-content: center;
 	align-items: center;
 }
-
 .uploadResult ul li {
 	list-style: none;
 	padding: 10px;
 }
-
 .uploadResult ul li img {
 	width: 100px;
 }
@@ -91,7 +83,6 @@
   background-color: gray; 
   z-index: 100;
 }
-
 .bigPicture {
   position: relative;
   display:flex;
@@ -171,10 +162,7 @@ font-size: 1.5em; background-color: #475C7A; color: white; text-align: center;" 
 <!-- /.row -->
 
 <script>
-
 $(document).ready(function(e){
-
-
   
 	var formObj = $("form[role='form']");
 	  
@@ -207,8 +195,6 @@ $(document).ready(function(e){
 	    formObj.append(str).submit();
 	    
 	  });
-
-
   
   var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
   var maxSize = 5242880; //5MB
@@ -228,7 +214,6 @@ $(document).ready(function(e){
   }
   
   $("input[type='file']").change(function(e){
-
     var formData = new FormData();
     
     var inputFile = $("input[name='uploadFile']");
@@ -236,7 +221,6 @@ $(document).ready(function(e){
     var files = inputFile[0].files;
     
     for(var i = 0; i < files.length; i++){
-
       if(!checkExtension(files[i].name, files[i].size) ){
         return false;
       }
@@ -254,7 +238,6 @@ $(document).ready(function(e){
         success: function(result){
           console.log(result); 
 		  showUploadResult(result); //업로드 결과 처리 함수 
-
       }
     }); //$.ajax
     
@@ -296,12 +279,10 @@ $(document).ready(function(e){
 			str += "</div>";
 			str +"</li>";
 		}
-
     });
     
     uploadUL.append(str);
   }
-
   $(".uploadResult").on("click", "button", function(e){
 	    
     console.log("delete file");
@@ -325,12 +306,8 @@ $(document).ready(function(e){
 	         }
 	    }); //$.ajax
    });
-
-
   
 });
-
-
 </script>
 
 

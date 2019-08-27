@@ -10,6 +10,7 @@
     <title>7Hours</title>
     <meta charset="utf-8">
     
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Nanum+Gothic&display=swap" rel="stylesheet">
     
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
@@ -42,7 +43,7 @@
 </head>
 
 <style>
-body, table, div, p{ font-family: 'Nanum Barun Gothic'; }
+body, table, div, p{ font-family: 'Nanum Gothic', sans-serif; }
 
 .nav-item {
 	font-weight: 800;

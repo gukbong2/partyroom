@@ -85,7 +85,7 @@ public class MemberController {
 	
 	//로그인 
 		@PostMapping("/login")
-		public String login(MemberVO vo, HttpSession session) {
+		public String login(MemberVO vo, HttpSession session, Model model) {
 			vo = service.getMember(vo.getEmail());
 			String salt = service.getSaltById(vo.getEmail());
 			String password = vo.getPassword();
@@ -113,7 +113,8 @@ public class MemberController {
 				
 				session.setAttribute("member", vo);
 				System.out.println("member : " + vo);
-				return "/page/home";
+				
+				return "redirect:/";
 				
 				}
 			

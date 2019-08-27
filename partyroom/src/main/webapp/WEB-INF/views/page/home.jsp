@@ -241,18 +241,27 @@ margin : auto;
 	<div class="jumbotron jumbotron-fluid" style="background-color : #ececec; vertical-align: bottom;">
 		<div>
 			<div>
-				<br /><br />	
+				<br /><br /><br /><br /><br />br
 				<h2 style="text-align: center;"><strong>7Hours 예약하기</strong></h2>
-				<button class="btn btn-lg btn-block" style="background-color : #ececec;" onclick="showPopup();">
+				<c:choose>
+				<c:when test="${member.name ne null }">
+				<button class="btn btn-lg btn-block" style="background-color : #ececec;" id="popupBtn">
 					<img src="/resources/image/booking.png" alt="" style="width : 150px;" />
-					
-					<br />
-					<br />
-					<br />
-					<br />
-					
 				</button>
-			</div>
+				</c:when>
+
+				<c:otherwise>
+				<button class="btn btn-lg btn-block" style="background-color : #ececec;" id="notLogined">
+					<img src="/resources/image/booking.png" alt="" style="width : 150px;" />
+				</button>
+				</c:otherwise>				
+				</c:choose>
+					
+					<br />
+					<br />
+					<br />
+					<br />
+ 			</div>
 		</div>
 	</div>
 </section>
@@ -308,9 +317,14 @@ margin : auto;
 				</button>	
 				
 				
-				
+				<div style="font-size: 20px; width: 60%; margin-right : auto; margin-left : auto;">
+					<img src="/resources/image/instagram.png">
+					<img src="/resources/image/instagram.png">
+				</div>
 				<div id="kakaoMap">
-				</div>  
+				
+				</div>
+				  
 			</div>
 		</div>
 	</div>
@@ -331,7 +345,7 @@ jQuery(function($){
 	    prevArrow: '<div class="chevron-container"><i class="fa fa-chevron-left" aria-hidden="true"></i></span><span class="sr-only">Previous</span></div>',
 	    slidesToShow: 1,
 	    autoplaySpeed : 1000,
-	    speed : 1000,
+	    speed : 1500,
 	    autoplay : true
 	  });
 	});
@@ -414,11 +428,34 @@ $(document).ready(function(){
 	    map.setZoomable(zoomable);    
 	} 
 	 
-	 function showPopup() { 
+	 /* function showPopup() { 
 		//결제 창 열기
-		 window.open("/reserv/reservPage", "a", "width=1200, height=800, left=250, top=50"); 
+		var memberName = "${member.name}";
+		
+		if (memberName != null) {
 			
-	} 
+		window.open("/reserv/reservPage", "a", "width=1200, height=800, left=250, top=50"); 
+		} 
+		
+		if (memberName == null || memberName == "") {
+			return false;
+			alert("이름없음")
+		}
+			
+	}  */
+	$("#popupBtn").on("click", function() {
+			
+			window.open("/reserv/reservPage", "a", "width=1200, height=800, left=280, top=50"); 
+			
+			
+	
+	});
+	
+	$("#notLogined").on("click", function() {
+		alert("로그인 후 사용가능합니다.");
+		return false;
+	})
+	
 	 
 </script>
 

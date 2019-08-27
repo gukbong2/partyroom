@@ -98,28 +98,7 @@
     value='<fmt:formatDate pattern = "yyyy/MM/dd" value = "${board.updatedate}" />'  readonly="readonly">            
 </div>
 
-          
-
-  <button type="submit" data-oper='modify' class="btn btn-default">Modify</button>
-  <button type="submit" data-oper='remove' class="btn btn-danger">Remove</button>
-  <button type="submit" data-oper='list' class="btn btn-info">List</button>
-  
-  
-    <input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum }"/>'>
-    <input type='hidden' name='amount' value='<c:out value="${cri.amount }"/>'>
-    <input type='hidden' name='type' value='<c:out value="${cri.type }"/>'>
-	<input type='hidden' name='keyword' value='<c:out value="${cri.keyword }"/>'>  
-      
-  
-</form>
-
-<div class="row" style="font-size: 20px; width: 80%; margin-right : auto; margin-left : auto;">
-  <div class="col-lg-12">
-    <div class="panel panel-default">
-
-      <div class="panel-heading">File Attach</div>
-      <!-- /.panel-heading -->
-      <div class="panel-body">
+  <div class="panel-body">
         <div class="form-group uploadDiv">
             <input type="file" name='uploadFile' multiple>
         </div>
@@ -131,15 +110,23 @@
         </div>
         
         
-      </div>
-      <!--  end panel-body -->
+      </div>         
 
-    </div>
-    <!--  end panel-body -->
-  </div>
-  <!-- end panel -->
-</div>
-<!-- /.row -->
+  <button type="submit" data-oper='modify' class="btn btn-default">Modify</button>
+  <button type="submit" data-oper='remove' class="btn btn-danger">Remove</button>
+  <button type="submit" data-oper='list' class="btn btn-info">List</button>
+  
+  
+    <input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum }"/>'>
+    <input type='hidden' name='amount' value='<c:out value="${cri.amount }"/>'>
+    <input type='hidden' name='type' value='<c:out value="${cri.type }"/>'>
+	<input type='hidden' name='keyword' value='<c:out value="${cri.keyword }"/>'>  
+      
+    <input type="hidden" name="name" value="${member.name }">
+  
+</form>
+
+
      
 
 <script type="text/javascript">
@@ -265,7 +252,7 @@ $(document).ready(function() {
 	    
     console.log("delete file");
       
-    if(confirm("Remove this file? ")){
+    if(confirm("파일을 삭제하시겠습니까? ")){
     
       var targetLi = $(this).closest("li");
       targetLi.remove();
@@ -309,8 +296,9 @@ $(document).ready(function() {
     $.ajax({
       url: '/upload/uploadAjaxAction',
       processData: false, 
-      contentType: false,data: 
-      formData,type: 'POST',
+      contentType: false,
+      data: formData,
+      type: 'POST',
       dataType:'json',
         success: function(result){
           console.log(result); 

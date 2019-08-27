@@ -57,7 +57,7 @@
 
 <p class="center jumbotron jumbotron-fluid"
 		style="font-weight: 1000; font-size: 1.5em; background-color: #475C7A;
-		color: white; text-align: center;" >문의 게시판</p>
+		color: white; text-align: center;" >자주 묻는 질문</p>
 		
 
 	
@@ -71,11 +71,8 @@
 			
 			<!-- /.panel-heading -->
 			<div class="panel-body" style="font-size: 20px; width: 80%; margin-right : auto; margin-left : auto;">
-			    <c:if test="${not empty member.name }">
-				<button class='btn btn-default' id="regBtn" 
-							style="margin-right : auto; margin-left : auto;">글작성</button>
-				</c:if> 
-				<table class="table table-hover">
+				
+			<table class="table table-hover">
 				
 			<thead>
 				<tr>

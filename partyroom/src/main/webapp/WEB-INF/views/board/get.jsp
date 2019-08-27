@@ -59,7 +59,7 @@
 		color: white; text-align: center;" >문의글 작성</p>
 
 <!-- 글 상세보기 시작 -->
-<div class='row' style="font-size: 20px; width: 80%; margin-right : auto; margin-left : auto;">
+<div class='row' style="font-size: 18px; width: 80%; margin-right : auto; margin-left : auto;">
   <div class="col-lg-12">
     <div class="panel panel-default">
 
@@ -68,11 +68,14 @@
 
           <div class="form-group">
             <p class="center"><strong>#${board.bno }</strong></p>
-            <p> ${board.title }</p>
-            <p> ${board.writer } 님</p>
+            <hr />
+            <h4><strong>${board.title }</strong></h4>
+            <hr />
+            <p> ${board.writer } 님  <fmt:formatDate pattern="yyyy-MM-dd HH:mm"
+		                  value="${board.updatedate}" /></p>
          </div>
 
-		<hr />
+		<hr /><br /><br />
 		
 
         <div class="form-group">

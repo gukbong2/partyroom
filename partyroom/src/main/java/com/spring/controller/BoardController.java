@@ -39,6 +39,11 @@ public class BoardController {
 
 	private BoardService service;
 	
+	@GetMapping("/faq")
+	public void faq(Criteria cri, Model model, HttpSession session) {
+		
+	}
+	
 	@GetMapping("/list")
 	public void list(Criteria cri, Model model, HttpSession session) {
 
@@ -81,25 +86,22 @@ public class BoardController {
 	}
 	
 	@GetMapping({"/get", "/modify"})
-	public void get(@RequestParam("bno") Long bno, Model model, @ModelAttribute("cri") Criteria cri) {
+	public void get(@RequestParam("bno") Long bno, Model model, HttpSession session, @ModelAttribute("cri") Criteria cri) {
 		//ModelAttribute = 자동으로 Model에 데이터를 지정한 이름으로 담아줌
 		log.info("/get AND /modify");
-		
+		session.getAttribute("member");
 		model.addAttribute("board", service.get(bno));
 	}
 
 	@PostMapping("/modify")
-	public String modify(BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+	public String modify(BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr, @RequestParam("name") String name) {
 		log.info("modify:" + board);
-
+		board.setWriter(name);
+		log.info(name);
+		
 		if (service.modify(board)) {
 			rttr.addFlashAttribute("result", "success");
 		}
-
-//		rttr.addAttribute("pageNum", cri.getPageNum());
-//		rttr.addAttribute("amount", cri.getAmount());
-//		rttr.addAttribute("type", cri.getType());
-//		rttr.addAttribute("keyword", cri.getKeyword());
 
 		return "redirect:/board/list" + cri.getListLink();
 	}
@@ -136,34 +138,36 @@ public class BoardController {
 		return new ResponseEntity<>(service.getAttachList(bno), HttpStatus.OK);
 	}
 	
-private void deleteFiles(List<AttachVO> attachList) {
-	    
-	    if(attachList == null || attachList.size() == 0) {
-	      return;
-	    }
-	    
-	    log.info("delete attach files...................");
-	    log.info(attachList);
-	    
-	    attachList.forEach(attach -> {
-	      try {        
-	    	  Path file  = Paths.get("D:\\upload\\"+attach.getUploadPath()+"\\" + attach.getUuid()+"_"+ attach.getFilename());
-	        
-	        	Files.deleteIfExists(file);
-	        
-	        if (Files.probeContentType(file).startsWith("image")) {
-	        
-	          Path thumbNail = Paths.get("D:\\upload\\"+attach.getUploadPath()+"\\s_" + attach.getUuid()+"_"+ attach.getFilename());
-	          
-	          Files.delete(thumbNail);
-	        }
+	private void deleteFiles(List<AttachVO> attachList) {
+		    
+		    if(attachList == null || attachList.size() == 0) {
+		      return;
+		    }
+		    
+		    log.info("delete attach files...................");
+		    log.info(attachList);
+		    
+		    attachList.forEach(attach -> {
+		      try {        
+		    	  Path file  = Paths.get("D:\\upload\\"+attach.getUploadPath()+"\\" + attach.getUuid()+"_"+ attach.getFilename());
+		        
+		        	Files.deleteIfExists(file);
+		        
+		        if (Files.probeContentType(file).startsWith("image")) {
+		        
+		          Path thumbNail = Paths.get("D:\\upload\\"+attach.getUploadPath()+"\\s_" + attach.getUuid()+"_"+ attach.getFilename());
+		          
+		          Files.delete(thumbNail);
+		        }
+		
+		      } catch(Exception e) {
+		        log.error("delete file error" + e.getMessage());
+		      } 
+		    
+		    }); 
+		    
+		  }
 	
-	      } catch(Exception e) {
-	        log.error("delete file error" + e.getMessage());
-	      } 
-	    
-	    }); 
-	    
-	  }
 	
+
 }

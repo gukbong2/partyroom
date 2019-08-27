@@ -10,6 +10,8 @@
     <title>7Hours</title>
     <meta charset="utf-8">
 
+	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -44,7 +46,7 @@
 
 
 <style>
-body, table, div, p{ font-family: 'Nanum Barun Gothic'; }
+body, table, div, p{ font-family: 'Nanum Gothic', sans-serif; }
 
 .nav-item {
 	font-weight: 800;
@@ -359,6 +361,8 @@ body, table, div, p{ font-family: 'Nanum Barun Gothic'; }
 	</div>
 </div>    
 <!-- 회원가입 모달 끝--> 
+
+
  
 <!-- api 히든 폼 --> 
 <form action="/social/insert" name="socialInsertForm" method="post">
