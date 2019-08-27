@@ -38,7 +38,7 @@ public class MemberController {
 		
 	}
 	
-	@GetMapping("/loginPage")
+	@GetMapping("/login")
 	public void loginPage() {
 		
 	}
@@ -257,7 +257,41 @@ public class MemberController {
 	}
 
 
-	
+	@PostMapping("/loginInterceptor")
+	public String loginInterceptor(MemberVO vo, HttpSession session, Model model) {
+		vo = service.getMember(vo.getEmail());
+		String salt = service.getSaltById(vo.getEmail());
+		String password = vo.getPassword();
+		int auth = service.getAuth(vo.getEmail());
+		vo.setAuth(auth);
+		System.out.println("member auth : " + auth);
+		System.out.println("salt : " + salt);
+		System.out.println("password : " + password);
+		password = SHA256Util.getEncrypt(password, salt);
+		vo.setPassword(password);
+		System.out.println("마지막 password : " + password);
+		
+		service.login(vo);
+		//MemberVO member = service.login(vo);
+		
+		//이메일 인증이 안되어있다면
+		if (vo.getAuth() == 0) {
+			System.out.println("===========================auth 값 : " + vo.getAuth());
+			return "member/emailNotVerify";
+			
+			} else {
+		
+			System.out.println("===========================auth 값 : " + vo.getAuth());
+			
+			
+			session.setAttribute("member", vo);
+			System.out.println("member : " + vo);
+			
+			return "redirect:/board/list";
+			
+			}
+		
+		}
 	
 	
 	

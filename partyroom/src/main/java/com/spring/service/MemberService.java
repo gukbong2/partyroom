@@ -12,7 +12,7 @@ public interface MemberService {
 	
 	public boolean remove(Long idx);
 	
-	public MemberVO getMember(String string);
+	public MemberVO getMember(String member);
 	
 	public MemberVO login(MemberVO member);
 	
@@ -31,5 +31,7 @@ public interface MemberService {
 	public void deleteMember(MemberVO member);
 
 	public int phoneCheck(MemberVO member);
+
+	public MemberVO getMemberByName(String writer);
 	
 }

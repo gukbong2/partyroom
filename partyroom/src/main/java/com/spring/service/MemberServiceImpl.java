@@ -150,6 +150,12 @@ public class MemberServiceImpl implements MemberService{
 		return mapper.phoneCheck(member);
 	}
 
+	@Override
+	public MemberVO getMemberByName(String writer) {
+		// TODO Auto-generated method stub
+		return mapper.getMemberByName(writer);
+	}
+
 	
 
 	

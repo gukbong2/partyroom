@@ -23,8 +23,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.spring.domain.AttachVO;
 import com.spring.domain.BoardVO;
 import com.spring.domain.Criteria;
+import com.spring.domain.MemberVO;
 import com.spring.domain.PageDTO;
 import com.spring.service.BoardService;
+import com.spring.service.MemberService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -38,6 +40,7 @@ import lombok.extern.log4j.Log4j;
 public class BoardController {
 
 	private BoardService service;
+	private MemberService memberService;
 	
 	@GetMapping("/faq")
 	public void faq(Criteria cri, Model model, HttpSession session) {
@@ -94,13 +97,15 @@ public class BoardController {
 	}
 
 	@PostMapping("/modify")
-	public String modify(BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr, @RequestParam("name") String name) {
+	public String modify(BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr, HttpSession session, @RequestParam("writer") String writer) {
 		log.info("modify:" + board);
-		board.setWriter(name);
-		log.info(name);
+		
+		MemberVO member = new MemberVO();
+		member.setName(writer);
 		
 		if (service.modify(board)) {
 			rttr.addFlashAttribute("result", "success");
+			session.setAttribute("member", memberService.getMemberByName(writer));
 		}
 
 		return "redirect:/board/list" + cri.getListLink();

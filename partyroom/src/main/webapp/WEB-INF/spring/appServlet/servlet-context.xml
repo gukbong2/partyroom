@@ -35,7 +35,7 @@
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"></beans:bean>
 	
 	<!-- 인터셉터 -->
-	<!-- <beans:bean id="LoginInterceptor" class="com.spring.intercepter.LoginInterceptor"></beans:bean>
+   <beans:bean id="LoginInterceptor" class="com.spring.intercepter.LoginInterceptor"></beans:bean>
 	
 	<interceptors>
 		<interceptor>
@@ -43,6 +43,6 @@
 			<mapping path="/board/modify"/>
 			<beans:ref bean="LoginInterceptor"/>
 		</interceptor>
-	</interceptors> -->
+	</interceptors>
 	
 </beans:beans>

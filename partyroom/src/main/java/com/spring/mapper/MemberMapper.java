@@ -29,5 +29,7 @@ public interface MemberMapper {
 	public void deleteMember(MemberVO member);
 
 	public int phoneCheck(MemberVO member);
+
+	public MemberVO getMemberByName(String writer);
 	
 }

@@ -51,8 +51,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			
 			Object dest = session.getAttribute("dest");
 			
-			response.sendRedirect(dest != null ? (String)dest:"/");
-			//response.sendRedirect("/board/register");
+			//response.sendRedirect(dest != null ? (String)dest:"/");
+			response.sendRedirect("/board/register");
 		}
 	
 	}

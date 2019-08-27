@@ -71,10 +71,10 @@
 			
 			<!-- /.panel-heading -->
 			<div class="panel-body" style="font-size: 20px; width: 80%; margin-right : auto; margin-left : auto;">
-			    <c:if test="${not empty member.name }">
+			    <%-- <c:if test="${not empty member.name }">
+				</c:if>  --%>
 				<button class='btn btn-default' id="regBtn" 
 							style="margin-right : auto; margin-left : auto;">글작성</button>
-				</c:if> 
 				<table class="table table-hover">
 				
 			<thead>

@@ -43,6 +43,11 @@
 		WHERE EMAIL = #{email}
 </select>
 
+<select id="getMemberByName" resultType="com.spring.domain.MemberVO">
+	SELECT * FROM MEMBER 
+		WHERE NAME = #{name}
+</select>
+
 <update id="updateAuthkey" >
 	UPDATE MEMBER SET AUTHKEY = #{authkey} 
 		WHERE EMAIL = #{email}
