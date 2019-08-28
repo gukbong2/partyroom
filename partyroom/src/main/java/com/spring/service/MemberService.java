@@ -32,6 +32,6 @@ public interface MemberService {
 
 	public int phoneCheck(MemberVO member);
 
-	public MemberVO getMemberByName(String writer);
+	public MemberVO getMemberByName(MemberVO member);
 	
 }

@@ -96,7 +96,7 @@
 
 
 
-<c:if test="${member.name eq board.writer && member.email eq board.email}">
+<c:if test="${member.email eq board.email && member.name eq board.writer}">
 <button data-oper='modify' class="btn btn-default">글 수정</button>
 </c:if>
 <button data-oper='list' class="btn btn-info">글 목록</button>
@@ -233,6 +233,16 @@
 <script>
 
 	$(document).ready(function() {
+			
+			/* var memberemail = "${member.email}";
+			var boardemail = "${board.email}";
+			var membername = "${member.name}";
+			var boardwriter = "${board.writer}";
+			alert("멤버이메일 : " + memberemail);
+			alert("멤버네임 : " + membername);
+			alert("보드작성자 : " + boardwriter);
+			alert("보드 작성자의 이메일  : " +boardemail); */
+			
 		
 		    var bno = '<c:out value="${board.bno}"/>';
 		    

@@ -37,7 +37,7 @@
 </delete>
 
 <update id="update">
-	UPDATE BOARD SET TITLE = #{title}, CONTENT = #{content}, WRITER = #{writer}, UPDATEDATE = SYSDATE
+	UPDATE BOARD SET TITLE = #{title}, CONTENT = #{content}, WRITER = #{writer}, EMAIL = #{email}, UPDATEDATE = SYSDATE
 		WHERE BNO = #{bno}
 
 </update>

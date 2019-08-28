@@ -183,6 +183,10 @@ margin : auto;
   display: inline-block !important;
   vertical-align: middle;
 }
+
+.slider-subheading lead {
+	font-size: 10em;
+}
 </style>
 
 
@@ -241,10 +245,10 @@ margin : auto;
 	<div class="jumbotron jumbotron-fluid" style="background-color : #ececec; vertical-align: bottom;">
 		<div>
 			<div>
-				<br /><br /><br /><br /><br />br
 				<h2 style="text-align: center;"><strong>7Hours 예약하기</strong></h2>
 				<c:choose>
 				<c:when test="${member.name ne null }">
+				<br /><br /><br /><br /><br />
 				<button class="btn btn-lg btn-block" style="background-color : #ececec;" id="popupBtn">
 					<img src="/resources/image/booking.png" alt="" style="width : 150px;" />
 				</button>
@@ -265,16 +269,143 @@ margin : auto;
 		</div>
 	</div>
 </section>
-		
+	
 <!-- jumbotron -->
 <section id="guide">
+<br /><br /><br /><br />
 	<div class="jumbotron jumbotron-fluid" style="background-color : #ececec; vertical-align: bottom;">
 		<div>
 			<div>
 				<br /><br />
 				<h2 style="text-align: center;"><strong>7hours 사용방법이 궁금하신가요?</strong></h2>
-				<button class="btn btn-lg btn-block" style="background-color : #ececec;">
-				</button>
+				
+				<!--Accordion wrapper-->
+<div class="accordion md-accordion accordion-1" id="accordionEx23" role="tablist" style="font-size: 20px; width: 80%; margin-right : auto; margin-left : auto;">
+  <div class="card">
+    <div class="card-header blue lighten-3 z-depth-1" role="tab" id="heading96">
+      <h5 class="text-uppercase mb-0 py-1">
+        <a class="white-text font-weight-bold" data-toggle="collapse" href="#collapse96" aria-expanded="true"
+          aria-controls="collapse96">
+         	1. 7Hours에 오신걸 환영합니다!
+        </a>
+      </h5>
+    </div>
+    <div id="collapse96" class="collapse show" role="tabpanel" aria-labelledby="heading96"
+      data-parent="#accordionEx23">
+      <div class="card-body">
+        <div class="row my-4">
+          <div class="col-md-8">
+            <h2 class="font-weight-bold mb-3 black-text">안녕하세요! 7Hours입니다.</h2>
+            <p class="">7Hours를 이용하려면 웹사이트를 통한 페이팔 결제 또는 현장에서 결제를 해야합니다.</p>
+            <p class="mb-0">신분을 알 수 있는 여권 또는 ID카드가 필수이고, 미보유 시 체크인 및 결제가 불가처리 되오니</p>
+            <p> 손님들께선 이 점 양해부탁드립니다.</p>
+            <p> 직원의 안내에 따라 사물함 번호, 신발장 번호를 확인부탁드립니다.</p>
+            <p> 또한, 신발장 키를 잃어버리시면 열쇠값 +5000원이 청구됩니다.</p>
+          </div>
+          <div class="col-md-4 mt-3 pt-2">
+            <div class="view z-depth-1">
+              <img src="/resources/image/checkin.svg" alt="" class="img-fluid">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header blue lighten-3 z-depth-1" role="tab" id="heading97">
+      <h5 class="text-uppercase mb-0 py-1">
+        <a class="collapsed font-weight-bold white-text" data-toggle="collapse" href="#collapse97"
+          aria-expanded="false" aria-controls="collapse97">
+         	2. 짐 보관하는 곳이 어디지?
+        </a>
+      </h5>
+    </div>
+    <div id="collapse97" class="collapse" role="tabpanel" aria-labelledby="heading97"
+      data-parent="#accordionEx23">
+      <div class="card-body">
+        <div class="row my-4">
+          <div class="col-md-8">
+            <h2 class="font-weight-bold mb-3 black-text">7Hours는 사물함 보관층 / 샤워실 / 화장실이 성별별로 분리되어있습니다.</h2>
+            <p class="">남성은 5F, 여성은 3F에 사물함 보관 및 샤워실이 있습니다.</p>
+            <p class="mb-0">사물함에 매일 샤워용품과 칫솔을 리필해드립니다. 만약 사물함에 리필이 안되어있을 경우</p>
+            <p>직원에게 알려주시면 빠르게 리필해드리겠습니다.</p>
+          </div>
+          <div class="col-md-4 mt-3 pt-2">
+            <div class="view z-depth-1">
+               <img src="/resources/image/locker.svg" alt="" class="img-fluid">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header blue lighten-3 z-depth-1" role="tab" id="heading98">
+      <h5 class="text-uppercase mb-0 py-1">
+        <a class="collapsed font-weight-bold white-text" data-toggle="collapse" href="#collapse98"
+          aria-expanded="false" aria-controls="collapse98">
+          	3. 공항 또는 다른 곳에서 무거운 짐을 이끌고 오느라 힘드셨죠?
+        </a>
+      </h5>
+    </div>
+    <div id="collapse98" class="collapse" role="tabpanel" aria-labelledby="heading98"
+      data-parent="#accordionEx23">
+      <div class="card-body">
+        <div class="row my-4">
+          <div class="col-md-8">
+            <h2 class="font-weight-bold mb-3 black-text">7Hours의 무료 샤워용품으로 씻고 난 뒤 여행지를 둘러보세요.</h2>
+            <p class="">7Hours는 성별 마다 층이 분리되어있고, 샤워부스 또한 1인 프라이빗 부스로 만들어 놨습니다.</p>
+            <p class="mb-0">날씨가 너무 더운 서울 ..수건이 모자르시면 직원에게 말씀해주세요! 리필해드리겠습니다.</p>
+            <p>공용헤어드라이기는 사용한 다음에는 다시 정리해주세요.</p>
+            <p>스킨, 로션 또한 공용세면대에 있으니 마음껏 사용하셔도 됩니다.</p>
+          </div>
+          <div class="col-md-4 mt-3 pt-2">
+            <div class="view z-depth-1">
+              <img src="/resources/image/shower.svg" alt="" class="img-fluid">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+   <div class="card">
+    <div class="card-header blue lighten-3 z-depth-1" role="tab" id="heading99">
+      <h5 class="text-uppercase mb-0 py-1">
+        <a class="collapsed font-weight-bold white-text" data-toggle="collapse" href="#collapse99"
+          aria-expanded="false" aria-controls="collapse97">
+         	4. 7HOURS 캡슐 불편하지 않을까?
+        </a>
+      </h5>
+    </div>
+    
+    <div id="collapse99" class="collapse" role="tabpanel" aria-labelledby="heading99"
+      data-parent="#accordionEx23">
+      <div class="card-body">
+        <div class="row my-4">
+          <div class="col-md-8">
+            <h2 class="font-weight-bold mb-3 black-text">7Hours는 넓고 쾌적합니다.</h2>
+            <p class="mb-0">7Hours의 캡슐은 다른 타 캡슐호텔보다  큰 가로 120cm, 세로 230cm, 높이 120cm입니다.</p>
+            <p class="mb-0">또한 혼성 층은 없이 남성/여성층으로 구분시켰습니다.</p>
+           	<br />
+            <p>주변 소음에 민감하신 분들은 직원에게 귀마개를 달라고하시면 무료로 드립니다.</p>
+            <p>또한 7Hours는 주변소음에 민감하신 손님들이 있으니 캡슐안에서는 음식, 음료 섭취가 불가입니다.</p>
+            <p>캡슐 안에 ID카드를 넣으시면 캡슐 내부의 기능을 사용할 수 있습니다.</p>
+            <p>조명설정으로 숙면을 취하고 내일아침을 위해 알림설정으로 일찍 일어나서 서울의 아침을 느껴보세요! </p>
+          </div>
+          <div class="col-md-4 mt-3 pt-2">
+            <div class="view z-depth-1">
+               <img src="/resources/image/sleeping_pod.svg" alt="" class="img-fluid">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+  
+</div>
+				
 			</div>
 		</div>
 	</div>
@@ -306,6 +437,7 @@ margin : auto;
 		
 	<!-- 지도-->
 	<section id="map">
+	<br /><br /><br /><br /><br />
 	<div class="jumbotron jumbotron-fluid" style="background-color : #ececec; vertical-align: top;">
 		<div>
 			<div>
@@ -330,7 +462,76 @@ margin : auto;
 	</div>
 </section>
 	
-	
+<section id="faq" class="facility__faq">
+<div class="jumbotron jumbotron-fluid" style="background-color : #ececec; vertical-align: top; ">
+	<h2  style="text-align: center;"><strong>7Hours 서비스 규정</strong></h2>
+	<br /><br />
+		<div>
+		<div style="text-align: center;">
+		<ol style="list-style: none;">
+			<li style="text-align: center;">
+				<h4>체크인, 체크아웃</h4>
+				<p>체크인은 13:00부터 시작, 체크아웃은 다음날 10:00까지 체크아웃을 해야합니다. 레이트 체크아웃은 없습니다.</p>
+			</li>
+			<li>
+			<h4>장기 숙박 관련</h4>
+			<p>7Hours를 이용하시는 손님들께서는 10:00까지 체크아웃을 해야합니다.  손님께서 머무는동안, 여전히 사물함은 쓸 수 있지만, 
+			청소하기 쉽도록 10:00 - 13:00 사이에 캡슐 사용은 불가입니다. </p>
+			<p>외출 시에는 소지품을 반드시 휴대하거나 사물함에 보관하십시오. 
+			불편을 끼쳐드린 점 사과드리며 양해해 주셔서 감사드립니다.</p>
+			</li>
+			<li>
+			<h4>예약 취소 및 변경</h4>
+			<p>+82 10-3922-2459로 연락 부탁드립니다.</p>
+			</li>
+			<li>
+			<h4>레이트 체크아웃</h4>
+			<p>7Hours에 24:00보다 늦게 도착한다면, 우리에게 06-6635-2208로 전화하십시오. 7Hours에 연락을 미리 취하지 않는 경우, 손님의 예약은 취소될 예정입니다.</p>
+			</li>
+			<li>
+			<h4>결제 방법</h4>
+			<p>7Hours에 체크인할 때 미리 선결제해야 합니다. 웹사이트를 통한 페이팔 결제 또는 7Hours에서 결제 가능합니다.</p>
+			</li>
+			<li>
+			<h4>사물함 사이즈</h4>
+			<p>폭 40cm x 깊이 55cm x 높이 180cm</p>
+			</li>
+			<li>
+			<h4>큰 사이즈의 수하물, 수하물 보관</h4>
+			<p>사물함에 맞지 않는 수하물은, 프론트 데스크 앞에 보관할 수 있습니다.
+			7Hours는 손님의 짐을 체크아웃 일까지만 보관이 가능하고, 귀중품 보관은 불가합니다. 귀중품의 안전은 7Hours에서 책임지지 않습니다.</p>
+			</li>
+			</ol>
+			</div>
+			
+			<div  style="text-align: center;">
+			<ol style="list-style: none;">
+			
+			<li>
+			<h4>제공용품</h4>
+			<p>7Hours는 매일 손님들에게 목욕 타월, 얼굴 타월, 라운지 의류, 그리고 칫솔을 손님의 사물함에 리필해드립니다. 헤어 드라이어는 세면실에 있으며, 
+			샴푸, 컨디셔너, 비누는 각 샤워부스마다 제공됩니다.</p>
+			</li><li>
+			<h4>캡슐 공간 사이즈</h4>
+			<p>7Hours의 캡슐 사이즈는 가로 120cm, 세로 230cm, 높이 120cm입니다. 각 캡슐에 체크인 시 받은 ID카드를 넣으면, 캡슐을 이용할 수 있습니다.</p>
+			</li>
+			<li>
+			<h4>세탁시설</h4>
+			<p>7Hours는 세탁시설이 없습니다.</p>
+			</li>
+			<li>
+			<h4>음식, 음료 섭취</h4>
+			<p>7Hours는 캡슐안에서 음식, 음료 섭취는 불가입니다. 프론트 데스크 앞 라운지에서 드시길 부탁드립니다.</p>
+			</li>
+			<li>
+			<h4>청소 수수료</h4>
+			<p>7Hours는 고의적이든 아니든 손상되거나 더럽혀진 침구에는 50000원의 청소비가 붙습니다. 조심히 사용해주세요.</p>
+			</li>
+			</ol>
+		</div>
+	</div>
+</div>
+</section>	
  
   	
 <script>

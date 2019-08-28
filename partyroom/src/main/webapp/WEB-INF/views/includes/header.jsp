@@ -147,6 +147,7 @@ body, table, div, p{ font-family: 'Nanum Gothic', sans-serif; }
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item"><a class="nav-link" href="#guide">이용안내</a></li>
 				<li class="nav-item"><a class="nav-link" href="#reservation">예약하기</a></li>
+				<li class="nav-item"><a class="nav-link" href="#guide">소개</a></li>
 				<li class="nav-item"><a class="nav-link" href="#map">찾아 오는 길</a></li>
 			    <li class="nav-item">
 					<div class="dropdown">

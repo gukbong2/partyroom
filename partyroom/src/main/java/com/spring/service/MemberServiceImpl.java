@@ -151,9 +151,9 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public MemberVO getMemberByName(String writer) {
+	public MemberVO getMemberByName(MemberVO member) {
 		// TODO Auto-generated method stub
-		return mapper.getMemberByName(writer);
+		return mapper.getMemberByName(member);
 	}
 
 	

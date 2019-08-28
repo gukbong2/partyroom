@@ -93,11 +93,12 @@ public class BoardController {
 		//ModelAttribute = 자동으로 Model에 데이터를 지정한 이름으로 담아줌
 		log.info("/get AND /modify");
 		session.getAttribute("member");
-		model.addAttribute("board", service.get(bno));
+		session.setAttribute("board", service.get(bno));
 	}
 
 	@PostMapping("/modify")
-	public String modify(BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr, HttpSession session, @RequestParam("writer") String writer) {
+	public String modify(BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr, HttpSession session, 
+			 @RequestParam("writer") String writer) {
 		log.info("modify:" + board);
 		
 		MemberVO member = new MemberVO();
@@ -105,7 +106,8 @@ public class BoardController {
 		
 		if (service.modify(board)) {
 			rttr.addFlashAttribute("result", "success");
-			session.setAttribute("member", memberService.getMemberByName(writer));
+			session.setAttribute("member", memberService.getMemberByName(member));
+			session.setAttribute("boardName", board.getWriter());
 		}
 
 		return "redirect:/board/list" + cri.getListLink();

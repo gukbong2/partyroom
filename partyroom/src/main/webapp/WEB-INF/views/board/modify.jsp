@@ -123,6 +123,7 @@
 	<input type='hidden' name='keyword' value='<c:out value="${cri.keyword }"/>'>  
       
     <input type="hidden" name="name" value="${member.name }">
+    <input type="hidden" name="email" value="${member.email }">
   
 </form>
 

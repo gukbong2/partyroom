@@ -5,6 +5,11 @@
 .footer {
 	background-color : #252525;
 	color : white;
+ a:link { color: white; text-decoration: none;}
+ a:visited { color: white; text-decoration: none;}
+ a:hover { color: white; text-decoration: underline;}
+
+
  }
 
 </style>   
@@ -17,6 +22,7 @@
 					<hr class="light">
 					<p>+82-10-3922-2459</p>
 					<p>junyeon2459@gmail.com</p>
+					<a href="https://github.com/gukbong2" >https://github.com/gukbong2</a>
 					<p>서울특별시 용산구 이태원로26길 16-12</p>
 				</div>
 				<div class="col-md-4">
