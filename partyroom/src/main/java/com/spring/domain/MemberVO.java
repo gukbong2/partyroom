@@ -16,5 +16,8 @@ public class MemberVO {
 	private int auth;
 	private String authkey;
 	private String phone;
+	private String address;
+	private String addressDetail;
+	
 	
 }

@@ -185,7 +185,7 @@ margin : auto;
 }
 
 .slider-subheading lead {
-	font-size: 10em;
+	font-size: 30em;
 }
 </style>
 
@@ -463,6 +463,7 @@ margin : auto;
 </section>
 	
 <section id="faq" class="facility__faq">
+<br /><br /><br /><br />
 <div class="jumbotron jumbotron-fluid" style="background-color : #ececec; vertical-align: top; ">
 	<h2  style="text-align: center;"><strong>7Hours 서비스 규정</strong></h2>
 	<br /><br />

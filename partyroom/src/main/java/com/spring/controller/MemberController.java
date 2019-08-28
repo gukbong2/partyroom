@@ -31,7 +31,13 @@ import lombok.extern.log4j.Log4j;
 public class MemberController {
 	
 	private MemberService service;
-
+	
+	//회원가입 주소 팝업 불러오기
+	@RequestMapping("/address")
+	public void address() {
+		
+	}
+	
 	//회원 정보 수정 페이지
 	@GetMapping("/profile")
 	public void profile() {

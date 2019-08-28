@@ -148,13 +148,14 @@ body, table, div, p{ font-family: 'Nanum Gothic', sans-serif; }
 				<li class="nav-item"><a class="nav-link" href="#guide">이용안내</a></li>
 				<li class="nav-item"><a class="nav-link" href="#reservation">예약하기</a></li>
 				<li class="nav-item"><a class="nav-link" href="#guide">소개</a></li>
+				<li class="nav-item"><a class="nav-link" href="#faq">자주묻는질문</a></li>
 				<li class="nav-item"><a class="nav-link" href="#map">찾아 오는 길</a></li>
 			    <li class="nav-item">
 					<div class="dropdown">
 						<a class="nav-link dropbtn" href="#">게시판</a>
 						<div class="dropdown-content">
 								<a href="/board/list" style="font-size : 0.9em;">문의게시판</a>
-								<a href="/board/faq" style="font-size : 0.9em;">자주 묻는 질문</a>
+								<a href="/board/gallery" style="font-size : 0.9em;">갤러리</a>
 						</div>
 					</div>
 				</li>
@@ -320,9 +321,23 @@ body, table, div, p{ font-family: 'Nanum Gothic', sans-serif; }
 					<input type="password" name="passwordChk" id="RegisterPasswordCheck" 
 					onKeyPress="if (event.keyCode==13){enterRegister()}" class="form-control my-2" placeholder="비밀번호 확인">
 					
-					<input type="text" name="name" id="RegisterName" class="form-control my-2" 
-					onKeyPress="if (event.keyCode==13){enterRegister()}" placeholder="성함" > 
+					<input type="text" name="firstname" id="RegisterFirstName" class="form-control my-2" 
+					onKeyPress="if (event.keyCode==13){enterRegister()}" placeholder="성" > 
 					
+					<input type="text" name="lastname" id="RegisterLastName" class="form-control my-2" 
+					onKeyPress="if (event.keyCode==13){enterRegister()}" placeholder="이름" > 
+					
+					<input type="text" name="address" id="roadAddrPart1" class="form-control my-2" 
+					onKeyPress="if (event.keyCode==13){enterRegister()}" placeholder="주소"  readonly="readonly"> 
+					
+					<input type="text" id="addrDetail" class="form-control my-2" name="addressDetail" placeholder="상세주소">
+
+					<input type="button" name="emailCheck" id="emailCheck"  class="btn btn-block form-control"
+					style="background-color: #0da197; color: white;" value="주소 검색" readonly="readonly" onclick="goPopup();"> 
+					
+					
+					
+					<input type="hidden" name="name" id="RegisterName"> 
 					<!-- <input type="text" name="phone" id="RegisterPhone" class="form-control my-2" 
 					onKeyPress="if (event.keyCode==13){phoneChk()}" placeholder="핸드폰 번호" maxlength="11" > 
 					
@@ -457,7 +472,10 @@ body, table, div, p{ font-family: 'Nanum Gothic', sans-serif; }
  			//회원가입 버튼을 누르면
  			$("#memberRegiBtn").on("click", function() {
  				var registerEmail = $("#RegisterEmail").val();
- 				var registerName = $("#RegisterName").val();
+ 				var RegisterFirstName = $("#RegisterFirstName").val();
+ 				var RegisterLastName = $("#RegisterLastName").val();
+ 				var registerName = $("#RegisterFirstName").val() +  $("#RegisterLastName").val();
+ 				$("#RegisterName").val(registerName);
  				var registerPassword = $("#RegisterPassword").val();
  				var registerPasswordCheck = $("#RegisterPasswordCheck").val();
  				//var RegisterPhoneCheck = $("#RegisterPhoneCheck").val();
@@ -725,7 +743,28 @@ body, table, div, p{ font-family: 'Nanum Gothic', sans-serif; }
 </script>
 
 
- 
+<script>
+/* 회원가입 주소 */
+function goPopup(){
+	// 주소검색을 수행할 팝업 페이지를 호출합니다.
+	// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
+	var pop = window.open("/member/address","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+	
+	// 모바일 웹인 경우, 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
+    //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes"); 
+}
+
+function jusoCallBack(roadFullAddr, roadAddrPart1, addrDetail,
+		roadAddrPart2, engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,
+		detBdNmList, bdNm, bdKdcd, siNm, sggNm, emdNm, liNm, rn, udrtYn,
+		buldMnnm, buldSlno, mtYn, lnbrMnnm, lnbrSlno, emdNo) {
+	// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
+	document.getElementById("roadAddrPart1").value = roadAddrPart1;
+	document.getElementById("addrDetail").value = addrDetail;
+}
+</script>
+
+
  
  
  
