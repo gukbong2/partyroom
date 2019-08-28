@@ -30,7 +30,7 @@
 <select id="getMember" resultType="com.spring.domain.MemberVO">
 	SELECT * FROM MEMBER WHERE EMAIL = #{email}
 </select>	
-
+ 
 
 <select id="login" resultType="com.spring.domain.MemberVO">
 	SELECT * FROM MEMBER 
