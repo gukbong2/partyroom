@@ -89,6 +89,39 @@ public class MemberController {
 	}
 	
 	
+	//위의 변경값으로 업데이트 회원가입형식 변경값 적는 페이지에서 비밀번호 적고 실제 수정 처리
+		@PostMapping("/resetPassword")
+		public String resetPassword(MemberVO member, @RequestParam("email") String email, 
+				@RequestParam("modifyPassword") String modifyPassword, HttpSession session) {
+			
+			String salt = service.getSaltById(member.getEmail());
+			
+			member.setEmail(email);
+			String password = modifyPassword;
+			password = SHA256Util.getEncrypt(password, salt);
+			member.setPassword(password);
+			
+			service.updatePassword(member);
+		    service.getMember(email);
+			session.invalidate();
+			return "redirect:/page/home";
+		}
+	
+	//회원 탈퇴 
+	@PostMapping("/deleteMember")
+	public String deleteMember(MemberVO vo, HttpSession session) {
+		
+		String salt = service.getSaltById(vo.getEmail());
+		String password = vo.getPassword();
+		password = SHA256Util.getEncrypt(password, salt);
+		vo.setPassword(password);
+		service.deleteMember(vo);
+		
+		session.invalidate();
+		return "/page/home";
+	}
+	
+	
 	//로그인 
 		@PostMapping("/login")
 		public String login(MemberVO vo, HttpSession session, Model model) {
@@ -142,7 +175,7 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	//비밀번호 찾기
+	//비밀번호 찾기 이메일 전송
 	@PostMapping("findPassword")
 	public String findPassword(MemberVO member) throws UnsupportedEncodingException, MessagingException {
 		
@@ -171,7 +204,7 @@ public class MemberController {
 		
 	}
 	
-	//비밀번호 찾기 시 이메일에서 링크 클릭 후 변경값 적는곳
+	//비밀번호 찾기 시 이메일에서 링크 클릭 후 변경값 적는곳 페이지 이동
 	@GetMapping("/findPwEmailAuth")
 	public void findPwEmailAuth(@ModelAttribute("member") MemberVO member, HttpSession session) throws Exception {
 		log.info(member.getEmail());
@@ -179,20 +212,7 @@ public class MemberController {
 		
 	}
 	
-	//위의 변경값으로 업데이트
-	@PostMapping("/resetPassword")
-	public String resetPassword(MemberVO member, @RequestParam("email") String email, 
-			@RequestParam("modifyPassword") String modifyPassword, HttpSession session) {
-		
-		member.setEmail(email);
-		member.setPassword(modifyPassword);
-		
-		service.updatePassword(member);
-	    service.getMember(email);
-		session.invalidate();
-		return "redirect:/page/home";
-	}
-	
+
 	
 	//회원 탈퇴 페이지
 	@GetMapping("/deleteMember")
@@ -200,21 +220,7 @@ public class MemberController {
 		
 	}
 	
-	//회원 탈퇴 
-	@PostMapping("/deleteMember")
-	public String deleteMember(MemberVO member, @RequestParam("email") String email, 
-			@RequestParam("password") String password, HttpSession session) {
-		
-		member.setEmail(email);
-		member.setPassword(password);
-		
-		service.deleteMember(member);
-		
-		session.invalidate();
-		
-		return "/page/home";
-	}
-	
+
 	
 	//이메일 인증 x 페이지
 	@GetMapping("/emailNotVerify")

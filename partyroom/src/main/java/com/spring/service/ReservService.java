@@ -16,4 +16,9 @@ public interface ReservService {
 	public List<ReservVO> getList(Criteria cri);
 	
 	public boolean modify(ReservVO reserv);
+
+	public void getMyReservation(ReservVO reserv);
+	
+	
+	
 }

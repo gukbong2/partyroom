@@ -18,6 +18,6 @@ public class MemberVO {
 	private String phone;
 	private String address;
 	private String addressDetail;
-	
+	private String type;
 	
 }

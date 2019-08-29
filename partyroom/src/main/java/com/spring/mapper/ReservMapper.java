@@ -15,6 +15,8 @@ public interface ReservMapper {
 	public int delete(Long reserv_idx);
 	
 	public int update(ReservVO reserv);
+
+	public void getMyReservation(ReservVO reserv);
 	
 	
 	

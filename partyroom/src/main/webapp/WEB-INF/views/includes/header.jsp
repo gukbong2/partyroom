@@ -10,7 +10,7 @@
     <title>7Hours</title>
     <meta charset="utf-8">
 
-	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Kirang+Haerang|Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
@@ -46,6 +46,10 @@
 
 
 <style>
+.faq {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
 body, table, div, p{ font-family: 'Nanum Gothic', sans-serif; }
 
 .nav-item {
@@ -119,11 +123,33 @@ body, table, div, p{ font-family: 'Nanum Gothic', sans-serif; }
 	display: block;
 }
 
- 
- 
+
 </style>
 
 
+
+ <script>
+$(window).ready(function(){
+	var max = 1000; //100% 투명할때의 스크롤 값
+	$(window).scroll(function(){
+		var scrollPX = $(this).scrollTop();
+		if( scrollPX  < max ) {
+			$("#bg").css({"opacity": (max-scrollPX)/max });
+		}else{
+			$("#bg").css({"opacity": 0});
+		}	
+	});
+	
+	$("#book").on("click", function() {
+		
+		window.open("/reserv/reservPage", "a", "width=1200, height=800, left=280, top=50"); 
+		
+		
+
+	});
+	
+});
+</script> 
 
 
 
@@ -142,13 +168,14 @@ body, table, div, p{ font-family: 'Nanum Gothic', sans-serif; }
 			data-target="#navbarResponsive">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-
+		
+		
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item"><a class="nav-link" href="#guide">이용안내</a></li>
-				<li class="nav-item"><a class="nav-link" href="#reservation">예약하기</a></li>
+				<li class="nav-item"><a class="nav-link" href="#reservation" id="book">예약하기</a></li>
 				<li class="nav-item"><a class="nav-link" href="#guide">소개</a></li>
-				<li class="nav-item"><a class="nav-link" href="#faq">자주묻는질문</a></li>
+				<li class="nav-item"><a class="nav-link" href="#faq">서비스</a></li>
 				<li class="nav-item"><a class="nav-link" href="#map">찾아 오는 길</a></li>
 			    <li class="nav-item">
 					<div class="dropdown">
@@ -170,34 +197,19 @@ body, table, div, p{ font-family: 'Nanum Gothic', sans-serif; }
 					</c:when>
 					
 					<c:otherwise>
-				<%-- 	<li class="nav-item dropdown">
-				        	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
-				        	  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				          		${member.name } ${naverName }&nbsp;님
-				        	</a>
-				          <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
-				            <a class="dropdown-item" href="/member/profile">회원 정보 수정</a>
-				           
-				           <div class="dropdown-divider"></div>
-				            <a class="dropdown-item" href="#" onclick="logout()">로그아웃</a> 
-				           
-				          </div>
-			        </li>  --%>
-			        
-			         <li class="nav-item">
+					 <li class="nav-item">
 					<div class="dropdown">
 						<a class="nav-link dropbtn" href="#">${member.name } ${naverName }&nbsp;님</a>
 						<div class="dropdown-content">
+						<%-- <c:if test="${member.type eq 'site' }">
+						</c:if> --%>
 								<a href="/member/profile" style="font-size : 0.9em;">회원 정보 수정</a>
 								<a href="#" onclick="logout()" style="font-size : 0.9em;">로그아웃</a> 
 						</div>
 					</div>
 					</li>
-			        
-		      
 					</c:otherwise>
 				</c:choose>
-				
 			</ul>
 		</div>
 	</div>
@@ -321,23 +333,26 @@ body, table, div, p{ font-family: 'Nanum Gothic', sans-serif; }
 					<input type="password" name="passwordChk" id="RegisterPasswordCheck" 
 					onKeyPress="if (event.keyCode==13){enterRegister()}" class="form-control my-2" placeholder="비밀번호 확인">
 					
+					<span >
 					<input type="text" name="firstname" id="RegisterFirstName" class="form-control my-2" 
 					onKeyPress="if (event.keyCode==13){enterRegister()}" placeholder="성" > 
 					
 					<input type="text" name="lastname" id="RegisterLastName" class="form-control my-2" 
 					onKeyPress="if (event.keyCode==13){enterRegister()}" placeholder="이름" > 
+					</span>
+					
+					<input type="button" name="addressSearch" id="addressSearch"  class="btn btn-block form-control"
+					style="background-color: #0da197; color: white;" value="주소 검색" readonly="readonly" onclick="goPopup();"> 
 					
 					<input type="text" name="address" id="roadAddrPart1" class="form-control my-2" 
 					onKeyPress="if (event.keyCode==13){enterRegister()}" placeholder="주소"  readonly="readonly"> 
 					
 					<input type="text" id="addrDetail" class="form-control my-2" name="addressDetail" placeholder="상세주소">
 
-					<input type="button" name="emailCheck" id="emailCheck"  class="btn btn-block form-control"
-					style="background-color: #0da197; color: white;" value="주소 검색" readonly="readonly" onclick="goPopup();"> 
-					
 					
 					
 					<input type="hidden" name="name" id="RegisterName"> 
+					<input type="hidden" name="type" id="type"> 
 					<!-- <input type="text" name="phone" id="RegisterPhone" class="form-control my-2" 
 					onKeyPress="if (event.keyCode==13){phoneChk()}" placeholder="핸드폰 번호" maxlength="11" > 
 					
@@ -476,6 +491,7 @@ body, table, div, p{ font-family: 'Nanum Gothic', sans-serif; }
  				var RegisterLastName = $("#RegisterLastName").val();
  				var registerName = $("#RegisterFirstName").val() +  $("#RegisterLastName").val();
  				$("#RegisterName").val(registerName);
+ 				$("#type").val('site');
  				var registerPassword = $("#RegisterPassword").val();
  				var registerPasswordCheck = $("#RegisterPasswordCheck").val();
  				//var RegisterPhoneCheck = $("#RegisterPhoneCheck").val();

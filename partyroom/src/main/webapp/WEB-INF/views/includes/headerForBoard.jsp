@@ -141,16 +141,16 @@ body, table, div, p{ font-family: 'Nanum Gothic', sans-serif; }
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item"><a class="nav-link" href="/page/home">이용안내</a></li>
-				<li class="nav-item"><a class="nav-link" href="/page/home">예약하기</a></li>
+				<li class="nav-item"><a class="nav-link" href="/page/home" id="book">예약하기</a></li>
 					<li class="nav-item"><a class="nav-link" href="#guide">소개</a></li>
-				<li class="nav-item"><a class="nav-link" href="#faq">자주묻는질문</a></li>
-				<li class="nav-item"><a class="nav-link" href="#map">찾아 오는 길</a></li>
+				<li class="nav-item"><a class="nav-link" href="/page/home">서비스</a></li>
+				<li class="nav-item"><a class="nav-link" href="/page/home">찾아 오는 길</a></li>
 				 <li class="nav-item">
 					<div class="dropdown">
 						<a class="nav-link dropbtn" href="#">게시판</a>
 						<div class="dropdown-content">
 								<a href="/board/list" style="font-size : 0.9em;">문의게시판</a>
-								<a href="/board/faq" style="font-size : 0.9em;">자주 묻는 질문</a>
+								<a href="/board/gallery" style="font-size : 0.9em;">갤러리</a>
 						</div>
 					</div>
 				</li>
@@ -169,6 +169,8 @@ body, table, div, p{ font-family: 'Nanum Gothic', sans-serif; }
 					<div class="dropdown">
 						<a class="nav-link dropbtn" href="#">${member.name } ${naverName }&nbsp;님</a>
 						<div class="dropdown-content">
+						<%-- <c:if test="${member.type eq 'site' }">
+						</c:if> --%>
 								<a href="/member/profile" style="font-size : 0.9em;">회원 정보 수정</a>
 								<a href="#" onclick="logout()" style="font-size : 0.9em;">로그아웃</a> 
 						</div>
@@ -176,7 +178,6 @@ body, table, div, p{ font-family: 'Nanum Gothic', sans-serif; }
 					</li>
 					</c:otherwise>
 				</c:choose>
-				
 			</ul>
 		</div>
 	</div>
@@ -364,6 +365,14 @@ body, table, div, p{ font-family: 'Nanum Gothic', sans-serif; }
  		
  		$(document).ready(function() {
  			console.log(memberService);
+ 			
+ 			$("#book").on("click", function() {
+ 				
+ 				window.open("/reserv/reservPage", "a", "width=1200, height=800, left=280, top=50"); 
+ 				
+
+ 			});
+ 			
  			
  			var exptest = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
  			

@@ -202,9 +202,9 @@
             </header>
                 <div class="row contacts">
                     <div class="col invoice-to">
-                        <div class="text-gray-light">INVOICE TO:</div>
+                        <div class="text-gray-light">INVOICE TO: ${reserv.reserv_name }</div>
                         <h5 class="to"><a href="mailto:junyeon2459@gmail.com">${reserv.reserv_email }</a></h5>
-                      <div class="address">796 Silver Harbour, TX 79273, US</div> 
+                      <div class="address">${member.address } ${member.addressDetail }</div> 
                     </div>
                     <div class="col invoice-details">
                         <h1 class="invoice-id">INVOICE 3-2-1</h1>

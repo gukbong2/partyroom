@@ -29,6 +29,11 @@
 	DELETE FROM RESERVATION WHERE RESERV_IDX = #{reserv_idx}
 </delete>
 
+<select id="getMyReservation" resultType="com.spring.domain.ReservVO">
+	SELECT * FROM RESERVATION WHERE RESERV_NAME = #{reserv_name} AND RESERV_EMAIL = #{reserv_email} AND  ROWNUM = 1
+</select>
+
+
 <!-- 
 수정은 할게많아서 나중에 삭제까지만
 <update id="update">
