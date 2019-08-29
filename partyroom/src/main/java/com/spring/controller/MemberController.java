@@ -90,31 +90,54 @@ public class MemberController {
 	
 	
 	//위의 변경값으로 업데이트 회원가입형식 변경값 적는 페이지에서 비밀번호 적고 실제 수정 처리
+
 		@PostMapping("/resetPassword")
-		public String resetPassword(MemberVO member, @RequestParam("email") String email, 
+		public String resetPassword(MemberVO vo, HttpSession session, @RequestParam("modifyPassword") String modifyPassword) {
+			
+			String salt = service.getSaltById(vo.getEmail());
+			
+			String password = modifyPassword;
+			password = SHA256Util.getEncrypt(password, salt);
+			vo.setPassword(password);
+			
+			service.updatePassword(vo);
+		    
+			session.invalidate();
+			
+			return "redirect:/page/home";
+		}
+	
+		
+		//프로필 수정 페이지에서 비밀번호 수정
+		@PostMapping("/updatePassword")
+		public String updatePassword(MemberVO member, 
 				@RequestParam("modifyPassword") String modifyPassword, HttpSession session) {
 			
 			String salt = service.getSaltById(member.getEmail());
 			
-			member.setEmail(email);
 			String password = modifyPassword;
 			password = SHA256Util.getEncrypt(password, salt);
 			member.setPassword(password);
-			
+
 			service.updatePassword(member);
-		    service.getMember(email);
+			
+			
 			session.invalidate();
+			
 			return "redirect:/page/home";
+			
 		}
-	
+		
 	//회원 탈퇴 
 	@PostMapping("/deleteMember")
 	public String deleteMember(MemberVO vo, HttpSession session) {
 		
 		String salt = service.getSaltById(vo.getEmail());
+		
 		String password = vo.getPassword();
 		password = SHA256Util.getEncrypt(password, salt);
 		vo.setPassword(password);
+		
 		service.deleteMember(vo);
 		
 		session.invalidate();
@@ -185,24 +208,7 @@ public class MemberController {
 	}
 	
 	
-	//비밀번호 수정
-	@PostMapping("/updatePassword")
-	public String updatePassword(MemberVO member, @RequestParam("email") String email, 
-			@RequestParam("modifyPassword") String modifyPassword, HttpSession session) {
-		
-		member.setEmail(email);
-		member.setPassword(modifyPassword);
 
-		service.updatePassword(member);
-		
-		//MemberVO vo = service.getMember(email);
-		
-		//session.setAttribute("member", vo);
-		session.invalidate();
-		
-		return "redirect:/page/home";
-		
-	}
 	
 	//비밀번호 찾기 시 이메일에서 링크 클릭 후 변경값 적는곳 페이지 이동
 	@GetMapping("/findPwEmailAuth")
