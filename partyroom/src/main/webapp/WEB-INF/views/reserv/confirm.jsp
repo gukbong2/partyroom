@@ -202,12 +202,13 @@
             </header>
                 <div class="row contacts">
                     <div class="col invoice-to">
-                        <div class="text-gray-light">INVOICE TO: ${reserv.reserv_name }</div>
+                        <div class="text-gray-light"><h4>${reserv.reserv_name } 님! 결제가 완료되었습니다.</h4></div>
                         <h5 class="to"><a href="mailto:junyeon2459@gmail.com">${reserv.reserv_email }</a></h5>
+                      <c:if test="${member.type eq 'site' }">
                       <div class="address">${member.address } ${member.addressDetail }</div> 
+                      </c:if>
                     </div>
                     <div class="col invoice-details">
-                        <h1 class="invoice-id">INVOICE 3-2-1</h1>
                        <div class="date">
 							
                        </div>

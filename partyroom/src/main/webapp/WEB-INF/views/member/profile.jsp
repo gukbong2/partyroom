@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="../includes/header.jsp"%>
+<%@include file="../includes/headerForBoard.jsp"%>
 <style>       
 body{
     background: -webkit-linear-gradient(left, #3931af, #00c6ff);
@@ -160,8 +160,8 @@ body{
                     	<c:if test="${member.type eq 'site' }">
                         <a class="profile-edit-btn"data-toggle="modal" href="#memberUpdate"  id="memberModifyBtn">회원 정보 수정</a><br />
                         <a class="profile-edit-btn"data-toggle="modal" href="#modifyPwd"  id="memberModifyPasswordBtn">비밀번호 변경</a><br />
-                        </c:if>
                          <a class="profile-edit-btn" data-toggle="modal" href="#memberDelete" id="memberRemoveBtn">회원 탈퇴</a>
+                        </c:if>
                         
                     </div>
                 </div>
@@ -346,7 +346,7 @@ body{
 				</button>
 			</div>
 			<div class="modal-body center">
-				<form method="post" id="updateProfileForm" action="/member/register">
+				<form method="post" id="updateProfileForm" action="/member/updateProfile">
 					
 					<input type="password" name="password" id="UpdatePassword" class="form-control my-2" 
 					placeholder="비밀번호">
@@ -385,7 +385,7 @@ body{
 
 
 <script>
-/* 회원가입 주소 */
+/* 프로필 수정 중 주소 */
 function ProfileUpdateAddressPopup(){
 	// 주소검색을 수행할 팝업 페이지를 호출합니다.
 	// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.

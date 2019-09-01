@@ -9,7 +9,12 @@
 
     <title>7Hours</title>
     <meta charset="utf-8">
+	<link rel="shortcut icon" href="/resources/image/favicon-32x32.png" type="image/x-icon" />
+	<link rel="icon" href="/resources/image/favicon-32x32.png" type="image/x-icon" />
 
+	
+	
+	
 	<link href="https://fonts.googleapis.com/css?family=Kirang+Haerang|Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -203,7 +208,7 @@ $(window).ready(function(){
 						<div class="dropdown-content">
 						<%-- <c:if test="${member.type eq 'site' }">
 						</c:if> --%>
-								<a href="/member/profile" style="font-size : 0.9em;">회원 정보 수정</a>
+								<a href="/member/profile" style="font-size : 0.9em;">프로필</a>
 								<a href="#" onclick="logout()" style="font-size : 0.9em;">로그아웃</a> 
 						</div>
 					</div>

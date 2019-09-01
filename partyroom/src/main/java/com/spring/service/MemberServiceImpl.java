@@ -55,7 +55,7 @@ public class MemberServiceImpl implements MemberService{
 		// mail 작성 관련 
 		MailUtils sendMail = new MailUtils(mailSender);
 
-		sendMail.setSubject("[ 더블에스 파티룸 ] 회원가입 이메일 인증");
+		sendMail.setSubject("[ gukbong's guesthouse ] 회원가입 이메일 인증");
 		sendMail.setText(new StringBuffer().append("<h1>[이메일 인증]</h1>")
 				.append("<p>아래 링크를 클릭하시면 이메일 인증이 완료됩니다.</p>")
 				.append("<a href='http://localhost:8080/member/emailAuth?email=")
@@ -128,7 +128,7 @@ public class MemberServiceImpl implements MemberService{
 		// mail 작성 관련 
 		MailUtils sendMail = new MailUtils(mailSender);
 
-		sendMail.setSubject("[ 더블에스 파티룸 ] 비밀번호 찾기 메일입니다.");
+		sendMail.setSubject("[ gukbong's guesthouse ] 비밀번호 찾기 메일입니다.");
 		sendMail.setText(new StringBuffer().append("<h1>[비밀번호 변경]</h1>")
 				.append("<p>아래 링크를 클릭하시면 비밀번호 변경 페이지로 이동하게 됩니다.</p>")
 				.append("<a href='http://localhost:8080/member/findPwEmailAuth?email=")
