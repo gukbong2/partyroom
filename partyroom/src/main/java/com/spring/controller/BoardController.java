@@ -97,19 +97,24 @@ public class BoardController {
 	}
 
 	@PostMapping("/modify")
-	public String modify(BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr, HttpSession session, 
-			 @RequestParam("writer") String writer) {
+	public String modify(BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr, HttpSession session) {
 		log.info("modify:" + board);
 		
 		MemberVO member = new MemberVO();
-		member.setName(writer);
+		member.setName(board.getWriter());
+		member.setEmail(board.getEmail());
 		
 		if (service.modify(board)) {
 			rttr.addFlashAttribute("result", "success");
-			session.setAttribute("member", memberService.getMemberByName(member));
-			session.setAttribute("boardName", board.getWriter());
+			memberService.getMemberByName(member);
 		}
-
+		session.setAttribute("member", member);
+		session.setAttribute("boardName", board.getWriter());
+		log.warn("========================");
+		log.warn("========================");
+		log.info("member : " + session.getAttribute("member"));
+		log.warn("========================");
+		log.warn("========================");
 		return "redirect:/board/list" + cri.getListLink();
 	}
 	//cri.getListLink() = 파라미터 연결해서 URL 형태로 만들어줌

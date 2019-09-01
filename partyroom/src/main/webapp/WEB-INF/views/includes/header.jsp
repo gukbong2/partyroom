@@ -204,7 +204,7 @@ $(window).ready(function(){
 					<c:otherwise>
 					 <li class="nav-item">
 					<div class="dropdown">
-						<a class="nav-link dropbtn" href="#">${member.name } ${naverName }&nbsp;님</a>
+						<a class="nav-link dropbtn" href="#">${member.name }&nbsp;님</a>
 						<div class="dropdown-content">
 						<%-- <c:if test="${member.type eq 'site' }">
 						</c:if> --%>

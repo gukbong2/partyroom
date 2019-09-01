@@ -2,11 +2,11 @@
   pageEncoding="UTF-8"%>
 
 <%@include file="../includes/headerForBoard.jsp"%>
-
+<script type="text/javascript" src="/resources/ckeditor/ckeditor.js"></script>
 <style>
 .uploadResult {
 	width: 100%;
-	background-color: gray;
+	background-color: #e9ecef;
 }
 
 .uploadResult ul {
@@ -77,7 +77,7 @@
 
 <div class="form-group">
   <label>Text area</label>
-  <textarea class="form-control" rows="3" name='content' ><c:out value="${board.content}"/></textarea>
+  <textarea class="form-control" rows="3" name='content' id="ckeditor"><c:out value="${board.content}"/></textarea>
 </div>
 
 <div class="form-group">
@@ -127,6 +127,16 @@
   
 </form>
 
+<script>
+    $(function(){
+         
+        CKEDITOR.replace( 'ckeditor', {
+            width:'1330px',
+            height:'600px',
+        });
+         
+    });
+</script>
 
      
 

@@ -113,7 +113,6 @@ public class SocialController {
 	        //로그인 사용자 정보를 읽어온다.
 		    apiResult = naverLoginBO.getUserProfile(oauthToken);
 			model.addAttribute("result", apiResult);
-			
 	        /* 네이버 로그인 성공 페이지 View 호출 */
 			return "naverSuccess";
 		}
@@ -121,7 +120,7 @@ public class SocialController {
 		@RequestMapping(value = "/callbackForBoard", method = { RequestMethod.GET, RequestMethod.POST })
 		public String callbackForBoard(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
 				throws IOException {
-			System.out.println("callback으로 옴");
+			System.out.println("callbackforboard으로 옴");
 			OAuth2AccessToken oauthToken;
 	        oauthToken = naverLoginBO.getAccessToken(session, code, state);
 	        //로그인 사용자 정보를 읽어온다.
@@ -139,7 +138,7 @@ public class SocialController {
 			
 			service.insert(social);
 			session.setAttribute("member", social);
-			
+			log.info("social : " + social);
 			return "/";
 		}
 		
@@ -150,8 +149,14 @@ public class SocialController {
 			
 			service.modify(social);
 			session.setAttribute("member", social);
-			
-			return "/";
+			log.info("===========================================");
+			log.info("===========================================");
+			log.info("===========================================");
+			log.info("social : " + social);
+			log.info("===========================================");
+			log.info("===========================================");
+			log.info("===========================================");
+			return "/page/home";
 		}
 		
 		

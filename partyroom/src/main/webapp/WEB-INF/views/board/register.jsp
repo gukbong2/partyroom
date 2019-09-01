@@ -156,7 +156,7 @@ font-size: 1.5em; background-color: #475C7A; color: white; text-align: center;" 
     $(function(){
          
         CKEDITOR.replace( 'ckeditor', {
-            width:'1350px',
+            width:'1330px',
             height:'600px',
         });
          
