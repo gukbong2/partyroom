@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.domain.MemberVO;
 import com.spring.domain.MessageVO;
-import com.spring.mapper.MessageMapper;
 import com.spring.service.MemberRestService;
 import com.spring.service.MemberService;
 import com.spring.service.MessageService;

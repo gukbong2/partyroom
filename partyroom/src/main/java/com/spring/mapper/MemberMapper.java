@@ -1,6 +1,10 @@
 package com.spring.mapper;
 
+import java.util.List;
+
+import com.spring.domain.Criteria;
 import com.spring.domain.MemberVO;
+import com.spring.domain.ReservVO;
 
 public interface MemberMapper {
 
@@ -31,5 +35,7 @@ public interface MemberMapper {
 	public int phoneCheck(MemberVO member);
 
 	public MemberVO getMemberByName(MemberVO member);
+
+	public List<ReservVO> getReservList(Criteria cri);
 	
 }

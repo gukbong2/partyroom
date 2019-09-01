@@ -7,6 +7,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.spring.domain.MemberVO;
+import com.spring.domain.ReservVO;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -17,6 +18,8 @@ public class MemberMapperTests {
 	
 	@Setter(onMethod_ = {@Autowired})
 	private MemberMapper mapper;
+	
+	private ReservMapper reservmapper;
 	
 //	@Test
 //	public void testRegister() {
@@ -58,5 +61,17 @@ public class MemberMapperTests {
 //		mapper.deleteMember(member);
 //	}
 	
+	@Test
+	public void getReserv() {
+		
+		ReservVO reserv = new ReservVO();
+		MemberVO member = new MemberVO();
+		
+		reserv.setReserv_email("junyeon2459@gmail.com");
+		reserv.setReserv_name("이준연");
+		member.setEmail("junyeon2459@gmail.com");
+		member.setName("이준연");
+		//reservmapper.getMyReservation(reserv);
+	}
 	
 }

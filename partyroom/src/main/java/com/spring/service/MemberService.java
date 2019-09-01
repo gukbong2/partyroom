@@ -1,10 +1,13 @@
 package com.spring.service;
 
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 import javax.mail.MessagingException;
 
+import com.spring.domain.Criteria;
 import com.spring.domain.MemberVO;
+import com.spring.domain.ReservVO;
 
 public interface MemberService {
 
@@ -33,5 +36,6 @@ public interface MemberService {
 	public int phoneCheck(MemberVO member);
 
 	public MemberVO getMemberByName(MemberVO member);
+
 	
 }

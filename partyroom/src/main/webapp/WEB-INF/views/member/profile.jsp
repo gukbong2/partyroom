@@ -50,7 +50,6 @@ body{
     color: #6c757d;
     cursor: pointer;
 }
-
 .btn btn-danger{
     border: none;
     border-radius: 1.5rem;
@@ -60,7 +59,6 @@ body{
     color: #6c757d;
     cursor: pointer;
 }
-
 .proile-rating{
     font-size: 12px;
     color: #818182;
@@ -108,27 +106,39 @@ body{
     font-weight: 600;
     color: #0062cc;
 }
+
+
+.profile-edit-btn{
+    border: none;
+    border-radius: 1.5rem;
+    width: 70%;
+    padding: 2%;
+    font-weight: 600;
+    color: #6c757d;
+    cursor: pointer;
+}
+
 </style>
 
 
 <br /><br /><br /><br /><br />
 <p class="center jumbotron jumbotron-fluid"
 		style="font-weight: 1000; font-size: 1.5em; background-color: #475C7A;
-		color: white; text-align: center;" >회원 정보 수정</p>
+		color: white; text-align: center;" >프로필</p>
 
 		<div class="container emp-profile">
             <form method="post">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         <div class="profile-img">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
+                           <!--  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
                             <div class="file btn btn-lg btn-primary">
                                 Change Photo
                                 <input type="file" name="file"/>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-8">
                         <div class="profile-head">
                                     <h5>
                                         ${member.name } 님
@@ -146,23 +156,20 @@ body{
                             </ul>
                         </div>
                     </div>
-                   <!--  <div class="col-md-2">
-                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
-                    </div> -->
+                    <div class="col-md-2">
+                    	<c:if test="${member.type eq 'site' }">
+                        <a class="profile-edit-btn"data-toggle="modal" href="#memberUpdate"  id="memberModifyBtn">회원 정보 수정</a><br />
+                        <a class="profile-edit-btn"data-toggle="modal" href="#modifyPwd"  id="memberModifyPasswordBtn">비밀번호 변경</a><br />
+                        </c:if>
+                         <a class="profile-edit-btn" data-toggle="modal" href="#memberDelete" id="memberRemoveBtn">회원 탈퇴</a>
+                        
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="profile-work">
-                             <span>
-                             <c:if test="${member.type eq 'site' }">
-                             <a class="btn btn-warning"data-toggle="modal" href="#memberUpdate"  id="memberModifyBtn">회원 정보 수정</a>
-                             <a class="btn btn-info"data-toggle="modal" href="#modifyPwd"  id="memberModifyPasswordBtn">비밀번호 변경</a>
-                             </c:if>
-                             <a class="btn btn-danger" data-toggle="modal" href="#memberDelete" id="memberRemoveBtn">회원 탈퇴</a>
-                             </span>
-                        </div>
+                      
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-4">
                         <div class="tab-content profile-tab" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                         <div class="row">
@@ -257,61 +264,6 @@ body{
             </form>           
         </div>
 
-<!-- 회원정보 수정 
-<div class="modal fade" id="memberUpdate" tabindex="-1" role="dialog"
-	aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-
-			<div class="modal-header">
-				<h5 class="modal-title" id="myModalLabel"><strong>회원 정보 수정</strong></h5>
-				<button type="button" class="close" data-dismiss="modal"
-					aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-
-			<div class="modal-body center">
-				<form method="post" id="registerForm" action="/member/register">
-					
-					<input type="password" name="password" id="UpdatePassword" class="form-control my-2" 
-					placeholder="비밀번호">
-					
-					<input type="password" name="passwordChk" id="UpdatePasswordCheck" 
-					class="form-control my-2" placeholder="비밀번호 확인">
-					
-					<input type="text" name="firstname" id="UpdateFirstName" class="form-control my-2" 
-					 placeholder="성" > 
-					
-					<input type="text" name="lastname" id="UpdateLastName" class="form-control my-2" 
-					placeholder="이름" > 
-					
-					<input type="button" name="addressSearch" id="addressSearch"  class="btn btn-block form-control"
-					style="background-color: #0da197; color: white;" value="주소 검색" readonly="readonly" onclick="goPopup();"> 
-					
-					
-					<input type="text" name="address" id="UpdateRoadAddrPart1" class="form-control my-2" 
-					onKeyPress="if (event.keyCode==13){enterRegister()}" placeholder="주소"  readonly="readonly"> 
-					
-					<input type="text" id="addrDetail" class="form-control my-2" name="UpdateAddressDetail" placeholder="상세주소">
-
-				
-					
-					
-					<input type="hidden" name="name" id="RegisterName"> 
-					<input type="hidden" name="type" id="type"> 
-					
-					<input type="submit" style="background-color: #475C7A; color: white;" id="memberRegiBtn"
-					class="btn btn-block form-control" value="회원가입">
-				</form>
-				<hr>
-
-				<hr>
-
-			</div>
-		</div>
-	</div>
-</div>-->
 
 <!-- 비밀번호 수정 모달 -->	
 <div class="modal fade" id="modifyPwd" tabindex="-1" role="dialog"
@@ -380,6 +332,80 @@ body{
 		</div>
 	</div>
 </div>
+
+
+<div class="modal fade" id="memberUpdate" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="myModalLabel"><strong>회원 정보 수정</strong></h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body center">
+				<form method="post" id="updateProfileForm" action="/member/register">
+					
+					<input type="password" name="password" id="UpdatePassword" class="form-control my-2" 
+					placeholder="비밀번호">
+					
+					<input type="password" name="passwordChk" id="UpdatePasswordCheck" 
+					class="form-control my-2" placeholder="비밀번호 확인">
+					
+					<input type="text" name="firstname" id="UpdateFirstName" class="form-control my-2" 
+					 placeholder="성" > 
+					
+					<input type="text" name="lastname" id="UpdateLastName" class="form-control my-2" 
+					placeholder="이름" > 
+					
+					<input type="button" name="addressSearch" id="UpdateaddressSearch"  class="btn btn-block form-control"
+					style="background-color: #0da197; color: white;" value="주소 검색" readonly="readonly" onclick="ProfileUpdateAddressPopup();"> 
+					
+					
+					<input type="text" name="address" id="UpdateRoadAddrPart1" class="form-control my-2" 
+					placeholder="주소"  readonly="readonly"> 
+					
+					<input type="text" id="UpdateaddrDetail" class="form-control my-2" name="UpdateAddressDetail" placeholder="상세주소">
+				
+					
+					
+					
+					<input type="submit" style="background-color: #475C7A; color: white;" id="updateProfileBtn"
+					class="btn btn-block form-control" value="회원 정보 수정">
+				</form>
+				<hr>
+				<hr>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<script>
+/* 회원가입 주소 */
+function ProfileUpdateAddressPopup(){
+	// 주소검색을 수행할 팝업 페이지를 호출합니다.
+	// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
+	var pop = window.open("/member/UpdateAddress","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+	
+	// 모바일 웹인 경우, 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
+    //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes"); 
+}
+
+function jusoCallBack(roadFullAddr, roadAddrPart1, addrDetail,
+		roadAddrPart2, engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,
+		detBdNmList, bdNm, bdKdcd, siNm, sggNm, emdNm, liNm, rn, udrtYn,
+		buldMnnm, buldSlno, mtYn, lnbrMnnm, lnbrSlno, emdNo) {
+	// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
+	document.getElementById("UpdateRoadAddrPart1").value = roadAddrPart1;
+	document.getElementById("UpdateaddrDetail").value = addrDetail;
+}
+</script>
+
+
 
 <!-- 회원탈퇴 -->        
 <script>
@@ -505,5 +531,3 @@ body{
 
         
 <%@include file="../includes/footer.jsp"%>        
-        
-        

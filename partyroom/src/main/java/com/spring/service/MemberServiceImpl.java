@@ -1,6 +1,7 @@
 package com.spring.service;
 
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 import javax.mail.MessagingException;
 
@@ -9,7 +10,9 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.spring.domain.Criteria;
 import com.spring.domain.MemberVO;
+import com.spring.domain.ReservVO;
 import com.spring.mapper.BoardMapper;
 import com.spring.mapper.MemberMapper;
 import com.spring.mapper.ReplyMapper;
@@ -155,6 +158,7 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return mapper.getMemberByName(member);
 	}
+
 
 	
 

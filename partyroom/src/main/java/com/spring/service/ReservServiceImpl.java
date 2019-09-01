@@ -44,9 +44,9 @@ public class ReservServiceImpl implements ReservService{
 	}
 
 	@Override
-	public void getMyReservation(ReservVO reserv) {
+	public ReservVO getMyReservation(ReservVO reserv) {
 		// TODO Auto-generated method stub
-		mapper.getMyReservation(reserv);
+		return mapper.getMyReservation(reserv);
 	}
 
 }

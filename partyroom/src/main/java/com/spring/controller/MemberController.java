@@ -3,7 +3,6 @@ package com.spring.controller;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.spring.domain.Criteria;
 import com.spring.domain.MemberVO;
 import com.spring.service.MemberService;
 import com.spring.service.SHA256Util;
@@ -32,6 +32,12 @@ public class MemberController {
 	
 	private MemberService service;
 	
+	@RequestMapping("/UpdateAddress")
+	public void UpdateAddress() {
+		
+	}
+	
+	
 	//회원가입 주소 팝업 불러오기
 	@RequestMapping("/address")
 	public void address() {
@@ -40,7 +46,8 @@ public class MemberController {
 	
 	//회원 정보 수정 페이지
 	@GetMapping("/profile")
-	public void profile() {
+	public void profile(Criteria cri, Model model, HttpSession session) {
+		
 		
 	}
 	
@@ -89,60 +96,7 @@ public class MemberController {
 	}
 	
 	
-	//위의 변경값으로 업데이트 회원가입형식 변경값 적는 페이지에서 비밀번호 적고 실제 수정 처리
-
-		@PostMapping("/resetPassword")
-		public String resetPassword(MemberVO vo, HttpSession session, @RequestParam("modifyPassword") String modifyPassword) {
-			
-			String salt = service.getSaltById(vo.getEmail());
-			
-			String password = modifyPassword;
-			password = SHA256Util.getEncrypt(password, salt);
-			vo.setPassword(password);
-			
-			service.updatePassword(vo);
-		    
-			session.invalidate();
-			
-			return "redirect:/page/home";
-		}
 	
-		
-		//프로필 수정 페이지에서 비밀번호 수정
-		@PostMapping("/updatePassword")
-		public String updatePassword(MemberVO member, 
-				@RequestParam("modifyPassword") String modifyPassword, HttpSession session) {
-			
-			String salt = service.getSaltById(member.getEmail());
-			
-			String password = modifyPassword;
-			password = SHA256Util.getEncrypt(password, salt);
-			member.setPassword(password);
-
-			service.updatePassword(member);
-			
-			
-			session.invalidate();
-			
-			return "redirect:/page/home";
-			
-		}
-		
-	//회원 탈퇴 
-	@PostMapping("/deleteMember")
-	public String deleteMember(MemberVO vo, HttpSession session) {
-		
-		String salt = service.getSaltById(vo.getEmail());
-		
-		String password = vo.getPassword();
-		password = SHA256Util.getEncrypt(password, salt);
-		vo.setPassword(password);
-		
-		service.deleteMember(vo);
-		
-		session.invalidate();
-		return "/page/home";
-	}
 	
 	
 	//로그인 
@@ -174,6 +128,7 @@ public class MemberController {
 				
 				
 				session.setAttribute("member", vo);
+				
 				System.out.println("member : " + vo);
 				
 				return "redirect:/";
@@ -217,6 +172,60 @@ public class MemberController {
 		
 		
 	}
+	
+	//위의 변경값으로 업데이트 회원가입형식 변경값 적는 페이지에서 비밀번호 적고 실제 수정 처리
+			@PostMapping("/resetPassword")
+			public String resetPassword(MemberVO vo, HttpSession session, @RequestParam("modifyPassword") String modifyPassword) {
+				
+				String salt = service.getSaltById(vo.getEmail());
+				
+				String password = modifyPassword;
+				password = SHA256Util.getEncrypt(password, salt);
+				vo.setPassword(password);
+				
+				service.updatePassword(vo);
+			    
+				session.invalidate();
+				
+				return "redirect:/page/home";
+			}
+		
+			
+			//프로필 수정 페이지에서 비밀번호 수정
+			@PostMapping("/updatePassword")
+			public String updatePassword(MemberVO member, 
+					@RequestParam("modifyPassword") String modifyPassword, HttpSession session) {
+				
+				String salt = service.getSaltById(member.getEmail());
+				
+				String password = modifyPassword;
+				password = SHA256Util.getEncrypt(password, salt);
+				member.setPassword(password);
+
+				service.updatePassword(member);
+				
+				
+				session.invalidate();
+				
+				return "redirect:/page/home";
+				
+			}
+			
+		//회원 탈퇴 
+		@PostMapping("/deleteMember")
+		public String deleteMember(MemberVO vo, HttpSession session) {
+			
+			String salt = service.getSaltById(vo.getEmail());
+			
+			String password = vo.getPassword();
+			password = SHA256Util.getEncrypt(password, salt);
+			vo.setPassword(password);
+			
+			service.deleteMember(vo);
+			
+			session.invalidate();
+			return "/page/home";
+		}
 	
 
 	

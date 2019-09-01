@@ -16,7 +16,7 @@ public interface ReservMapper {
 	
 	public int update(ReservVO reserv);
 
-	public void getMyReservation(ReservVO reserv);
+	public ReservVO getMyReservation(ReservVO reserv);
 	
 	
 	

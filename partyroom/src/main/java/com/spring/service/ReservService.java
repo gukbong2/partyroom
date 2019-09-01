@@ -17,7 +17,7 @@ public interface ReservService {
 	
 	public boolean modify(ReservVO reserv);
 
-	public void getMyReservation(ReservVO reserv);
+	public ReservVO getMyReservation(ReservVO reserv);
 	
 	
 	
