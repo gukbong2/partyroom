@@ -3,12 +3,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@include file="../includes/header.jsp"%>
-<script type="text/javascript" src="/resources/ckeditor/ckeditor.js"></script>
 
 <style>
 .uploadResult {
 	width: 100%;
-	background-color: #e9ecef;
+	background-color: gray;
 }
 .uploadResult ul {
 	display: flex;
@@ -96,86 +95,75 @@
 font-size: 1.5em; background-color: #475C7A; color: white; text-align: center;" > 문의글 작성</p>
 
 
-<div class="bodyform"
-		style="width: 75%; margin: auto; background-color: #e9ecef; padding: 20px;
-		border-radius: 15px;">
-		<div> <!-- 글쓰기 폼 -->
-			 <form role="form" action="/board/register" method="post">
-				<br style="clear: both">
-				
-				<!-- 후기 내역 시작 -->
-				<div class="center">
-					
-				</div> <!-- 후기 내역 끝 -->
-				
-				<hr><br>
-				<table style="margin: auto;">
-					<tr>
-						<td>
-							<div class="col-xs-9 zeroPad">
-								<input type="text" class="form-control" id="title" name="title" placeholder="제목" required><!--  -->
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<br>
-							<textarea class="form-control" id="ckeditor" name="content" placeholder="content" required></textarea><!--  -->
-						</td>
-					</tr>
-				</table>
-				<input type="hidden" name='writer' id='writer' value="${member.name }" />
-        	    <input type="hidden" name='email' id='email' value="${member.email }" />
-				<br><br>
-				
-				  <div class="panel-heading">File Attach</div>
+<div class="row" style="font-size: 20px; width: 80%; margin-right : auto; margin-left : auto;">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+
+      <div class="panel-heading">Board Register</div>
       <!-- /.panel-heading -->
-		        <div class="form-group uploadDiv">
-		            <input type="file" name='uploadFile' id="uploadFileBtn" multiple>
-		        </div>
-		        
-		        <div class='uploadResult'> 
-		          <ul>
-		          
-		          </ul>
-		        </div>
-				
-				
-				<!-- 글쓰기 버튼 -->
-					<button type="submit" class="btn btn-default">Submit Button</button>&nbsp;
-				<br>
-				
-			</form>
-		</div> <!-- 글쓰기 폼 끝 -->
-	<br>
-	</div> 
+      <div class="panel-body">
 
+        <form role="form" action="/board/register" method="post">
+          <div class="form-group">
+            <label>Title</label> <input class="form-control" name='title' id="title">
+          </div>
 
-	
-<script>
-    $(function(){
+          <div class="form-group">
+            <label>Text area</label>
+            <textarea class="form-control" rows="8" name='content' id="content"></textarea>
+          </div>
+
          
-        CKEDITOR.replace( 'ckeditor', {
-            width:'1350px',
-            height:'600px',
-        });
+         <input type="hidden" name='writer' id='writer' value="${member.name }" />
+         <input type="hidden" name='email' id='email' value="${member.email }" />
          
-    });
-</script>
+          <button type="submit" class="btn btn-default">Submit
+            Button</button>
+          <button type="reset" class="btn btn-default">Reset Button</button>
+        </form>
+
+      </div>
+      <!--  end panel-body -->
+
+    </div>
+    <!--  end panel-body -->
+  </div>
+  <!-- end panel -->
+</div>
+<!-- /.row -->
 
 
+<div class="row" >
+  <div class="col-lg-12">
+    <div class="panel panel-default">
 
+      <div class="panel-heading">File Attach</div>
+      <!-- /.panel-heading -->
+      <div class="panel-body">
+        <div class="form-group uploadDiv">
+            <input type="file" name='uploadFile' multiple>
+        </div>
+        
+        <div class='uploadResult'> 
+          <ul>
+          
+          </ul>
+        </div>
+        
+        
+      </div>
+      <!--  end panel-body -->
 
-
+    </div>
+    <!--  end panel-body -->
+  </div>
+  <!-- end panel -->
+</div>
+<!-- /.row -->
 
 <script>
 $(document).ready(function(e){
   
-    
-	
-	
-	
-	
 	var formObj = $("form[role='form']");
 	  
 	  $("button[type='submit']").on("click", function(e){
@@ -318,15 +306,6 @@ $(document).ready(function(e){
 	         }
 	    }); //$.ajax
    });
-  
-  
-
-
-
-
-  
-  
-  
   
 });
 </script>
