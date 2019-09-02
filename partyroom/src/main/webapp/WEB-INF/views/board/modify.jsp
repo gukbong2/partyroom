@@ -46,11 +46,9 @@
 </style>
 
 
-<br /><br /><br /><br /><br />
-
-<p class="center jumbotron jumbotron-fluid"
-		style="font-weight: 1000; font-size: 1.5em; background-color: #475C7A;
-		color: white; text-align: center;" >문의글 수정</p>
+<br /><br /><br /><br><br>
+<p class="center jumbotron jumbotron-fluid" style="font-weight: 1000; 
+font-size: 1.5em; background-color: #475C7A; color: white; text-align: center;" > 문의글 작성</p>
 
  <!-- 파일업로드 -->
 	<div class='bigPictureWrapper'>
@@ -58,42 +56,42 @@
 	   
 	   </div>
 	</div>
-
+<div class="bodyform"
+		style="width: 75%; margin: auto; background-color: #e9ecef; padding: 20px;
+		border-radius: 15px;">
+		<div> <!-- 글쓰기 폼 -->
 <form role="form" action="/board/modify" method="post" 
 	  style="font-size: 20px; width: 80%; margin-right : auto; margin-left : auto;">
       
  
-<div class="form-group">
-  <label>Bno</label> 
-  <input class="form-control" name='bno' 
-     value='<c:out value="${board.bno }"/>' readonly="readonly">
-</div>
+  <input type="hidden" class="form-control" name='bno' 
+    value='<c:out value="${board.bno }"/>' readonly="readonly">
 
 <div class="form-group">
-  <label>Title</label> 
+  <label>글 제목</label> 
   <input class="form-control" name='title' 
     value='<c:out value="${board.title }"/>' >
 </div>
 
 <div class="form-group">
-  <label>Text area</label>
+  <label>글 내용</label>
   <textarea class="form-control" rows="3" name='content' id="ckeditor"><c:out value="${board.content}"/></textarea>
 </div>
 
 <div class="form-group">
-  <label>Writer</label> 
+  <label>작성자</label> 
   <input class="form-control" name='writer'
     value='<c:out value="${board.writer}"/>' readonly="readonly">            
 </div>
 
 <div class="form-group">
-  <label>RegDate</label> 
+  <label>등록일</label> 
   <input class="form-control" name='regDate'
     value='<fmt:formatDate pattern = "yyyy/MM/dd" value = "${board.regdate}" />'  readonly="readonly">            
 </div>
 
 <div class="form-group">
-  <label>Update Date</label> 
+  <label>최종 수정일</label> 
   <input class="form-control" name='updateDate'
     value='<fmt:formatDate pattern = "yyyy/MM/dd" value = "${board.updatedate}" />'  readonly="readonly">            
 </div>
@@ -126,12 +124,14 @@
     <input type="hidden" name="email" value="${member.email }">
   
 </form>
-
+		</div> <!-- 글쓰기 폼 끝 -->
+	<br>
+	</div> 
 <script>
     $(function(){
          
         CKEDITOR.replace( 'ckeditor', {
-            width:'1330px',
+            width:'1070px',
             height:'600px',
         });
          

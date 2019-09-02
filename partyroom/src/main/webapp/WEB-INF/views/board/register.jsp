@@ -103,10 +103,9 @@ font-size: 1.5em; background-color: #475C7A; color: white; text-align: center;" 
 			 <form role="form" action="/board/register" method="post">
 				<br style="clear: both">
 				
-				<!-- 후기 내역 시작 -->
+				
 				<div class="center">
-					
-				</div> <!-- 후기 내역 끝 -->
+				</div> 
 				
 				<hr><br>
 				<table style="margin: auto;">
