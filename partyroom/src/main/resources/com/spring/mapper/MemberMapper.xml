@@ -63,6 +63,8 @@
 		WHERE EMAIL = #{email} AND AUTHKEY = #{authkey}
 </update>
 
+
+
 <select id="getAuth" resultType="Integer">
 	SELECT AUTH FROM MEMBER 
 		WHERE EMAIL = #{email}
@@ -83,7 +85,10 @@
 	WHERE PHONE = #{phone}
 </select>
 
-
+<update id="updateProfile">
+	UPDATE MEMBER SET NAME = #{name}, ADDRESS = #{address}, ADDRESSDETAIL = #{addressDetail}, TYPE = 'site'
+		WHERE PASSWORD = #{password} AND EMAIL = #{email}
+</update>
 
 
 </mapper>

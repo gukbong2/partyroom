@@ -333,7 +333,7 @@ body{
 	</div>
 </div>
 
-
+<!-- 프로필 수정 -->
 <div class="modal fade" id="memberUpdate" tabindex="-1" role="dialog"
 	aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
@@ -367,12 +367,14 @@ body{
 					<input type="text" name="address" id="UpdateRoadAddrPart1" class="form-control my-2" 
 					placeholder="주소"  readonly="readonly"> 
 					
-					<input type="text" id="UpdateaddrDetail" class="form-control my-2" name="UpdateAddressDetail" placeholder="상세주소">
-				
+					<input type="text" id="UpdateaddrDetail" class="form-control my-2" name="addressDetail" placeholder="상세주소">
+					<input type="hidden" id="email" class="form-control my-2" name="email" value="${member.email }">
+					<input type="hidden" name="name" id="updateName"> 
+					<input type="hidden" name="type" id="updateType"> 
 					
 					
 					
-					<input type="submit" style="background-color: #475C7A; color: white;" id="updateProfileBtn"
+					<input type="button" style="background-color: #475C7A; color: white;" id="updateProfileBtn"
 					class="btn btn-block form-control" value="회원 정보 수정">
 				</form>
 				<hr>
@@ -382,28 +384,70 @@ body{
 	</div>
 </div>
 
-
-
 <script>
-/* 프로필 수정 중 주소 */
-function ProfileUpdateAddressPopup(){
-	// 주소검색을 수행할 팝업 페이지를 호출합니다.
-	// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
-	var pop = window.open("/member/UpdateAddress","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+$(document).ready(function(e) {
 	
-	// 모바일 웹인 경우, 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
-    //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes"); 
-}
+	$("#updateProfileBtn").on("click", function() {
+		
+		alert("click");
+		
+			var UpdateFirstName = $("#UpdateFirstName").val();
+			var UpdateLastName = $("#UpdateLastName").val();
+			var UpdateName = $("#UpdateFirstName").val() +  $("#UpdateLastName").val();
+			$("#updateName").val(UpdateName);
+		
+			var updateFormEmail = $("#email").val();
+			var UpdatePassword = $("#UpdatePassword").val();
+			var UpdatePasswordCheck = $("#UpdatePasswordCheck").val();
+			var type = $("#updateType").val('site');
+			console.log(type);
+			console.log(UpdateName);
+			console.log(UpdatePassword);
+			console.log(UpdatePasswordCheck);
+			
+			var params = {
+					email : updateFormEmail,
+					password : UpdatePassword
+			}
+			
+			console.log(params);
+			
+			 $.ajax({
+				method : 'post',
+				dataType : 'json', 
+				data : params,
+				url : "/member/modifyPassword",
+				success : function(data) {
+					if (data.cnt == 0) {
+						alert("기존 비밀번호를 잘못 입력하셨습니다.");
+						$("#UpdatePassword").val("");
+						$("#UpdatePassword").focus();
+						return false;
+					} else if (UpdatePassword != UpdatePasswordCheck) {
+						alert("비밀번호가 일치하지 않습니다.");
+						$("#UpdatePassword").val("");
+						$("#UpdatePasswordCheck").val("");
+						$("#UpdatePassword").focus();
+						return false;
+					}
+					alert("프로필 수정 완료.");
+						
+					 $("#updateProfileForm").submit(); 
+					
+				} 
+				
+			
+			});
+			
+			
+			
+	});
+	
+});
 
-function jusoCallBack(roadFullAddr, roadAddrPart1, addrDetail,
-		roadAddrPart2, engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,
-		detBdNmList, bdNm, bdKdcd, siNm, sggNm, emdNm, liNm, rn, udrtYn,
-		buldMnnm, buldSlno, mtYn, lnbrMnnm, lnbrSlno, emdNo) {
-	// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
-	document.getElementById("UpdateRoadAddrPart1").value = roadAddrPart1;
-	document.getElementById("UpdateaddrDetail").value = addrDetail;
-}
 </script>
+
+
 
 
 
@@ -528,6 +572,28 @@ function jusoCallBack(roadFullAddr, roadAddrPart1, addrDetail,
 	});
 </script>
         
+        
+
+<script>
+/* 프로필 수정 중 주소 */
+function ProfileUpdateAddressPopup(){
+	// 주소검색을 수행할 팝업 페이지를 호출합니다.
+	// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
+	var pop = window.open("/member/UpdateAddress","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+	
+	// 모바일 웹인 경우, 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
+    //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes"); 
+}
+
+function jusoCallBack(roadFullAddr, roadAddrPart1, addrDetail,
+		roadAddrPart2, engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,
+		detBdNmList, bdNm, bdKdcd, siNm, sggNm, emdNm, liNm, rn, udrtYn,
+		buldMnnm, buldSlno, mtYn, lnbrMnnm, lnbrSlno, emdNo) {
+	// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
+	document.getElementById("UpdateRoadAddrPart1").value = roadAddrPart1;
+	document.getElementById("UpdateaddrDetail").value = addrDetail;
+}
+</script>
 
         
 <%@include file="../includes/footer.jsp"%>        

@@ -106,7 +106,7 @@
 				
 				<!-- 검색 조건 처리 시작 -->
 				
-				<div class='row'>
+				<div class='row' style="font-size: 20px; width: 80%; margin-right : auto; margin-left : auto;">
 					<div class="col-lg-12">
 							
 						<form id='searchForm' action="/board/list" method='get'

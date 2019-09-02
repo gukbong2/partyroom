@@ -159,6 +159,11 @@ public class MemberServiceImpl implements MemberService{
 		return mapper.getMemberByName(member);
 	}
 
+	@Override
+	public void updateProfile(MemberVO member) {
+		mapper.updateProfile(member);
+	}
+
 
 	
 

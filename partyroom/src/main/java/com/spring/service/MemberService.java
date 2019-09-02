@@ -37,5 +37,7 @@ public interface MemberService {
 
 	public MemberVO getMemberByName(MemberVO member);
 
+	public void updateProfile(MemberVO member);
+
 	
 }

@@ -182,12 +182,13 @@ $(window).ready(function(){
 				<li class="nav-item"><a class="nav-link" href="#guide">소개</a></li>
 				<li class="nav-item"><a class="nav-link" href="#faq">서비스</a></li>
 				<li class="nav-item"><a class="nav-link" href="#map">찾아 오는 길</a></li>
+				<li class="nav-item"><a class="nav-link" href="#gallery">포토 갤러리</a></li>
 			    <li class="nav-item">
 					<div class="dropdown">
 						<a class="nav-link dropbtn" href="#">게시판</a>
 						<div class="dropdown-content">
 								<a href="/board/list" style="font-size : 0.9em;">문의게시판</a>
-								<a href="/board/gallery" style="font-size : 0.9em;">갤러리</a>
+								<a href="공지사항" style="font-size : 0.9em;">공지사항</a>
 						</div>
 					</div>
 				</li>

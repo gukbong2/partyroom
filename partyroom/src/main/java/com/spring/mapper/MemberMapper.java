@@ -37,5 +37,7 @@ public interface MemberMapper {
 	public MemberVO getMemberByName(MemberVO member);
 
 	public List<ReservVO> getReservList(Criteria cri);
+
+	public void updateProfile(MemberVO member);
 	
 }

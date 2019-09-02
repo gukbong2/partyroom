@@ -38,6 +38,7 @@ public class MemberController {
 	}
 	
 	
+	
 	//회원가입 주소 팝업 불러오기
 	@RequestMapping("/address")
 	public void address() {
@@ -55,6 +56,7 @@ public class MemberController {
 	public void loginPage() {
 		
 	}
+	
 	
 	
 	
@@ -163,7 +165,8 @@ public class MemberController {
 	}
 	
 	
-
+	
+	
 	
 	//비밀번호 찾기 시 이메일에서 링크 클릭 후 변경값 적는곳 페이지 이동
 	@GetMapping("/findPwEmailAuth")
@@ -190,6 +193,22 @@ public class MemberController {
 				return "redirect:/page/home";
 			}
 		
+			//프로필 수정
+			@PostMapping("/updateProfile")
+			public String updateProfile(MemberVO member, @RequestParam("password") String getPassword, HttpSession session) {
+				
+				String salt = service.getSaltById(member.getEmail());
+				
+				String password = getPassword;
+				password = SHA256Util.getEncrypt(password, salt);
+				member.setPassword(password);
+				
+				service.updateProfile(member);
+				
+				session.setAttribute("member", member);
+				return "/member/profile";
+			}
+			
 			
 			//프로필 수정 페이지에서 비밀번호 수정
 			@PostMapping("/updatePassword")

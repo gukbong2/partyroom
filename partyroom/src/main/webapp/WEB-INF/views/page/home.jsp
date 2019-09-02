@@ -237,7 +237,6 @@ margin : auto;
 </div> 
  <!--slick 이미지 슬라이드 끝  -->
 		
-<br /><br />
  
  		
 <!-- jumbotron -->
@@ -248,7 +247,7 @@ margin : auto;
 				<h2 style="text-align: center;"><strong>7Hours 예약하기</strong></h2>
 				<c:choose>
 				<c:when test="${member.name ne null }">
-				<br /><br /><br /><br /><br />
+				<br /><br />
 				<button class="btn btn-lg btn-block" style="background-color : #ececec;" id="popupBtn">
 					<img src="/resources/image/booking.png" alt="" style="width : 150px;" />
 				</button>
@@ -272,7 +271,6 @@ margin : auto;
 	
 <!-- jumbotron -->
 <section id="guide">
-<br /><br /><br /><br />
 	<div class="jumbotron jumbotron-fluid" style="background-color : #ececec; vertical-align: bottom;">
 		<div>
 			<div>
@@ -355,7 +353,7 @@ margin : auto;
           <div class="col-md-8">
             <h2 class="font-weight-bold mb-3 black-text">7Hours의 무료 샤워용품으로 씻고 난 뒤 여행지를 둘러보세요.</h2>
             <p class="">7Hours는 성별 마다 층이 분리되어있고, 샤워부스 또한 1인 프라이빗 부스로 만들어 놨습니다.</p>
-            <p class="mb-0">날씨가 너무 더운 서울 ..수건이 모자르시면 직원에게 말씀해주세요! 리필해드리겠습니다.</p>
+            <p class="mb-0">날씨가 너무 더운 서울 .. 수건이 모자르시면 직원에게 말씀해주세요! 리필해드리겠습니다.</p>
             <p>공용헤어드라이기는 사용한 다음에는 다시 정리해주세요.</p>
             <p>스킨, 로션 또한 공용세면대에 있으니 마음껏 사용하셔도 됩니다.</p>
           </div>
@@ -437,7 +435,6 @@ margin : auto;
 		
 	<!-- 지도-->
 	<section id="map">
-	<br /><br /><br /><br /><br />
 	<div class="jumbotron jumbotron-fluid" style="background-color : #ececec; vertical-align: top;">
 		<div>
 			<div>
@@ -463,7 +460,6 @@ margin : auto;
 </section>
 	
 <section id="faq" class="facility__faq">
-<br /><br /><br /><br />
 <div class="jumbotron jumbotron-fluid" style="background-color : #ececec; vertical-align: top; ">
 	<h2  style="text-align: center;"><strong>7Hours 서비스 규정</strong></h2>
 	<br /><br />
@@ -534,6 +530,49 @@ margin : auto;
 	</div>
 </section>	
  
+<section id="gallery">
+<div class="jumbotron jumbotron-fluid" style="background-color : #ececec; vertical-align: top; ">
+	<h2  style="text-align: center;"><strong>포토 갤러리</strong></h2>
+<div class="slick-carousel">
+  <div>
+    <img src="/resources/image/photogallery1.jpg">
+  </div>
+  <div>
+   <img src="/resources/image/photogallery3.jpg">
+  </div>
+  <div>
+    <img src="/resources/image/photogallery4.jpg">
+  </div>
+  <div>
+   <img src="/resources/image/photogallery5.jpg">
+  </div>
+  <div>
+   <img src="/resources/image/photogallery6.jpg">
+  </div>
+  <div>
+   <img src="/resources/image/photogallery7.jpg">
+  </div>
+</div>
+</div>
+</section> 
+
+<style>
+.slick-carousel {
+  margin: 0 auto;
+  width: 1500px;
+}
+
+/* The width of each slide */
+.slick-slide {
+  width: 350px;
+}
+
+/* Color of the arrows */
+.slick-next::before, .slick-prev::before {
+  color: blue;
+}
+</style>
+
   	
 <script>
 jQuery(function($){
@@ -548,8 +587,21 @@ jQuery(function($){
 	    slidesToShow: 1,
 	    autoplaySpeed : 1000,
 	    speed : 1500,
-	    autoplay : true
+	    autoplay : true,
+	    fade: true
 	  });
+	  
+	  $('.slick-carousel').slick({
+		  infinite: true,
+		  slidesToShow: 3, 
+		  slidesToScroll: 1, 
+		  arrows: true,
+		  autoplaySpeed : 1000,
+		  speed : 1500,
+		  autoplay : true,
+		  dots: true 
+		});	
+	  
 	});
 </script> 	
   	
@@ -660,6 +712,7 @@ $(document).ready(function(){
 	
 	 
 </script>
+
 
 
 <%@include file="../includes/footer.jsp"%>
