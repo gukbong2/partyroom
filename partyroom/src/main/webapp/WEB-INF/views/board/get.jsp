@@ -46,11 +46,9 @@
   justify-content: center;
   align-items: center;
 }
-
 .bigPicture img {
   width:600px;
 }
-
 </style>
 
 <br /><br /><br /><br /><br />
@@ -80,9 +78,11 @@
 
         <div class="form-group">
         
-         <p>${board.content }</p>
+          <p>${board.content }</p>
+         
         </div>
         
+        <br /><br /><br />
         <br /><br /><br />
         
         <hr />
@@ -231,7 +231,6 @@
 
 
 <script>
-
 	$(document).ready(function() {
 			
 			/* var memberemail = "${member.email}";
@@ -307,14 +306,12 @@
 		        .animate({width:'100%', height: '100%'}, 1000);
 		        
 		      }
-
 		      $(".bigPictureWrapper").on("click", function(e){
 		        $(".bigPicture").animate({width:'0%', height: '0%'}, 1000);
 		        setTimeout(function(){
 		          $('.bigPictureWrapper').hide();
 		        }, 1000);
 		      });
-
 		      
 		    });
 </script>
@@ -356,7 +353,6 @@ $(document).ready(function() {
 			replyService.getList({bno : bnoValue, page : page || 1 }, function(replyCnt, list) {
 				
 				console.log("replyCnt : " + replyCnt);
-
 				if (page == -1) {
 					pageNum = Math.ceil(replyCnt / 10.0);
 					showList(pageNum);
@@ -532,7 +528,6 @@ $(document).ready(function() {
 		  	
 		  	
 });
-
 function addReply(frm) {
 	var addReply = $("#addReply");
 	
@@ -560,7 +555,6 @@ function addReply(frm) {
 		    }
 		);
 }	
-
 </script>
 
 
@@ -621,7 +615,6 @@ var replyUL = $(".chat");
 		replyService.getList({bno : bnoValue, page : page || 1 }, function(replyCnt, list) {
 			
 			console.log("replyCnt : " + replyCnt);
-
 			if (page == -1) {
 				pageNum = Math.ceil(replyCnt / 10.0);
 				showList(pageNum);
@@ -713,4 +706,3 @@ var replyUL = $(".chat");
 				
 	
 </script>
-

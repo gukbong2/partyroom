@@ -187,8 +187,8 @@ $(window).ready(function(){
 					<div class="dropdown">
 						<a class="nav-link dropbtn" href="#">게시판</a>
 						<div class="dropdown-content">
-								<a href="/board/list" style="font-size : 0.9em;">문의게시판</a>
-								<a href="공지사항" style="font-size : 0.9em;">공지사항</a>
+								<a href="/board/list" style="font-size : 0.95em; text-align: center;">문의게시판</a>
+								<a href="/notice/list"style="font-size : 0.95em; text-align: center;">공지사항</a>
 						</div>
 					</div>
 				</li>
@@ -562,6 +562,7 @@ $(window).ready(function(){
 					
 						alert("인증문자 발송 성공!");
 						console.log("인증문자 발송 성공!");
+						
 							//이것도 restapi로 하지말고 그냥 ajax로 모달안꺼지게 바로 나오게 ㄱ 
 						$.ajax({
 							method : 'post',

@@ -29,5 +29,7 @@ public interface BoardMapper {
 	public void updateReplyCnt(@Param("bno") Long bno, @Param("amount") int amount);
 	
 	public BoardVO deleteAll(String writer);
+
+	public void updateViewcnt(Long bno);
 }
 

@@ -44,11 +44,11 @@
 
 <select id="getListWithPaging" resultType="com.spring.domain.BoardVO">
 <![CDATA[
-  SELECT BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDATE, REPLYCNT FROM 
+  SELECT BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDATE, REPLYCNT, VIEWCNT FROM 
       
       (
       SELECT /*+INDEX_DESC(BOARD PK_BOARD) */
-        ROWNUM RN, BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDATE, REPLYCNT
+        ROWNUM RN, BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDATE, REPLYCNT, VIEWCNT
       FROM BOARD WHERE 
 ]]>
 
@@ -77,7 +77,10 @@
 	DELETE FROM BOARD WHERE WRITER = #{writer} 
 </delete>
 
-
+<update id="updateViewcnt">
+	UPDATE BOARD SET viewcnt =  viewcnt + 1
+		WHERE BNO = #{bno}
+</update>
 
 
 

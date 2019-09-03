@@ -80,9 +80,10 @@
 			<thead>
 				<tr>
 					<th width="8%">No.</th>
-					<th width="57%">제목</th>
+					<th width="49%">제목</th>
 					<th width="15%">작성자</th>
 					<th width="20%">작성일</th>
+					<th width="8%">조회수</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -99,6 +100,9 @@
 		              
 		              <td><fmt:formatDate pattern="yyyy-MM-dd"
 		                  value="${board.updatedate}" /></td>
+		                  
+		                 <%--  <td><c:out value="${board.viewcnt }"/></td> --%>
+		                  <td><c:out value="${board.viewcnt}" /></td>
 		            </tr>
           	</c:forEach>
 

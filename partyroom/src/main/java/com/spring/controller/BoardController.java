@@ -88,13 +88,23 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
-	@GetMapping({"/get", "/modify"})
+	@GetMapping("/get")
 	public void get(@RequestParam("bno") Long bno, Model model, HttpSession session, @ModelAttribute("cri") Criteria cri) {
+		//ModelAttribute = 자동으로 Model에 데이터를 지정한 이름으로 담아줌
+		log.info("/get AND /modify");
+		service.updateViewcnt(bno);
+		session.getAttribute("member");
+		session.setAttribute("board", service.get(bno));
+	}
+	
+	@GetMapping("/modify")
+	public void modify(@RequestParam("bno") Long bno, Model model, HttpSession session, @ModelAttribute("cri") Criteria cri) {
 		//ModelAttribute = 자동으로 Model에 데이터를 지정한 이름으로 담아줌
 		log.info("/get AND /modify");
 		session.getAttribute("member");
 		session.setAttribute("board", service.get(bno));
 	}
+	
 
 	@PostMapping("/modify")
 	public String modify(BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr, HttpSession session) {

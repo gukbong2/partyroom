@@ -24,6 +24,8 @@ public interface BoardService {
 
 	public List<AttachVO> getAttachList(Long bno);
 
+	public void updateViewcnt(Long bno);
+
 
 
 }

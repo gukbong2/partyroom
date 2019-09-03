@@ -145,15 +145,16 @@ body, table, div, p{ font-family: 'Nanum Gothic', sans-serif; }
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item"><a class="nav-link" href="/page/home">이용안내</a></li>
 				<li class="nav-item"><a class="nav-link" href="/page/home" id="book">예약하기</a></li>
-					<li class="nav-item"><a class="nav-link" href="#guide">소개</a></li>
+			    <li class="nav-item"><a class="nav-link" href="/page/home">소개</a></li>
 				<li class="nav-item"><a class="nav-link" href="/page/home">서비스</a></li>
 				<li class="nav-item"><a class="nav-link" href="/page/home">찾아 오는 길</a></li>
+				<li class="nav-item"><a class="nav-link" href="/page/home">포토 갤러리</a></li>
 				 <li class="nav-item">
 					<div class="dropdown">
 						<a class="nav-link dropbtn" href="#">게시판</a>
 						<div class="dropdown-content">
-								<a href="/board/list" style="font-size : 0.9em;">문의게시판</a>
-								<a href="/board/gallery" style="font-size : 0.9em;">갤러리</a>
+								<a href="/board/list" style="font-size : 0.95em; text-align: center;">문의게시판</a>
+								<a href="/notice/list"style="font-size : 0.95em; text-align: center;">공지사항</a>
 						</div>
 					</div>
 				</li>

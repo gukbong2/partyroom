@@ -50,7 +50,7 @@ public class BoardServiceImpl implements BoardService {
 		});
 	
 	}
-
+	
 	@Override
 	public BoardVO get(Long bno) {
 		return mapper.read(bno);
@@ -103,6 +103,11 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<AttachVO> getAttachList(Long bno) {
 		return attachMapper.findByBno(bno);
+	}
+
+	@Override
+	public void updateViewcnt(Long bno) {
+		 mapper.updateViewcnt(bno);
 	}
 
 }

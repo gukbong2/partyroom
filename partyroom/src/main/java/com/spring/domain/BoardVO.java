@@ -15,6 +15,8 @@ public class BoardVO {
 	private Date updatedate;
 	
 	private int replycnt;
+	private int viewcnt;
+	
 	
 	private String email;
 	
