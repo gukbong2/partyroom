@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@include file="../includes/header.jsp"%>
 
+<br /><br /><br /><br /><br />
+
     <div class="container">
         <div class="card card-container">
             <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
@@ -19,11 +21,11 @@
 					
 					
 				</form>
-            		
+            	
 					<a data-toggle="modal" data-dismiss="modal" href="#login"
-						data-target="#register">회원가입</a>
+						data-target="#register">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;회원가입</a>
 					<a data-toggle="modal" data-dismiss="modal" href="#findPW"
-					data-target="#findPW">비밀번호 찾기</a><br>	
+					data-target="#findPW">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;비밀번호 찾기</a><br>	
         </div><!-- /card-container -->
     </div><!-- /container -->
     
@@ -54,7 +56,7 @@
 						$("#customLoginPassword").val("");
 						$("#customLoginEmail").focus();
 						return false;
-					} else if ( customEmailCheckVal == null || customEmailCheckVal == "") {
+					}  else if (customEmailCheckVal == null || customEmailCheckVal == "") {
 						alert("이메일을 입력해주세요.");
 						$("#customLoginEmail").focus();
 						return false;
@@ -68,7 +70,8 @@
 						$("#customLoginEmail").val("");
 						$("#customLoginEmail").focus();
 						return false;
-					} 
+					}  
+					
 			
 					$("#customLoginForm").submit();
 		 			}

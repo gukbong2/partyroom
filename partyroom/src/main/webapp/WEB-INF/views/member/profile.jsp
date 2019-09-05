@@ -224,7 +224,7 @@ body{
                                                 <label>체크인</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>${reserv.start_date }</p>
+                                                   <p><fmt:formatDate pattern="yyyy-MM-dd" value="${reserv.start_date }"/></p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -232,7 +232,8 @@ body{
                                                 <label>체크아웃</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>230</p>
+                                                  <p><fmt:formatDate pattern="yyyy-MM-dd" value="${reserv.end_date }"/></p>
+                                                
                                             </div>
                                         </div>
                                         <div class="row">
@@ -240,7 +241,16 @@ body{
                                                 <label>여성 인원 / 남성 인원 </label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Expert</p>
+                                                <p>${reserv.female }명 , ${reserv.male }명  </p>
+                                                <p>총  인원 : ${reserv.count }명</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>결제일</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                               <p><fmt:formatDate pattern="yyyy-MM-dd" value="${reserv.billing_date }"/></p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -248,15 +258,16 @@ body{
                                                 <label>결제금액</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>6 months</p>
+                                                <p>$ ${reserv.price }</p>
                                             </div>
                                         </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <label>Your Bio</label><br/>
-                                        <p>Your detail description</p>
-                                    </div>
-                                </div>
+                                	 	<br />
+                                	 	 <div class="row">
+                                            <div class="col-md-6">
+                                                <label><a href="/reserv/list">예약내역 더보기</a></label>
+                                            </div>
+                                           
+                                        </div>
                             </div>
                         </div>
                     </div>

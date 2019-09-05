@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.spring.domain.Criteria;
+import com.spring.domain.PageDTO;
 import com.spring.domain.ReservVO;
 import com.spring.service.ReservService;
 
@@ -129,5 +131,43 @@ public class ReservController {
 		service.insert(vo);
 		
 	}
+
+
+	@GetMapping("/list")
+	public void list(Criteria cri, Model model, HttpSession session) {
+
+		log.info("list: " + cri);
+		model.addAttribute("list", service.getList(cri));
+		
+		int total = service.getTotal(cri);
+
+		session.getAttribute("url");
+		
+		log.info("total: " + total);
+
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
+
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 

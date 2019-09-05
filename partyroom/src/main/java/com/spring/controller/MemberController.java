@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.spring.domain.Criteria;
 import com.spring.domain.MemberVO;
 import com.spring.service.MemberService;
+import com.spring.service.ReservService;
 import com.spring.service.SHA256Util;
 
 import lombok.AllArgsConstructor;
@@ -31,31 +32,8 @@ import lombok.extern.log4j.Log4j;
 public class MemberController {
 	
 	private MemberService service;
+	private ReservService reservService;
 	
-	@RequestMapping("/UpdateAddress")
-	public void UpdateAddress() {
-		
-	}
-	
-	
-	
-	//회원가입 주소 팝업 불러오기
-	@RequestMapping("/address")
-	public void address() {
-		
-	}
-	
-	//회원 정보 수정 페이지
-	@GetMapping("/profile")
-	public void profile(Criteria cri, Model model, HttpSession session) {
-		
-		
-	}
-	
-	@GetMapping("/login")
-	public void loginPage() {
-		
-	}
 	
 	
 	
@@ -81,7 +59,7 @@ public class MemberController {
 		service.memberRegister(member);
 		
 			
-		return "member/emailNotVerify";
+		return "/page/home";
 		
 	}
 	
@@ -117,7 +95,12 @@ public class MemberController {
 			System.out.println("마지막 password : " + password);
 			
 			service.login(vo);
+			
 			//MemberVO member = service.login(vo);
+			
+			reservService.getMyReservation(vo.getEmail());
+			
+			
 			
 			//이메일 인증이 안되어있다면
 			if (vo.getAuth() == 0) {
@@ -130,6 +113,9 @@ public class MemberController {
 				
 				
 				session.setAttribute("member", vo);
+				session.setAttribute("reserv", reservService.getMyReservation(vo.getEmail()));
+				
+				
 				
 				System.out.println("member : " + vo);
 				
@@ -283,9 +269,12 @@ public class MemberController {
 		
 		count = service.modifyPassword(member);
 		
-		map.put("cnt", count);
+			
+			map.put("cnt", count);
+			return map;
 		
-		return map;
+		
+	
 	}
 	
 	//ajax 
@@ -339,7 +328,30 @@ public class MemberController {
 		
 		}
 	
+	@RequestMapping("/UpdateAddress")
+	public void UpdateAddress() {
+		
+	}
 	
+	
+	
+	//회원가입 주소 팝업 불러오기
+	@RequestMapping("/address")
+	public void address() {
+		
+	}
+	
+	//회원 정보 수정 페이지
+	@GetMapping("/profile")
+	public void profile(Criteria cri, Model model, HttpSession session) {
+		
+		
+	}
+	
+	@GetMapping("/login")
+	public void loginPage() {
+		
+	}
 	
 	
 }

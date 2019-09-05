@@ -410,7 +410,7 @@ margin : auto;
 </section>
 
 <!-- jumbotron -->
-<section>
+<!-- <section>
 	<div class="jumbotron jumbotron-fluid" style="background-color : #ececec; vertical-align: bottom;">
 		<div>
 			<div>
@@ -429,7 +429,7 @@ margin : auto;
 			</div>
 		</div>
 	</div>
-</section>
+</section> -->
 	
 		
 		
@@ -585,19 +585,22 @@ jQuery(function($){
 	    nextArrow: '<div class="chevron-container slick-right"><i class="fa fa-chevron-right" aria-hidden="true"></i></span><span class="sr-only">Next</span></div>',
 	    prevArrow: '<div class="chevron-container"><i class="fa fa-chevron-left" aria-hidden="true"></i></span><span class="sr-only">Previous</span></div>',
 	    slidesToShow: 1,
-	    autoplaySpeed : 1000,
-	    speed : 1500,
+	    autoplaySpeed : 1500,
+	    speed : 2000,
 	    autoplay : true,
 	    fade: true
 	  });
 	  
 	  $('.slick-carousel').slick({
 		  infinite: true,
+		  nextArrow: '<div class="chevron-container slick-right"><i class="fa fa-chevron-right" aria-hidden="true"></i></span><span class="sr-only">Next</span></div>',
+		  prevArrow: '<div class="chevron-container"><i class="fa fa-chevron-left" aria-hidden="true"></i></span><span class="sr-only">Previous</span></div>',
+		   
 		  slidesToShow: 3, 
 		  slidesToScroll: 1, 
 		  arrows: true,
-		  autoplaySpeed : 1000,
-		  speed : 1500,
+		  autoplaySpeed : 5000,
+		  speed : 5000,
 		  autoplay : true,
 		  dots: true 
 		});	

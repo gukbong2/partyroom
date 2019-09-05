@@ -17,7 +17,9 @@ public interface ReservService {
 	
 	public boolean modify(ReservVO reserv);
 
-	public ReservVO getMyReservation(ReservVO reserv);
+	public ReservVO getMyReservation(String reserv_email);
+
+	public int getTotal(Criteria cri);
 	
 	
 	

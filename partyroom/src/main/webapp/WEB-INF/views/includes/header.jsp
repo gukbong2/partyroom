@@ -605,13 +605,15 @@ $(window).ready(function(){
 				data : params,
 				url : "/member/modifyPassword",
 				success : function(data) {
+					
+					
 					if (data.cnt == 0) {
 						alert("아이디 혹은 비밀번호를 잘못 입력하셨습니다. 다시 시도해주세요.");
 						$("#LoginEmail").val("");
 						$("#LoginPassword").val("");
 						$("#LoginPassword").focus();
 						return false;
-					} else if ( emailCheckVal == null || emailCheckVal == "") {
+					} else if (LoginEmail == null || LoginEmail == "") {
 						alert("이메일을 입력해주세요.");
 						$("#LoginEmail").focus();
 						return false;
