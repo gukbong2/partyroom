@@ -14,7 +14,7 @@
 
 <p class="center jumbotron jumbotron-fluid"
 		style="font-weight: 1000; font-size: 1.5em; background-color: #475C7A;
-		color: white; text-align: center;" >문의 게시판</p>
+		color: white; text-align: center;" >나의 예약 내역</p>
 		
 
 
@@ -31,7 +31,8 @@
 			</thead>
 			<tbody>
 
-					
+				<c:if test="${reserv.ticket eq null }">
+				
 				<c:forEach items="${reservList}" var="reserv">
 		            <tr>
 		              <td><c:out value="${reserv.reserv_idx}" /></td>
@@ -48,7 +49,12 @@
 		                  <td><c:out value="${reserv.reserv_email}" /></td>
 		            </tr>
           	</c:forEach>
-
+			</c:if>	
+			
+			<c:if test="${reserv.ticket ne null }">
+				<p>조회된 예약이 없습니다.</p>
+			</c:if>	
+			</tbody>
 				</table>
 </body>
 </html>

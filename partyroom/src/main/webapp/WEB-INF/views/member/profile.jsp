@@ -151,7 +151,7 @@ body{
                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">프로필</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">최근 예약 정보</a>
+                                    <a class="nav-link" id="reservMoreBtn" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">최근 예약 정보</a>
                                 </li>
                             </ul>
                         </div>
@@ -211,75 +211,8 @@ body{
                                        
                             </div>
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>예약번호</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>${reserv.reserv_idx }</p>
-                                            </div>
-                                        </div>
-                                        
-                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <label>예약자명</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>${member.name }</p>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>체크인</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                   <p><fmt:formatDate pattern="yyyy-MM-dd" value="${reserv.start_date }"/></p>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>체크아웃</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                  <p><fmt:formatDate pattern="yyyy-MM-dd" value="${reserv.end_date }"/></p>
-                                                
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>여성 인원 / 남성 인원 </label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>${reserv.female }명 , ${reserv.male }명  </p>
-                                                <p>총  인원 : ${reserv.count }명</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>결제일</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                               <p><fmt:formatDate pattern="yyyy-MM-dd" value="${reserv.billing_date }"/></p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>결제금액</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>$ ${reserv.price }</p>
-                                            </div>
-                                        </div>
-                                	 	<br />
-                                	 	 <div class="row">
-                                            <div class="col-md-6">
-                                                <label>
-                                                <a href='#' id="reservMoreBtn">예약내역 더보기</a></label>
-                                            </div>
-                                           
-                                        </div>
+                                       
+                                	 	
                             </div>
                         </div>
                     </div>
