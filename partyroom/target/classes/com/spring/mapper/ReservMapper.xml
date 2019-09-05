@@ -4,11 +4,6 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spring.mapper.ReservMapper">
 
-<select id="getList" resultType="com.spring.domain.ReservVO" >
-	<![CDATA[	
-		SELECT * FROM RESERVATION WHERE RESERV_IDX > 0 ORDER BY RESERV_IDX DESC
-	]]>
-</select>
 
 <insert id="insert">
 
@@ -37,12 +32,11 @@
 </select>
 
 
-<!-- 
-수정은 할게많아서 나중에 삭제까지만
-<update id="update">
-
-</update> -->
-
+<select id="getList" resultType="com.spring.domain.ReservVO" >
+	<![CDATA[	
+		SELECT * FROM RESERVATION WHERE RESERV_EMAIL = #{reserv_email}  AND RESERV_NAME = #{reserv_name} ORDER BY RESERV_IDX DESC
+	]]>
+</select>
 
 
 

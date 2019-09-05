@@ -75,7 +75,8 @@
 				</c:if>  --%>
 				<button class='btn btn-default' id="regBtn" 
 							style="margin-right : auto; margin-left : auto;">글작성</button>
-				<table class="table table-hover">
+				
+			<table class="table table-hover">
 				
 			<thead>
 				<tr>

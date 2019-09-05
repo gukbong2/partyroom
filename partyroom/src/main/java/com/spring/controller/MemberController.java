@@ -98,7 +98,7 @@ public class MemberController {
 			
 			//MemberVO member = service.login(vo);
 			
-			reservService.getMyReservation(vo.getEmail());
+			String reserv_email = vo.getEmail();
 			
 			
 			
@@ -113,7 +113,7 @@ public class MemberController {
 				
 				
 				session.setAttribute("member", vo);
-				session.setAttribute("reserv", reservService.getMyReservation(vo.getEmail()));
+				session.setAttribute("reserv", reservService.getMyReservation(reserv_email));
 				
 				
 				

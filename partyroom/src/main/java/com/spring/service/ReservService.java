@@ -13,13 +13,12 @@ public interface ReservService {
 	
 	public boolean remove(Long reserv_idx);
 	
-	public List<ReservVO> getList(Criteria cri);
-	
 	public boolean modify(ReservVO reserv);
 
 	public ReservVO getMyReservation(String reserv_email);
 
-	public int getTotal(Criteria cri);
+	public List<ReservVO> getList(ReservVO reserv);
+
 	
 	
 	

@@ -219,6 +219,16 @@ body{
                                                 <p>${reserv.reserv_idx }</p>
                                             </div>
                                         </div>
+                                        
+                                         <div class="row">
+                                            <div class="col-md-6">
+                                                <label>예약자명</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>${member.name }</p>
+                                            </div>
+                                        </div>
+                                        
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>체크인</label>
@@ -227,6 +237,7 @@ body{
                                                    <p><fmt:formatDate pattern="yyyy-MM-dd" value="${reserv.start_date }"/></p>
                                             </div>
                                         </div>
+                                        
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>체크아웃</label>
@@ -264,7 +275,8 @@ body{
                                 	 	<br />
                                 	 	 <div class="row">
                                             <div class="col-md-6">
-                                                <label><a href="/reserv/list">예약내역 더보기</a></label>
+                                                <label>
+                                                <a href='#' id="reservMoreBtn">예약내역 더보기</a></label>
                                             </div>
                                            
                                         </div>
@@ -274,6 +286,22 @@ body{
                 </div>
             </form>           
         </div>
+
+<form method="get" action="/reserv/list" id="reservListForm">
+
+	<input type="hidden" id="reserv_name" name="reserv_name" value="${member.name }"/>
+	<input type="hidden" id="reserv_email" name="reserv_email" value="${member.email }"/>
+
+</form>
+
+<script>
+	$("#reservMoreBtn").on("click", function() {
+		
+		alert("리저브목록 보자");
+		$("#reservListForm").submit();
+	});
+</script>
+
 
 
 <!-- 비밀번호 수정 모달 -->	
@@ -310,6 +338,8 @@ body{
 		</div>
 	</div>
 </div>
+
+
 
 <!-- 회원 탈퇴 모달 -->	
 <div class="modal fade" id="memberDelete" tabindex="-1" role="dialog"

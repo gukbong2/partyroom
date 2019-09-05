@@ -33,10 +33,6 @@ public class ReservServiceImpl implements ReservService{
 		return mapper.delete(reserv_idx) == 1;
 	}
 
-	@Override
-	public List<ReservVO> getList(Criteria cri) {
-		return null;
-	}
 
 	@Override
 	public boolean modify(ReservVO reserv) {
@@ -48,5 +44,12 @@ public class ReservServiceImpl implements ReservService{
 		// TODO Auto-generated method stub
 		return mapper.getMyReservation(reserv_email);
 	}
+
+	@Override
+	public List<ReservVO> getList(ReservVO reserv) {
+		// TODO Auto-generated method stub
+		return mapper.getList(reserv);
+	}
+
 
 }

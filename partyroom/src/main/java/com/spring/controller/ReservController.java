@@ -3,6 +3,7 @@ package com.spring.controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -134,19 +135,19 @@ public class ReservController {
 
 
 	@GetMapping("/list")
-	public void list(Criteria cri, Model model, HttpSession session) {
+	public void list(Model model, HttpSession session, ReservVO reserv) {
 
-		log.info("list: " + cri);
-		model.addAttribute("list", service.getList(cri));
+		log.info("===================================================");
+		log.info("===================================================");
+		log.info("=======================" + reserv);
+		log.info("===================================================");
+		log.info("===================================================");
 		
-		int total = service.getTotal(cri);
-
-		session.getAttribute("url");
+		List<ReservVO> reservList = service.getList(reserv);
+		session.setAttribute("reservList", reservList);
 		
-		log.info("total: " + total);
-
-		model.addAttribute("pageMaker", new PageDTO(cri, total));
-
+		
+		
 	}
 
 
