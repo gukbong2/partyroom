@@ -242,6 +242,7 @@ margin : auto;
 <!-- jumbotron -->
 <section id="reservation">
 	<div class="jumbotron jumbotron-fluid" style="background-color : #ececec; vertical-align: bottom;">
+	<br /><br /><br /><br />
 		<div>
 			<div>
 				<h2 style="text-align: center;"><strong>7Hours 예약하기</strong></h2>
@@ -272,6 +273,7 @@ margin : auto;
 <!-- jumbotron -->
 <section id="guide">
 	<div class="jumbotron jumbotron-fluid" style="background-color : #ececec; vertical-align: bottom;">
+	<br /><br /><br /><br />
 		<div>
 			<div>
 				<br /><br />
@@ -436,6 +438,7 @@ margin : auto;
 	<!-- 지도-->
 	<section id="map">
 	<div class="jumbotron jumbotron-fluid" style="background-color : #ececec; vertical-align: top;">
+		<br /><br /><br /><br />
 		<div>
 			<div>
 				<br /><br />
@@ -447,8 +450,8 @@ margin : auto;
 				
 				
 				<div style="font-size: 20px; width: 60%; margin-right : auto; margin-left : auto;">
-					<img src="/resources/image/instagram.png">
-					<img src="/resources/image/instagram.png">
+					<!-- <img src="/resources/image/instagram.png">
+					<img src="/resources/image/instagram.png"> -->
 				</div>
 				<div id="kakaoMap">
 				
@@ -461,8 +464,8 @@ margin : auto;
 	
 <section id="faq" class="facility__faq">
 <div class="jumbotron jumbotron-fluid" style="background-color : #ececec; vertical-align: top; ">
+	<br /><br /><br /><br /><br />
 	<h2  style="text-align: center;"><strong>7Hours 서비스 규정</strong></h2>
-	<br /><br />
 		<div>
 		<div style="text-align: center;">
 		<ol style="list-style: none;" class="faq">
@@ -532,6 +535,7 @@ margin : auto;
  
 <section id="gallery">
 <div class="jumbotron jumbotron-fluid" style="background-color : #ececec; vertical-align: top; ">
+	<br /><br /><br /><br />
 	<h2  style="text-align: center;"><strong>포토 갤러리</strong></h2>
 <div class="slick-carousel">
   <div>

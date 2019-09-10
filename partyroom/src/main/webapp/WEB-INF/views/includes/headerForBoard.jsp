@@ -154,7 +154,7 @@ body, table, div, p{ font-family: 'Nanum Gothic', sans-serif; }
 						<a class="nav-link dropbtn" href="#">게시판</a>
 						<div class="dropdown-content">
 								<a href="/board/list" style="font-size : 0.95em; text-align: center;">문의게시판</a>
-								<a href="/notice/list"style="font-size : 0.95em; text-align: center;">공지사항</a>
+								<!-- <a href="/notice/list"style="font-size : 0.95em; text-align: center;">공지사항</a> -->
 						</div>
 					</div>
 				</li>

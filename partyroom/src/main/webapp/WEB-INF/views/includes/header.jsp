@@ -177,8 +177,13 @@ $(window).ready(function(){
 		
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item"><a class="nav-link" href="#guide">이용안내</a></li>
+				<li class="nav-item"><a class="nav-link" href="#guide" >이용안내</a></li>
+				<c:if test="${member.name ne null }">
 				<li class="nav-item"><a class="nav-link" href="#reservation" id="book">예약하기</a></li>
+				</c:if>
+				<c:if test="${member.name eq null }">
+				<li class="nav-item"><a class="nav-link" href="#reservation">예약하기</a></li>
+				</c:if>
 				<li class="nav-item"><a class="nav-link" href="#guide">소개</a></li>
 				<li class="nav-item"><a class="nav-link" href="#faq">서비스</a></li>
 				<li class="nav-item"><a class="nav-link" href="#map">찾아 오는 길</a></li>
@@ -188,7 +193,7 @@ $(window).ready(function(){
 						<a class="nav-link dropbtn" href="#">게시판</a>
 						<div class="dropdown-content">
 								<a href="/board/list" style="font-size : 0.95em; text-align: center;">문의게시판</a>
-								<a href="/notice/list"style="font-size : 0.95em; text-align: center;">공지사항</a>
+								<!-- <a href="/notice/list"style="font-size : 0.95em; text-align: center;">공지사항</a> -->
 						</div>
 					</div>
 				</li>
