@@ -128,10 +128,12 @@ font-size: 1.5em; background-color: #475C7A; color: white; text-align: center;" 
 				<br><br>
 				
 				  <div class="panel-heading">File Attach</div>
-      <!-- /.panel-heading -->
-		        <div class="form-group uploadDiv">
+		        	
+		        	<div class="form-group uploadDiv">
 		            <input type="file" name='uploadFile' id="uploadFileBtn" multiple>
-		        </div>
+		        	</div> 
+		      
+		        
 		        
 		        <div class='uploadResult'> 
 		          <ul>
@@ -248,8 +250,12 @@ $(document).ready(function(e){
       dataType:'json',
         success: function(result){
           console.log(result); 
+          alert(result);
 		  showUploadResult(result); //업로드 결과 처리 함수 
+      },error:function(request,status,error){
+          alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
       }
+
     }); //$.ajax
     
   });  

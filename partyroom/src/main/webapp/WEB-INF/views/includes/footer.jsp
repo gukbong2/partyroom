@@ -5,9 +5,9 @@
 .footer {
 	background-color : #252525;
 	color : white;
- a:link { color: white; text-decoration: none;}
- a:visited { color: white; text-decoration: none;}
- a:hover { color: white; text-decoration: underline;}
+	}
+.github { color: white;}
+
 
 
  }
@@ -18,19 +18,19 @@
 			<div class="row text-center">
 				<div class="col-md-4">
 					<hr class="light">
-					<h5>방국봉 게스트하우스</h5>
+					<h5>7Hours</h5>
 					<hr class="light">
 					<p>+82-10-3922-2459</p>
 					<p>junyeon2459@gmail.com</p>
-					<a href="https://github.com/gukbong2" >https://github.com/gukbong2</a>
+					<a id="github" href="https://github.com/gukbong2" >https://github.com/gukbong2</a>
 					<p>서울특별시 용산구 이태원로26길 16-12</p>
 				</div>
 				<div class="col-md-4">
 					<hr class="light">
 					<h5>운영시간</h5>
 					<hr class="light">
-					<p>체크인 : 13pm</p>
-					<p>체크아웃 : 10am</p>
+					<p>체크인 : 13:00</p>
+					<p>체크아웃 : 10:00</p>
 					<p>레이트 체크아웃 가능합니다. 리셉션 항시 상주</p>
 				</div>
 				<div class="col-md-4">
@@ -43,7 +43,7 @@
 				</div>
 				<div class="col-12">
 					<hr class="light-100">
-					<h5><i class="fas fa-copyright"></i> gukbong's guesthouse</h5>
+					<h5><i class="fas fa-copyright"></i> 7Hours </h5>
 				</div>
 			</div>
 		</div>

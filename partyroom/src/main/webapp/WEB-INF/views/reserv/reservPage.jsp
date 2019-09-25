@@ -449,7 +449,6 @@ body {
 				  <p><i class="fas fa-key">락커 키를 잃어버리시면 +5000원 입니다.</i></p>
 				  <p><i class="fas fa-smoking">객실 내 흡연 절대 불가능</i></p>
 				  <p><i class="fas fa-id-card">체크인 시 여권을 보여주세요.</i></p>
-                  <p>이용안내 문구 더 적기</p>
                   <hr>
 					
                   <table class="table table-bordered" style="width: 100%; background-color: white;">

@@ -2,7 +2,6 @@ package com.spring.mapper;
 
 import java.util.List;
 
-import com.spring.domain.Criteria;
 import com.spring.domain.ReservVO;
 
 public interface ReservMapper {

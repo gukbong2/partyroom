@@ -32,7 +32,6 @@
 	
 	<resources location="/WEB-INF/views/ckeditor/" mapping="/ckeditor/**"></resources>
 	
-	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"></beans:bean>
 	
 	<!-- 인터셉터 -->
    <beans:bean id="LoginInterceptor" class="com.spring.intercepter.LoginInterceptor"></beans:bean>
@@ -44,5 +43,8 @@
 			<beans:ref bean="LoginInterceptor"/>
 		</interceptor>
 	</interceptors>
+	
+	
+
 	
 </beans:beans>
